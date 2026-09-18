@@ -1,0 +1,22 @@
+{
+  "name": "devio",
+  "owner": {
+    "name": "Marcos Bricches",
+    "email": "marcos.bricches@devio.com.br"
+  },
+  "description": "Devio's design plugin for Claude Code.",
+  "plugins": [
+    {
+      "name": "devio",
+      "source": "./",
+      "description": "Devio's design method: art direction, cumulative prototype, measurement and gates by change. Runs beneath mattpocock-skills.",
+      "category": "design",
+      "keywords": [
+        "design",
+        "art-direction",
+        "prototype",
+        "measurement"
+      ]
+    }
+  ]
+}

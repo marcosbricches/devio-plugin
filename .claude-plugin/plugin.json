@@ -1,13 +1,23 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "devio",
-  "version": "0.1.0",
-  "description": "Método de trabalho da Devio: direção de arte, protótipo, medição e portões",
+  "version": "0.0.1",
+  "description": "Devio's design method: art direction, cumulative prototype, measurement and gates by change. Runs beneath mattpocock-skills.",
   "author": {
     "name": "Marcos Bricches",
     "email": "marcos.bricches@devio.com.br"
   },
+  "keywords": [
+    "design",
+    "art-direction",
+    "prototype",
+    "measurement"
+  ],
   "skills": [
     "./skills"
-  ]
+  ],
+  "agents": [
+    "./agents/researcher.md"
+  ],
+  "hooks": "./hooks/hooks.json"
 }
