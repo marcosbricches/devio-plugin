@@ -19,5 +19,6 @@
   "agents": [
     "./agents/researcher.md"
   ],
-  "hooks": "./hooks/hooks.json"
+  "hooks": "./hooks/hooks.json",
+  "homepage": "https://github.com/marcosbricches/devio-plugin"
 }

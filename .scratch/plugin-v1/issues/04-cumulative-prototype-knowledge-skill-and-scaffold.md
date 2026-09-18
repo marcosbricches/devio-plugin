@@ -4,10 +4,10 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] `user-invocable: false` with `paths` scoped to the prototype folder pattern
-- [ ] ADR-0004 is honoured: no command, no throwaway branch, `/prototype` reserved for logic questions
-- [ ] Scaffold serves a folder on a chosen port and versions `?v=` by content hash, idempotently
-- [ ] Skeletons carry headings only, no viva-maracana content
-- [ ] Passes the writing-for-agents no-op and sediment tests
+- [x] `user-invocable: false` with `paths` scoped to the prototype folder pattern
+- [x] ADR-0004 is honoured: no command, no throwaway branch, `/prototype` reserved for logic questions
+- [x] Scaffold serves a folder on a chosen port and versions `?v=` by content hash, idempotently
+- [x] Skeletons carry headings only, no viva-maracana content
+- [x] Passes the writing-for-agents no-op and sediment tests

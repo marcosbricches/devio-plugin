@@ -4,10 +4,10 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] `user-invocable: false`; the description triggers on compose/review/direct-a-screen requests and not on code-only tasks
-- [ ] Body under the documented size; steps inline, reference material behind pointers
-- [ ] Community names used where they exist (visual QA, competitive evaluation, tracer bullet); Devio names kept and defined
-- [ ] Research delegation names the `researcher` agent and the output format
-- [ ] Passes the writing-for-agents no-op and sediment tests on a read-through
+- [x] `user-invocable: false`; the description triggers on compose/review/direct-a-screen requests and not on code-only tasks
+- [x] Body under the documented size; steps inline, reference material behind pointers
+- [x] Community names used where they exist (visual QA, competitive evaluation, tracer bullet); Devio names kept and defined
+- [x] Research delegation names the `researcher` agent and the output format
+- [x] Passes the writing-for-agents no-op and sediment tests on a read-through

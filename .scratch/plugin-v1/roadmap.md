@@ -17,8 +17,8 @@ Legend: ✅ resolved · 🟢 unblocked · ⏳ waiting
 
 | | Ticket | Blocked by |
 | --- | --- | --- |
-| 🟢 | 03 `art-direction` knowledge skill | 01 |
-| 🟢 | 04 `cumulative-prototype` knowledge skill and scaffold | 01 |
+| ✅ | 03 `art-direction` knowledge skill | 01 |
+| ✅ | 04 `cumulative-prototype` knowledge skill and scaffold | 01 |
 | 🟢 | 05 `gates` knowledge skill | 01 |
 | 🟢 | 06 `measure`: shared module, `capture`, fixture and shape test | 01 |
 | 🟢 | 09 `client-report` skill | 01 |
