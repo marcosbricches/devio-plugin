@@ -16,8 +16,5 @@
   "skills": [
     "./skills"
   ],
-  "agents": [
-    "./agents/researcher.md"
-  ],
   "homepage": "https://github.com/marcosbricches/devio-plugin"
 }

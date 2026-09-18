@@ -11,6 +11,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 ### Fixed
 
 - `plugin.json` declared `"hooks": "./hooks/hooks.json"`. Claude Code loads `hooks/hooks.json` automatically, so the manifest entry made it a duplicate and the whole plugin failed to load — taking `bash-cmdline-guard` with it. The manifest key is gone; the standard path still carries the hook.
+- `plugin.json` also declared `"agents": ["./agents/researcher.md"]`, and `claude plugin details devio` counted `Agents (0)` because of it. Dropping the key — `agents/` is picked up on its own — registers the `researcher` sub-agent. Same trap as the `hooks` key.
 - `<plugin>` appeared in four places as a path placeholder and was never defined anywhere, leaving the model to guess the plugin root before running a measurement or a report build. The `measure` and `client-report` skills now say how to resolve it, and the `measure.config.mjs` template no longer uses it.
 
 ## [0.1.1] — 2026-09-18
