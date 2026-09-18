@@ -16,7 +16,7 @@
  * milliseconds in the output.
  */
 import { readFile } from 'node:fs/promises';
-import { loadConfig, report } from './lib/measure.mjs';
+import { loadConfig, report, run } from './lib/measure.mjs';
 
 const CATEGORIES = [
   ['scripting', /^(FunctionCall|EvaluateScript|v8\.|V8\.|TimerFire|RunMicrotasks|XHRReadyStateChange|EventDispatch|RequestAnimationFrame|FireAnimationFrame|MajorGC|MinorGC|GCEvent)/],
@@ -27,7 +27,7 @@ const CATEGORIES = [
 
 const categoryOf = (name) => CATEGORIES.find(([, pattern]) => pattern.test(name))?.[0] ?? 'other';
 
-const main = async () => {
+run(async () => {
   const [, , configPath, tracePath, startMark, endMark] = process.argv;
   if (!tracePath || !startMark || !endMark) {
     throw new Error('usage: trace-cost.mjs <measure.config.mjs> <trace.json> <startMark> <endMark>');
@@ -87,7 +87,7 @@ const main = async () => {
     thread: mainThread ? `${mainThread.pid}/${mainThread.tid}` : 'all',
     totalSelfMs: Number(results.reduce((sum, entry) => sum + entry.selfMs, 0).toFixed(2)),
   });
-};
+});
 
 /* Metadata events name every thread; CrRendererMain is the one whose work the
  * visitor feels. Falls back to every thread when the trace carries no metadata,
@@ -98,9 +98,3 @@ function rendererMainThread(events) {
   );
   return named ? { pid: named.pid, tid: named.tid } : null;
 }
-
-main().catch((error) => {
-  process.stderr.write(`${error.message}\n`);
-  if (process.env.DEBUG) process.stderr.write(`${error.stack}\n`);
-  process.exit(1);
-});

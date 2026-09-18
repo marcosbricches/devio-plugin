@@ -232,6 +232,10 @@ def quote(doc, text):
     paragraph.runs[0].italic = True
 
 
+def title_of(lines, fallback):
+    return next((line[2:].strip() for line in lines if line.startswith("# ")), fallback)
+
+
 def project_name(source):
     try:
         root = subprocess.run(
@@ -273,7 +277,6 @@ def compose(source, out):
     normal.paragraph_format.line_spacing = 1.42
 
     lines = source.read_text(encoding="utf-8").split("\n")
-    title = next((line[2:].strip() for line in lines if line.startswith("# ")), source.stem)
 
     index, first_label = 0, True
     while index < len(lines):
@@ -324,6 +327,8 @@ def compose(source, out):
                 if not all(set(cell) <= set("-: ") for cell in cells):
                     body.append(cells)
                 index += 1
+            if not body:
+                sys.exit(f"{source}: a markdown table with no rows, at line {index}")
             table(doc, body)
 
         elif raw.startswith("---"):
@@ -343,7 +348,6 @@ def compose(source, out):
 
     doc.save(out)
     banner.unlink(missing_ok=True)
-    return title
 
 
 def main():
@@ -358,8 +362,7 @@ def main():
         sys.exit(f"no such file: {source}")
 
     project = arguments.project or project_name(source)
-    lines = source.read_text(encoding="utf-8").split("\n")
-    title = next((line[2:].strip() for line in lines if line.startswith("# ")), source.stem)
+    title = title_of(source.read_text(encoding="utf-8").split("\n"), source.stem)
     out = arguments.out or source.parent / f"{project} - {title} - Devio.docx"
 
     compose(source, out.resolve())

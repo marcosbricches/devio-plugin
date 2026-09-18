@@ -89,6 +89,7 @@ function collectLineRects(selector) {
 function hideGlyphs(selector) {
   for (const element of document.querySelectorAll(selector)) {
     element.dataset.measureColour = element.style.color;
+    element.dataset.measureShadow = element.style.textShadow;
     element.style.color = 'transparent';
     element.style.textShadow = 'none';
   }
@@ -97,7 +98,9 @@ function hideGlyphs(selector) {
 function showGlyphs(selector) {
   for (const element of document.querySelectorAll(selector)) {
     element.style.color = element.dataset.measureColour || '';
+    element.style.textShadow = element.dataset.measureShadow || '';
     delete element.dataset.measureColour;
+    delete element.dataset.measureShadow;
   }
 }
 
