@@ -1,5 +1,5 @@
 /* What the measurement scripts cannot guess about this project.
- * Contract and field meanings: <plugin>/skills/measure/CONFIG.md */
+ * Contract and field meanings: CONFIG.md in the devio plugin's measure skill. */
 export default {
   // A build on a fixed port, not the dev server, when numbers get compared.
   baseUrl: process.env.MEASURE_BASE_URL ?? 'http://localhost:3000',

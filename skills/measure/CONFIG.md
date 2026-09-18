@@ -8,7 +8,7 @@ Every script takes its path as the first argument:
 node <plugin>/skills/measure/scripts/capture.mjs ./measure.config.mjs
 ```
 
-`MEASURE_CONFIG` works as a fallback when the argument is omitted.
+`<plugin>` is this plugin's root, resolved as the [measure skill](SKILL.md) describes. `MEASURE_CONFIG` works as a fallback when the argument is omitted.
 
 ## Shape
 

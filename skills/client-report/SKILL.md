@@ -25,6 +25,8 @@ pip install -r <plugin>/skills/client-report/requirements.txt
 python <plugin>/skills/client-report/build.py path/to/text.md
 ```
 
+`<plugin>` is this plugin's root — the directory holding the `skills/` folder this file sits in. Read it off the absolute path of this `SKILL.md`, not off the project.
+
 The output lands next to the input as `<project> - <title> - Devio.docx`, with the project taken from the repository name and the title from the `# ` heading. `--project` and `--out` override either.
 
 The markdown the builder understands, and what each becomes, is documented at the top of `build.py`. If a dependency is missing the script stops and prints the install command — run it, and never work around a missing dependency by producing a lesser document.

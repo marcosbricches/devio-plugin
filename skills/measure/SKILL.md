@@ -17,6 +17,8 @@ Every script takes the project's [measure config](CONFIG.md) as its first argume
 node <plugin>/skills/measure/scripts/<script>.mjs ./measure.config.mjs
 ```
 
+`<plugin>` is this plugin's root — the directory holding the `skills/` folder this file sits in. Read it off the absolute path of this `SKILL.md`; it is not a project path and not the current working directory.
+
 The scripts run on the plugin's own Playwright, not the project's. A script that stops asking for
 `npm install` is telling you the plugin was checked out without its dependencies — run the command
 it prints, in the plugin root.
