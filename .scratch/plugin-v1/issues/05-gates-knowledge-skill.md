@@ -4,10 +4,10 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] `user-invocable: false`; description triggers on verify/commit/close-an-effort intents
-- [ ] The gates table is generic: it names kinds of change and kinds of check, not viva-maracana script names
-- [ ] Reviewer rule and finding filter match ADR-0005
-- [ ] Harvest and thesis counters (prototype rounds until approval; composition fixes after implementation) are steps with a checkable end
-- [ ] Passes the writing-for-agents no-op and sediment tests
+- [x] `user-invocable: false`; description triggers on verify/commit/close-an-effort intents
+- [x] The gates table is generic: it names kinds of change and kinds of check, not viva-maracana script names
+- [x] Reviewer rule and finding filter match ADR-0005
+- [x] Harvest and thesis counters (prototype rounds until approval; composition fixes after implementation) are steps with a checkable end
+- [x] Passes the writing-for-agents no-op and sediment tests
