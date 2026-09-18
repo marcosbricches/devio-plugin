@@ -4,9 +4,9 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] Generator runs from the plugin with `requirements.txt` installed; a missing dependency stops with the install command, never a workaround
-- [ ] Brand assets live in the skill folder; no viva-maracana text or file name remains
-- [ ] Skill description triggers on "report for the client" intents; body states content rules, not generator internals
-- [ ] Comment density per research 05
+- [x] Generator runs from the plugin with `requirements.txt` installed; a missing dependency stops with the install command, never a workaround
+- [x] Brand assets live in the skill folder; no viva-maracana text or file name remains
+- [x] Skill description triggers on "report for the client" intents; body states content rules, not generator internals
+- [x] Comment density per research 05
