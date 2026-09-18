@@ -29,14 +29,14 @@ Legend: ✅ resolved · 🟢 unblocked · ⏳ waiting
 | --- | --- | --- |
 | ✅ | 07 `measure`: `contrast-on-photo`, `scroll-junctions`, `trace-cost` | 06 |
 | ✅ | 08 `measure`: `line-breaks`, `focus-path` and the skill body | 06 |
-| 🟢 | 10 `/devio:setup` command | 03, 04, 05, 06 |
+| ✅ | 10 `/devio:setup` command | 03, 04, 05, 06 |
 | 🟢 | 12 Memory audit | 02, 03, 04, 05 |
 
 ## Layer 3
 
 | | Ticket | Blocked by |
 | --- | --- | --- |
-| ⏳ | 11 `/devio:next` command | 05, 10 |
+| ✅ | 11 `/devio:next` command | 05, 10 |
 
 ## Layer 4 — closes the effort
 

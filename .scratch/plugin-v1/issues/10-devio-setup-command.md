@@ -4,10 +4,25 @@
 
 **Blocked by:** 03, 04, 05, 06
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] `disable-model-invocation: true`; runs from `/devio:setup`
-- [ ] Empty directory: every listed file created, nothing else; existing repository: diff shown, nothing overwritten without consent
-- [ ] Written `AGENTS.md` carries no method — only project facts and pointers
-- [ ] Closing message lists the commands to type (`/mattpocock-skills:setup-matt-pocock-skills`, then `/grill-with-docs` …)
-- [ ] Manual gate recorded in the ticket: run on a temp directory and on a copy of viva-maracana
+- [x] `disable-model-invocation: true`; runs from `/devio:setup`
+- [x] Empty directory: every listed file created, nothing else; existing repository: diff shown, nothing overwritten without consent
+- [x] Written `AGENTS.md` carries no method — only project facts and pointers
+- [x] Closing message lists the commands to type (`/mattpocock-skills:setup-matt-pocock-skills`, then `/grill-with-docs` …)
+- [x] Manual gate recorded in the ticket: run on a temp directory and on a copy of viva-maracana
+
+## Manual gate — 2026-09-18
+
+Run following the skill's own table, both without the command (it is
+user-invoked), to check the instructions produce the stated result.
+
+- **Empty directory** — created exactly `AGENTS.md`, `CONTEXT.md`, `docs/adr/`,
+  `.scratch/README.md`, `measure.config.mjs`, `.gitignore`, and nothing else.
+  The written config imports and exposes the five contract keys.
+- **Copy of viva-maracana** — `AGENTS.md`, `CONTEXT.md` and `docs/adr/` already
+  existed and were left byte-identical; only `.scratch/README.md` and
+  `measure.config.mjs` were created, and `.gitignore` was appended to.
+
+`AGENTS.md` as written carries product headings and two pointer lines to the
+plugins; no method text.
