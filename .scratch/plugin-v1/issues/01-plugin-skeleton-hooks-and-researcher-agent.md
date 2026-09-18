@@ -4,10 +4,10 @@
 
 **Blocked by:** None — can start immediately
 
-**Status:** ready-for-agent
+**Status:** resolved except the remote — waiting on the owner/name the user wants
 
-- [ ] `claude plugin validate` passes on the plugin root
-- [ ] `hooks/hooks.json` registers the bash guard via `${CLAUDE_PLUGIN_ROOT}`; the entry is removed from `~/.claude/settings.json`; a Bash call over the limit is still blocked
-- [ ] `agents/researcher.md` has `model: sonnet`, read/fetch/write tools only, and a description that names when to delegate
-- [ ] `README.md` states scope (ADR-0001), language (ADR-0002) and the mattpocock-skills dependency; `CHANGELOG.md` starts at Unreleased
+- [x] `claude plugin validate` passes on the plugin root
+- [x] `hooks/hooks.json` registers the bash guard via `${CLAUDE_PLUGIN_ROOT}`; the entry is removed from `~/.claude/settings.json`; a Bash call over the limit is still blocked
+- [x] `agents/researcher.md` has `model: sonnet`, read/fetch/write tools only, and a description that names when to delegate
+- [x] `README.md` states scope (ADR-0001), language (ADR-0002) and the mattpocock-skills dependency; `CHANGELOG.md` starts at Unreleased
 - [ ] A private remote exists and `main` is pushed

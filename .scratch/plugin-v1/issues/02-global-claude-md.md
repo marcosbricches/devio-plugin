@@ -4,9 +4,9 @@
 
 **Blocked by:** None — can start immediately
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] Under 25 lines, English, each line passes "would removing it cause a mistake?"
-- [ ] The comment rule follows research 05 (why, rejected alternative, unit, pitfall; one contract docstring per script; no step narration)
-- [ ] The bash-limit table is gone from the file and lives with the hook in the plugin
-- [ ] No line duplicates what a memory file or the plugin already says
+- [x] Under 25 lines, English, each line passes "would removing it cause a mistake?"
+- [x] The comment rule follows research 05 (why, rejected alternative, unit, pitfall; one contract docstring per script; no step narration)
+- [x] The bash-limit table is gone from the file and lives with the hook in the plugin
+- [x] No line duplicates what a memory file or the plugin already says
