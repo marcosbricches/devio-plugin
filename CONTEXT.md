@@ -35,3 +35,19 @@ _Avoid_: Second opinion, QA
 **Harvest**:
 The step at the close of an effort that promotes project learnings that generalize into the plugin and drops the rest.
 _Avoid_: Retro, post-mortem
+
+**Knowledge skill**:
+A plugin skill the user never invokes: it carries method, loads when the task or the file path matches its description, and is the single copy of that method across projects.
+_Avoid_: Command, slash command, workflow
+
+**Setup**:
+The one entry command that embeds the engineering into a repository: project files only, method stays in the plugin.
+_Avoid_: Init, scaffold, template
+
+**Next**:
+The shortcut that reads the repository state and runs or names the next step of the flow; it knows the order without enforcing it.
+_Avoid_: Orchestrator, pipeline, runner
+
+**Measure config**:
+The per-project file that gives the measurement scripts what they cannot guess: base URL, routes, selectors, widths.
+_Avoid_: Settings, env
