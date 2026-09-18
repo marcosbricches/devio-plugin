@@ -2,7 +2,7 @@
 
 Source of each row is the ticket's `Blocked by`. Resolving a ticket updates its `Status` and this board in the same pass.
 
-Updated: 2026-09-18
+Updated: 2026-09-18 — every ticket resolved; released as 0.1.0
 
 Legend: ✅ resolved · 🟢 unblocked · ⏳ waiting
 
@@ -42,7 +42,7 @@ Legend: ✅ resolved · 🟢 unblocked · ⏳ waiting
 
 | | Ticket | Blocked by |
 | --- | --- | --- |
-| 🟢 | 13 viva-maracana migration and release 0.1.0 | 07, 08, 09, 10, 12 |
+| ✅ | 13 viva-maracana migration and release 0.1.0 | 07, 08, 09, 10, 12 |
 
 ## Critical path
 

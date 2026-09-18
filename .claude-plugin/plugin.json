@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "devio",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Devio's design method: art direction, cumulative prototype, measurement and gates by change. Runs beneath mattpocock-skills.",
   "author": {
     "name": "Marcos Bricches",
