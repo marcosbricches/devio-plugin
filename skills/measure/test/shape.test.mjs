@@ -111,4 +111,75 @@ describe('measurement scripts', { timeout: 180_000 }, () => {
       assert.match(entry.file, /\.png$/);
     }
   });
+
+  it('contrast-on-photo returns one entry per rendered line', async () => {
+    const payload = await runScript('contrast-on-photo.mjs', env);
+    assertEnvelope(payload, 'contrast-on-photo');
+    assert.ok(payload.selector, 'the selector it measured is reported');
+    for (const line of payload.results) {
+      assert.equal(typeof line.route, 'string');
+      assert.ok(['mobile', 'desktop'].includes(line.widthClass));
+      assert.equal(typeof line.lineIndex, 'number');
+      assert.equal(typeof line.text, 'string');
+      assert.match(line.colour, /^rgba?\(/);
+      assert.equal(typeof line.rect.width, 'number');
+      assert.ok(line.samples > 0, 'at least one pixel sampled');
+      for (const field of ['minContrast', 'medianContrast', 'maxContrast']) {
+        assert.ok(line[field] >= 1, `${field} is a contrast ratio`);
+      }
+      assert.ok(line.minContrast <= line.medianContrast && line.medianContrast <= line.maxContrast);
+      for (const field of ['shareBelow4_5', 'shareBelow3']) {
+        assert.ok(line[field] >= 0 && line[field] <= 1, `${field} is a share`);
+      }
+    }
+  });
+
+  it('scroll-junctions returns three phases per junction per width class', async () => {
+    const payload = await runScript('scroll-junctions.mjs', env);
+    assertEnvelope(payload, 'scroll-junctions');
+    assert.deepEqual(payload.phases, [0, 50, 100]);
+    assert.equal(payload.results.length % 3, 0, 'junctions come in threes');
+    for (const shot of payload.results) {
+      assert.equal(typeof shot.junction, 'string');
+      assert.equal(typeof shot.top, 'number');
+      assert.ok(payload.phases.includes(shot.phase));
+      assert.equal(typeof shot.scrollY, 'number');
+      assert.match(shot.file, /--\d+\.png$/);
+    }
+  });
+
+  it('trace-cost returns self time per category between the two marks', async () => {
+    const payload = await new Promise((resolve, reject) => {
+      const child = spawn(
+        process.execPath,
+        [
+          join(SKILL, 'scripts', 'trace-cost.mjs'),
+          CONFIG,
+          join(FIXTURE, 'trace.json'),
+          'composition:start',
+          'composition:end',
+        ],
+        { env: { ...process.env, ...env }, cwd: PLUGIN },
+      );
+      let out = '';
+      let err = '';
+      child.stdout.on('data', (chunk) => (out += chunk));
+      child.stderr.on('data', (chunk) => (err += chunk));
+      child.on('close', (code) =>
+        code === 0 ? resolve(JSON.parse(out)) : reject(new Error(`trace-cost exited ${code}\n${err}`)),
+      );
+    });
+
+    assertEnvelope(payload, 'trace-cost');
+    assert.equal(payload.startMark, 'composition:start');
+    assert.equal(payload.endMark, 'composition:end');
+    assert.ok(payload.spanMs > 0);
+    assert.equal(typeof payload.thread, 'string');
+    assert.equal(typeof payload.totalSelfMs, 'number');
+    for (const entry of payload.results) {
+      assert.ok(['scripting', 'rendering', 'painting', 'loading', 'other'].includes(entry.category));
+      assert.ok(entry.selfMs >= 0);
+      assert.ok(entry.events > 0);
+    }
+  });
 });

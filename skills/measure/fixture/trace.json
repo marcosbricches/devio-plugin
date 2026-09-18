@@ -1,0 +1,21 @@
+{
+  "traceEvents": [
+    { "ph": "M", "name": "thread_name", "pid": 100, "tid": 1, "args": { "name": "CrRendererMain" } },
+    { "ph": "M", "name": "thread_name", "pid": 100, "tid": 9, "args": { "name": "Compositor" } },
+
+    { "ph": "R", "name": "composition:start", "cat": "blink.user_timing", "pid": 100, "tid": 1, "ts": 1000000 },
+
+    { "ph": "X", "name": "FunctionCall", "cat": "devtools.timeline", "pid": 100, "tid": 1, "ts": 1000500, "dur": 12000 },
+    { "ph": "X", "name": "v8.run", "cat": "v8", "pid": 100, "tid": 1, "ts": 1001000, "dur": 4000 },
+    { "ph": "X", "name": "RecalculateStyles", "cat": "devtools.timeline", "pid": 100, "tid": 1, "ts": 1014000, "dur": 3000 },
+    { "ph": "X", "name": "Layout", "cat": "devtools.timeline", "pid": 100, "tid": 1, "ts": 1018000, "dur": 6000 },
+    { "ph": "X", "name": "Paint", "cat": "devtools.timeline", "pid": 100, "tid": 1, "ts": 1025000, "dur": 2500 },
+    { "ph": "X", "name": "ParseHTML", "cat": "devtools.timeline", "pid": 100, "tid": 1, "ts": 1028000, "dur": 1500 },
+    { "ph": "X", "name": "SomethingUncategorised", "cat": "devtools.timeline", "pid": 100, "tid": 1, "ts": 1030000, "dur": 800 },
+
+    { "ph": "X", "name": "RasterTask", "cat": "devtools.timeline", "pid": 100, "tid": 9, "ts": 1031000, "dur": 5000 },
+    { "ph": "X", "name": "FunctionCall", "cat": "devtools.timeline", "pid": 100, "tid": 1, "ts": 1200000, "dur": 9000 },
+
+    { "ph": "R", "name": "composition:end", "cat": "blink.user_timing", "pid": 100, "tid": 1, "ts": 1040000 }
+  ]
+}

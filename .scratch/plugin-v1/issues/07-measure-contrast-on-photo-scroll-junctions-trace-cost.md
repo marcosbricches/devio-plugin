@@ -4,10 +4,10 @@
 
 **Blocked by:** 06
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] Selectors come from the config, not from any project's class names
-- [ ] Line counting uses `Range.getClientRects`, never height ÷ line-height
-- [ ] `trace-cost` accepts a trace file and the two mark names
-- [ ] Shape test extended to the three scripts and green
-- [ ] Comment density per research 05
+- [x] Selectors come from the config, not from any project's class names
+- [x] Line counting uses `Range.getClientRects`, never height ÷ line-height
+- [x] `trace-cost` accepts a trace file and the two mark names
+- [x] Shape test extended to the three scripts and green
+- [x] Comment density per research 05
