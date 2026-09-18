@@ -4,6 +4,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-09-18
+
+End-to-end validation of 0.1.0 against a real installed plugin. Three defects found and fixed; everything else held.
+
+### Fixed
+
+- `cumulative-prototype` scoped its `paths` to `prototype/` and `prototipo/` exactly, so the one prototype folder actually in use — `prototipo-ponto-de-fuga` — never matched. The patterns now end in `*`.
+- A measurement script run from a plugin checked out without its dependencies died with a module-resolution stack trace. Playwright is now imported on demand and the failure names the `npm install` to run, which is what the Python generator already did.
+- `README.md` and the `measure` skill did not say that `npm install` in the plugin root is required; a clone from the remote carries no `node_modules`.
+
 ## [0.1.0] — 2026-09-18
 
 First release. The method that produced viva-maracana's visual-language round stops living in that repository and becomes a plugin.
@@ -25,4 +35,5 @@ First release. The method that produced viva-maracana's visual-language round st
 - viva-maracana became the first project on the plugin: its method documents and the six measurement scripts the plugin covers were removed, the implementation couplings moved into its `AGENTS.md`, and its effort roadmap gained the two thesis counters.
 - viva-maracana's project memory went from eighteen files to eight, one fact each.
 
+[0.1.1]: https://github.com/marcosbricches/devio-plugin/releases/tag/v0.1.1
 [0.1.0]: https://github.com/marcosbricches/devio-plugin/releases/tag/v0.1.0

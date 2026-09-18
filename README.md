@@ -22,9 +22,15 @@ Every artifact in this repository — skills, agents, hooks, scripts, ADRs, `CON
 ## Install
 
 ```bash
-claude plugin marketplace add <path-to-this-repo>
+git clone https://github.com/marcosbricches/devio-plugin
+cd devio-plugin && npm install          # Playwright, for the measurement scripts
+claude plugin marketplace add .
 claude plugin install devio@devio
 ```
+
+`npm install` is not optional: the repository does not carry `node_modules`, and without it every
+measurement script stops with the install command. The client report has its own dependencies —
+`pip install -r skills/client-report/requirements.txt` — installed when you first need a report.
 
 Installing here replaces the user-level copy of the bash guard: remove any `PreToolUse` entry pointing at `~/.claude/hooks/bash-cmdline-guard.js` from `~/.claude/settings.json`, or the guard runs twice.
 

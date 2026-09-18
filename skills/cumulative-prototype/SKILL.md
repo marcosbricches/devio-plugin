@@ -3,8 +3,8 @@ name: cumulative-prototype
 description: How an effort's cumulative HTML prototype is built and kept. Use when working inside a `.scratch/<effort>/prototype/` folder, when composing a screen before it is implemented, or when scaffolding a new prototype for an effort.
 user-invocable: false
 paths:
-  - "**/.scratch/*/prototype/**"
-  - "**/.scratch/*/prototipo/**"
+  - "**/.scratch/*/prototype*/**"
+  - "**/.scratch/*/prototipo*/**"
 ---
 
 One real HTML/CSS/JS folder per effort, grown across tickets. Every composition ticket adds a piece to the same artifact, because what gets judged is whether the pieces cohere — a set of separate mockups cannot show that.

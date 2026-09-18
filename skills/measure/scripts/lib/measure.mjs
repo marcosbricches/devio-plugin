@@ -15,8 +15,7 @@
  * single place it is enforced, so a script never has to check its own inputs.
  */
 import { pathToFileURL } from 'node:url';
-import { resolve } from 'node:path';
-import { chromium } from 'playwright';
+import { join, resolve } from 'node:path';
 
 export const DEFAULT_WIDTHS = [
   { name: 'mobile', width: 375, height: 812, deviceScaleFactor: 2 },
@@ -60,8 +59,20 @@ export function selectorFor(config, name) {
   return selector;
 }
 
+/* Imported here rather than at the top so a plugin checked out without its
+ * dependencies stops with the install command instead of a module-resolution
+ * stack trace. A missing tool gets installed, never worked around. */
+async function chromium() {
+  try {
+    return (await import('playwright')).chromium;
+  } catch {
+    const root = resolve(join(import.meta.dirname, '..', '..', '..', '..'));
+    throw new Error(`playwright is not installed in the devio plugin.\ninstall it with: npm install --prefix "${root}"`);
+  }
+}
+
 export async function withBrowser(run) {
-  const browser = await chromium.launch();
+  const browser = await (await chromium()).launch();
   try {
     return await run(browser);
   } finally {
