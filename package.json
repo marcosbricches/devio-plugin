@@ -1,0 +1,18 @@
+{
+  "name": "devio-plugin",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Runtime for the devio plugin's measurement scripts.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "node --test \"skills/measure/test/*.test.mjs\"",
+    "fixture": "node skills/cumulative-prototype/scaffold/tools/serve.mjs 4322 skills/measure/fixture"
+  },
+  "dependencies": {
+    "playwright": "1.62.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

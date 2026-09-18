@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Measure fixture — home</title>
+    <link rel="stylesheet" href="fixture.css?v=" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="chrome">
+      <a class="chrome__brand" href="/">Fixture</a>
+      <nav>
+        <a href="/second.html">Second</a>
+        <button type="button">Menu</button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" data-junction="hero-to-intro">
+        <img class="hero__photo" src="photo.svg?v=" alt="" />
+        <div class="hero__text">
+          <h1 class="hero__title">A title that has to break across more than one line at 375 pixels</h1>
+          <p class="hero__lead">A lead sitting on the bright part of the photo, which is the whole point of the fixture.</p>
+          <a class="button" href="/second.html">Primary action</a>
+        </div>
+      </section>
+
+      <section class="intro" data-junction="intro-to-cards">
+        <h2>What this page is for</h2>
+        <p class="lead">Every measurement script has something to bite on here: text over a photo, section junctions, text blocks, a focus path, and a pending skeleton nobody should reach.</p>
+      </section>
+
+      <section class="cards" data-junction="cards-to-pending">
+        <article class="card">
+          <h3 class="card__title">First card with a deliberately long heading</h3>
+          <p>Body copy.</p>
+          <a href="/second.html">Read it</a>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Second card</h3>
+          <p>Body copy.</p>
+          <a href="/second.html">Read it</a>
+        </article>
+        <article class="card">
+          <h3 class="card__title">Third card</h3>
+          <p>Body copy.</p>
+          <a href="/second.html">Read it</a>
+        </article>
+      </section>
+
+      <section class="pending" data-pending aria-hidden="true">
+        <p>Placeholder text for content that has not arrived</p>
+        <a href="/second.html" tabindex="-1">Unreachable link</a>
+      </section>
+    </main>
+
+    <footer class="chrome">
+      <a href="/">Back to top</a>
+    </footer>
+
+    <script src="fixture.js?v="></script>
+  </body>
+</html>

@@ -4,10 +4,10 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] Measure config contract defined once (base URL, routes, width classes, selectors) and documented in the skill folder
-- [ ] `capture` takes the config path as argument and prints JSON with declared fields
-- [ ] Shape test runs with one command against the fixture and passes
-- [ ] Comment density follows research 05: one contract docstring per script, no step narration
-- [ ] Playwright is a declared dependency of the plugin, not assumed from the host project
+- [x] Measure config contract defined once (base URL, routes, width classes, selectors) and documented in the skill folder
+- [x] `capture` takes the config path as argument and prints JSON with declared fields
+- [x] Shape test runs with one command against the fixture and passes
+- [x] Comment density follows research 05: one contract docstring per script, no step narration
+- [x] Playwright is a declared dependency of the plugin, not assumed from the host project
