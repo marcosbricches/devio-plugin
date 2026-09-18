@@ -48,6 +48,15 @@ The envelope is the same everywhere: `measurement`, `generatedAt`, `baseUrl`, `r
 
 A measurement describes one build on one machine. Say which, next to the number. A script that cannot find its selector stops and names the missing config key rather than guessing a class — trust that, and fix the config.
 
+## Browsers that lie about motion
+
+Two measured traps, both of which make a working prototype look broken:
+
+- **A background tab throttles `requestAnimationFrame` to about one frame per second**, and with it `IntersectionObserver` and CSS transitions. A capture taken that way shows a scroll-reveal that never revealed. Call `page.bringToFront()` at the start of any script that measures motion, and wait at least 1.2 s after scrolling.
+- **A browser opened by an MCP server may carry `prefers-reduced-motion: reduce`**, so motion never starts at all, and outside a trace its frame rate is meaningless. Check the media query before concluding anything about motion; measure frame cost inside a trace, or drive the page with Playwright at `reducedMotion: 'no-preference'`.
+
+The scripts here already open their own foreground context, so this bites when measuring by hand through an MCP browser, not when running them.
+
 ## Per-project measurements
 
 Some measurements are worth writing, once, inside the project they belong to, because their subject is that project's own composition: chrome and notice-bar height against the usable viewport, shadow depth across a surface set, a specific colour pair from the identity. Write those under the project's own scripts folder, in the same shape — config in, one JSON object out — and leave them there. Only what generalises comes back into this plugin, at the effort's harvest.

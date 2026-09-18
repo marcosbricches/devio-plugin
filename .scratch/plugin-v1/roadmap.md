@@ -30,7 +30,7 @@ Legend: ✅ resolved · 🟢 unblocked · ⏳ waiting
 | ✅ | 07 `measure`: `contrast-on-photo`, `scroll-junctions`, `trace-cost` | 06 |
 | ✅ | 08 `measure`: `line-breaks`, `focus-path` and the skill body | 06 |
 | ✅ | 10 `/devio:setup` command | 03, 04, 05, 06 |
-| 🟢 | 12 Memory audit | 02, 03, 04, 05 |
+| ✅ | 12 Memory audit | 02, 03, 04, 05 |
 
 ## Layer 3
 
@@ -42,7 +42,7 @@ Legend: ✅ resolved · 🟢 unblocked · ⏳ waiting
 
 | | Ticket | Blocked by |
 | --- | --- | --- |
-| ⏳ | 13 viva-maracana migration and release 0.1.0 | 07, 08, 09, 10, 12 |
+| 🟢 | 13 viva-maracana migration and release 0.1.0 | 07, 08, 09, 10, 12 |
 
 ## Critical path
 
