@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "devio",
+  "version": "0.1.0",
+  "description": "Método de trabalho da Devio: direção de arte, protótipo, medição e portões",
+  "author": {
+    "name": "Marcos Bricches",
+    "email": "marcos.bricches@devio.com.br"
+  },
+  "skills": [
+    "./"
+  ]
+}
