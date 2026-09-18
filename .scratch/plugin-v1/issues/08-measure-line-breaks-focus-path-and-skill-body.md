@@ -4,10 +4,10 @@
 
 **Blocked by:** 06
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] `user-invocable: false`; `paths` scoped to the measure config and scripts folder
-- [ ] Both scripts covered by the shape test
-- [ ] LCP and CLS documented as DevTools MCP calls with what to record
-- [ ] Header, shadow and colour-pair measurements listed as per-project examples, not shipped
-- [ ] Passes the writing-for-agents no-op and sediment tests
+- [x] `user-invocable: false`; `paths` scoped to the measure config and scripts folder
+- [x] Both scripts covered by the shape test
+- [x] LCP and CLS documented as DevTools MCP calls with what to record
+- [x] Header, shadow and colour-pair measurements listed as per-project examples, not shipped
+- [x] Passes the writing-for-agents no-op and sediment tests

@@ -148,6 +148,52 @@ describe('measurement scripts', { timeout: 180_000 }, () => {
     }
   });
 
+  it('line-breaks returns the real lines of each text block', async () => {
+    const payload = await runScript('line-breaks.mjs', env);
+    assertEnvelope(payload, 'line-breaks');
+    assert.ok(payload.selector);
+    for (const block of payload.results) {
+      assert.equal(typeof block.tag, 'string');
+      assert.equal(typeof block.fontSize, 'string');
+      assert.ok(block.lineCount > 0);
+      assert.equal(block.lines.length, block.lineCount);
+      assert.equal(typeof block.widow, 'boolean');
+      assert.ok(block.widestLine > 0);
+      for (const line of block.lines) {
+        assert.equal(typeof line.text, 'string');
+        assert.ok(line.width >= 0);
+      }
+    }
+    const title = payload.results.find((block) => block.tag === 'h1' && block.widthClass === 'mobile');
+    assert.ok(title.lineCount > 1, 'the fixture title wraps at 375 px');
+  });
+
+  it('focus-path returns the stop order and the four machine-decidable checks', async () => {
+    const payload = await runScript('focus-path.mjs', env);
+    assertEnvelope(payload, 'focus-path');
+    assert.equal(payload.minTargetPx, 24);
+    for (const route of payload.results) {
+      assert.equal(route.stopCount, route.stops.length);
+      assert.equal(typeof route.returnSymmetric, 'boolean');
+      for (const field of ['stopsWithoutRing', 'stopsUnderTarget', 'stopsInHiddenText']) {
+        assert.ok(Array.isArray(route[field]), `${field} is an array`);
+      }
+      for (const stop of route.stops) {
+        assert.equal(typeof stop.tag, 'string');
+        assert.equal(typeof stop.signature, 'string');
+        assert.equal(typeof stop.hasRing, 'boolean');
+        assert.equal(typeof stop.inHiddenText, 'boolean');
+        assert.equal(typeof stop.rect.width, 'number');
+      }
+    }
+    const home = payload.results.find((route) => route.route === '/');
+    assert.equal(
+      home.stops.filter((stop) => stop.name === 'Read it').length,
+      3,
+      'repeated link names are three separate stops, not one',
+    );
+  });
+
   it('trace-cost returns self time per category between the two marks', async () => {
     const payload = await new Promise((resolve, reject) => {
       const child = spawn(
