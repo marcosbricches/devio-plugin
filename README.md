@@ -10,7 +10,8 @@ A Claude Code plugin that adds to a session, and takes nothing away:
   context7 for library docs and the official docs for Claude Code, and how they chain. The table is
   not a closed list; any installed specialist that fits is used.
 - **The designer's preferences** that their own `CLAUDE.md` does not already carry: references are
-  opened as images, never replaced by a description of them. The rest of the designer's
+  opened as images, never replaced by a description of them, and the frame of the screen (app shell
+  height, content's left edge) stays the same on every route, measured before a build is shown. The rest of the designer's
   preferences stay in that `CLAUDE.md` ([ADR 0001](docs/adr/0001-one-designer-preferences-live-in-claude-md.md)).
 
 Engineering follows [mattpocock-skills](https://github.com/mattpocock/skills), and this repository

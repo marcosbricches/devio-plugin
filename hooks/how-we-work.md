@@ -37,7 +37,7 @@ fits the task is used as well, and a better fit beats the one listed here.
 | Researching a question against primary sources | `mattpocock-skills:research` |
 | TDD, a bug, domain docs, a throwaway prototype, grilling a plan | `mattpocock-skills:tdd`, `mattpocock-skills:diagnosing-bugs`, `mattpocock-skills:domain-modeling`, `mattpocock-skills:prototype`, `mattpocock-skills:grilling` |
 | A spec, tickets, an implementation run | `/to-spec`, `/to-tickets`, `/implement`: user-invoked, so the Skill tool cannot reach them and the designer is asked to run them |
-| Review of a change | Claude Code's built-in `code-review` skill, `args: "low"`, with no plugin prefix |
+| Review of a change | Claude Code's built-in `code-review` skill, `args: "low"`, with no plugin prefix. In a new project, `git add -N` the new files first: untracked files are not in the diff it reviews |
 | Deploy | One Docker image for every target, Vercel included, even for a single static page: the designer's standard, chosen knowing that Vercel's container images are a beta enabled per account. A `Dockerfile`, `compose.yaml` and `.dockerignore` in the shape `docker init` writes, from Docker's docs through context7, are written first. The company's VPS runs the image with Docker Compose; Vercel runs it as a container-image Function, through the `vercel:` skills, which inspect the Vercel project before anything is pushed |
 
 A specialist that is not installed is named, and the designer is asked to install it rather than the
@@ -73,3 +73,9 @@ task takes the steps it needs, in the order it needs them.
   them (its own rule: the roll never outranks the user or the brief). What gets built is
   screenshotted and read next to the references, image against image, and what differs is fixed
   before the screen is shown.
+- The frame of the screen stays put. The app shell (header, navigation) has one height on every
+  route and content starts at the same x; titles, search, filters and metrics go in the page body,
+  never in the header; `html { scrollbar-gutter: stable }` keeps pages with and without a scrollbar
+  aligned. Before a build with several routes is shown, the header height and the content's left
+  edge are measured on every route at phone and desktop widths with Playwright, and they match:
+  neither Impeccable's detector nor its reviewer looks across routes.

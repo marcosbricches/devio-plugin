@@ -18,7 +18,14 @@ No eval measures the fixed frame in this release; the acceptance field trial doe
 
 **Status:** ready-for-agent
 
-- [ ] The fixed-frame preference is in the hook text with the spec's wording
-- [ ] The `code-review` row carries the untracked-files note
-- [ ] The hook text stays under the size guard, and the new count is in the ticket's comments
-- [ ] The five original cases each pass one run as a smoke check
+- [x] The fixed-frame preference is in the hook text with the spec's wording
+- [x] The `code-review` row carries the untracked-files note
+- [x] The hook text stays under the size guard, and the new count is in the ticket's comments
+- [x] The five original cases each pass one run as a smoke check
+
+## Comments
+
+2026-09-23, implementation: the fixed frame is in the designer's preferences with the spec's
+wording, and the `code-review` row carries the `git add -N` note. The hook text is 7,258
+characters. The smoke check ran as part of ticket 06's full suite on this text: the five original
+cases passed 3 of 3 each.
