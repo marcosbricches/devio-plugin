@@ -18,7 +18,15 @@ alone, a hook on `UserPromptExpansion` matching the grill commands and `to-ticke
 
 **Status:** ready-for-agent
 
-- [ ] The Chains carry the line and the hook text stays under the size guard
-- [ ] Grill case: an `llm` grader requires that the answer asks the designer to run `/to-spec`, and a negated `file_exists` grader requires that no spec file was written
-- [ ] Tickets case: a `file_exists` grader requires the execution plan in the feature's folder, and an `llm` grader requires waves that respect the blocking edges, a critical path, and no durations
-- [ ] Both cases pass 3 of 3 runs, with the line alone or, failing that, with the `UserPromptExpansion` hook, and the ticket's comments say which
+- [x] The Chains carry the line and the hook text stays under the size guard
+- [x] Grill case: an `llm` grader requires that the answer asks the designer to run `/to-spec`, and a negated `file_exists` grader requires that no spec file was written
+- [x] Tickets case: a `file_exists` grader requires the execution plan in the feature's folder, and an `llm` grader requires waves that respect the blocking edges, a critical path, and no durations
+- [x] Both cases pass 3 of 3 runs, with the line alone or, failing that, with the `UserPromptExpansion` hook, and the ticket's comments say which
+
+## Comments
+
+2026-09-23, implementation: both cases pass with the Chains line alone, so no `UserPromptExpansion`
+hook was added. `stop-after-grill`: 3 of 3. `execution-plan`: 1 of 3 at first, the plan written in
+all three runs but two correct plans failed by the default haiku judge; with the rubric made explicit
+(a correct grouping named, order words are not durations), 3 of 3. The suite now grants Write so
+both cases can fail.

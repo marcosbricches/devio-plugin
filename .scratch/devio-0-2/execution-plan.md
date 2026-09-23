@@ -23,5 +23,5 @@ Wave 5   07 acceptance field trial (the designer)
 | 1 | 01, 02, 03 | Yes, one session each | 01 and 03 both edit the README (01 removes the preferences, 03 adds vercel). Run each in its own git worktree, or run 03 after 01 is merged. 03 changes the manifest that the eval preparation reads, so re-run the preparation after merging both |
 | 2 | 04 | No | Edits the hook text after 01. If its eval fails with the chain line alone, it adds the `UserPromptExpansion` hook |
 | 3 | 05 | No | Edits the hook text after 04 |
-| 4 | 06 | No | The full suite: 9 cases × 3 runs, all real model calls on your plan. Commit and tag stay local until you say push |
+| 4 | 06 | No | The full suite: 10 cases × 3 runs, all real model calls on your plan. Commit and tag stay local until you say push |
 | 5 | 07 | — | Yours: a new project from zero, ending with `/handoff` |

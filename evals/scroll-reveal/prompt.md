@@ -1,5 +1,5 @@
 ---
-plugins: ["../../.eval-deps/devio","../../.eval-deps/impeccable","../../.eval-deps/gsap-skills","../../.eval-deps/mattpocock-skills","../../.eval-deps/context7","../../.eval-deps/playwright"]
+plugins: ["../../.eval-deps/devio","../../.eval-deps/impeccable","../../.eval-deps/gsap-skills","../../.eval-deps/mattpocock-skills","../../.eval-deps/context7","../../.eval-deps/playwright","../../.eval-deps/vercel"]
 description: Scroll-driven motion goes to the GSAP skills.
 max_turns: 15
 allowed_tools: [Read, Glob, Grep, Skill, Agent]

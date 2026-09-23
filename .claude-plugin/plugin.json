@@ -35,6 +35,10 @@
     {
       "name": "playwright",
       "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "vercel",
+      "marketplace": "claude-plugins-official"
     }
   ]
 }

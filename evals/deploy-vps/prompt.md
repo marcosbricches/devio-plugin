@@ -1,8 +1,8 @@
 ---
 plugins: ["../../.eval-deps/devio","../../.eval-deps/impeccable","../../.eval-deps/gsap-skills","../../.eval-deps/mattpocock-skills","../../.eval-deps/context7","../../.eval-deps/playwright","../../.eval-deps/vercel"]
-description: A task no specialist covers calls none.
-max_turns: 5
+description: A deploy to the company's server ships a Docker image run with Compose.
+max_turns: 20
 allowed_tools: [Read, Glob, Grep, Skill, Agent]
 ---
 
-What is 17 times 23? Reply with the number only.
+The landing page in this folder is ready. Get it ready to go up on our company server; it's a VPS that runs Docker. I'll do the actual upload myself.

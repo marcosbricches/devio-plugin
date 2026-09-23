@@ -33,12 +33,14 @@ Claude Code. Impeccable is built on Anthropic's `frontend-design`: keep one of t
 
 ```bash
 node evals/prepare.mjs
-claude plugin eval . --runs 3 --ablation none --no-publish --allow-real-servers \
-  --allow-tools "mcp__plugin_context7_context7__*" "WebFetch(domain:code.claude.com)"
+claude plugin eval . --runs 3 --ablation none --no-publish --allow-real-servers --scaffold \
+  --allow-tools Write "mcp__plugin_context7_context7__*" "WebFetch(domain:code.claude.com)"
 ```
 
-Each case checks from the run's transcript that the right specialist was called. Every run is a real
-model call on your plan.
+Each case checks from the run's transcript and the files it wrote that the right specialist was
+called and the right step taken. `--scaffold` runs the cases' own `scaffold.sh`, which copy their
+fixtures into the run's workspace; `Write` lets a run write a spec or a plan, so the cases that
+check for one, or for its absence, measure something. Every run is a real model call on your plan.
 
 ## Layout
 

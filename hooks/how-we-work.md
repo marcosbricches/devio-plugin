@@ -38,7 +38,7 @@ fits the task is used as well, and a better fit beats the one listed here.
 | TDD, a bug, domain docs, a throwaway prototype, grilling a plan | `mattpocock-skills:tdd`, `mattpocock-skills:diagnosing-bugs`, `mattpocock-skills:domain-modeling`, `mattpocock-skills:prototype`, `mattpocock-skills:grilling` |
 | A spec, tickets, an implementation run | `/to-spec`, `/to-tickets`, `/implement`: user-invoked, so the Skill tool cannot reach them and the designer is asked to run them |
 | Review of a change | Claude Code's built-in `code-review` skill, `args: "low"`, with no plugin prefix |
-| Deploy | The `vercel:` skills |
+| Deploy | One Docker image for every target, Vercel included, even for a single static page: the designer's standard, chosen knowing that Vercel's container images are a beta enabled per account. A `Dockerfile`, `compose.yaml` and `.dockerignore` in the shape `docker init` writes, from Docker's docs through context7, are written first. The company's VPS runs the image with Docker Compose; Vercel runs it as a container-image Function, through the `vercel:` skills, which inspect the Vercel project before anything is pushed |
 
 A specialist that is not installed is named, and the designer is asked to install it rather than the
 job being done by hand with something worse.
@@ -52,6 +52,12 @@ task takes the steps it needs, in the order it needs them.
   `impeccable:impeccable` to shape and build, composing from those images → the GSAP skills for its
   motion → context7 for every library it uses → Playwright to screenshot the render and read it next
   to the references → `impeccable:impeccable` to critique and polish.
+- **After a grill** (`grill-with-docs`, `grill-me`, or `mattpocock-skills:grilling` called directly):
+  the session stops and asks the designer to run `/to-spec`, then `/to-tickets`, then `/implement`;
+  it writes neither a spec nor tickets itself. Once `/to-tickets` has published the tickets, an
+  `execution-plan.md` goes beside them in the feature's folder of the issue tracker: the tickets in
+  waves that can run in parallel, the critical path, what to watch for between parallel tickets
+  (shared files, merge order) and the command that starts each ticket, with no durations.
 - **A feature in code**: context7 for the libraries → `mattpocock-skills:tdd` → the built-in
   `code-review` at low effort.
 - **Work on a Claude Code plugin, hook or skill**: `claude-code-guide` or the docs index first → the

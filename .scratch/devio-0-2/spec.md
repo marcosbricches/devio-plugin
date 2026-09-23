@@ -55,7 +55,7 @@ roughly its current size, and adds evals for the new rules and the 0.1.1 rule:
 8. As the designer, I want the session never to write a spec or tickets on its own, so that `/to-tickets` and `/implement` (and the TDD that `/implement` brings) actually run.
 9. As the designer, I want the stop-after-grill rule to hold whichever grill ran (`grill-with-docs`, `grill-me`, or `grilling` called directly), so that the flow doesn't depend on which entry point I typed.
 10. As the designer, I want the `code-review` row to warn about untracked files in a new project, so that the first review of a field trial is not wasted.
-11. As the designer, I want a deploy to go through the `vercel:` skills, so that the Vercel project's settings are inspected before a push.
+11. As the designer, I want every deploy to ship one Docker image, run with Docker Compose on the company's VPS and as the same image on Vercel through the `vercel:` skills, so that the image tested is the image that runs and the Vercel project's settings are inspected before a push.
 12. As the designer, I want installing devio to install the vercel plugin, so that the deploy row of the table names a specialist the install actually brings.
 13. As the designer, I want the hook to stay about the size it is now, so that it doesn't break the way heavily specified versions of devio did.
 14. As the designer, I want the preferences already in my CLAUDE.md removed from the hook, so that the same sentence doesn't reach the model twice.
@@ -63,7 +63,7 @@ roughly its current size, and adds evals for the new rules and the 0.1.1 rule:
 16. As the maintainer, I want the eval preparation to fail when the hook text is over 10,000 characters, so that the text is never silently cut to a preview.
 17. As the maintainer, I want an eval that fails when a session composes from references without opening the images, so that the 0.1.1 rule is measured at last.
 18. As the maintainer, I want an eval that fails when a session writes a spec after a grill instead of asking for `/to-spec`, so that the new chain line is proven.
-19. As the maintainer, I want an eval that fails when a deploy request doesn't reach a `vercel:` skill, so that the deploy row is proven.
+19. As the maintainer, I want evals that fail when a deploy writes no Dockerfile, when a VPS deploy writes no Compose file, or when a Vercel deploy doesn't reach a `vercel:` skill, so that the deploy row is proven.
 20. As the maintainer, I want every new and existing case to pass on 3 runs before release, so that no change to the hook text ships unmeasured.
 21. As the maintainer, I want a hook on `UserPromptExpansion` for the grill commands only if the stop-after-grill eval fails with the chain line alone, so that a new hook enters only on evidence.
 22. As the maintainer, I want the CHANGELOG to say which rule is not measured (the fixed frame), so that the release doesn't claim more than the suite shows.
@@ -112,6 +112,11 @@ roughly its current size, and adds evals for the new rules and the 0.1.1 rule:
   the table rows for Impeccable, Playwright and GSAP already say it. Recorded in ADR 0001.
 - **Size budget.** The net change is about +100 characters over 6,232. The eval preparation script
   reads the hook text and stops with an error when it is over 10,000 characters.
+- **Deploy: one Docker image.** Added on 2026-09-23 during implementation, when the designer said
+  most deploys go to the company's VPS with Docker and only some to Vercel. The deploy row routes
+  every deploy to one image (`Dockerfile`, `compose.yaml`, `.dockerignore` in the shape `docker init`
+  writes, from Docker's docs through context7); the VPS runs it with Compose, Vercel runs it as a
+  container-image Function through the `vercel:` skills. Recorded, with its trade, in ADR 0002.
 - **Dependencies.** The vercel plugin, from `claude-plugins-official`, joins devio's `dependencies`.
   That marketplace needs no cross-marketplace allowance, and the preparation script then copies it
   into the eval dependencies with no special case. The README's install section and dependency
@@ -149,10 +154,13 @@ roughly its current size, and adds evals for the new rules and the 0.1.1 rule:
     tickets with blocking edges, and a prompt standing for the end of `/to-tickets`. A `file_exists`
     grader requires the execution plan in the feature's folder, and an `llm` grader requires waves
     that respect the blocking edges, a critical path, and no durations.
-  - **Deploy goes to vercel.** A prompt asking to deploy a small project. A `tool_used` grader on
-    the Skill tool requires a skill whose name starts with `vercel:`. The run must not reach a real
-    deploy, so its allowed tools stop short of Bash.
-- **Pass bar:** all nine cases pass on 3 runs with `--ablation none`, as in the README.
+  - **Deploy goes to vercel.** A prompt asking to deploy a small project to Vercel. A `tool_used`
+    grader on the Skill tool requires a skill whose name starts with `vercel:`, and a `file_exists`
+    grader requires a Dockerfile. The run must not reach a real deploy, so its allowed tools stop
+    short of Bash.
+  - **Deploy to the VPS.** The same project, to go up on the company's Docker VPS. `file_exists`
+    graders require a `Dockerfile` and a Compose file.
+- **Pass bar:** all ten cases pass on 3 runs with `--ablation none`, as in the README.
 - **Static checks:** `claude plugin validate .` and `claude plugin validate .claude-plugin/plugin.json`
   pass, with the one expected warning about the root CLAUDE.md. The size check runs inside
   `node evals/prepare.mjs`.
