@@ -1,0 +1,40 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "devio",
+  "version": "0.1.0",
+  "description": "How a Devio designer works with Claude Code: research before any task, follow the community's standard, and run engineering through mattpocock-skills.",
+  "author": {
+    "name": "Marcos Bricches",
+    "email": "marcos.bricches@devio.com.br"
+  },
+  "homepage": "https://github.com/marcosbricches/devio-plugin",
+  "repository": "https://github.com/marcosbricches/devio-plugin",
+  "license": "UNLICENSED",
+  "keywords": [
+    "design",
+    "research",
+    "workflow"
+  ],
+  "dependencies": [
+    {
+      "name": "impeccable",
+      "marketplace": "impeccable"
+    },
+    {
+      "name": "gsap-skills",
+      "marketplace": "gsap-skills"
+    },
+    {
+      "name": "mattpocock-skills",
+      "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "context7",
+      "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "playwright",
+      "marketplace": "claude-plugins-official"
+    }
+  ]
+}
