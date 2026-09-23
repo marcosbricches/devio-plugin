@@ -52,8 +52,6 @@ task takes the steps it needs, in the order it needs them.
   `impeccable:impeccable` to shape and build, composing from those images → the GSAP skills for its
   motion → context7 for every library it uses → Playwright to screenshot the render and read it next
   to the references → `impeccable:impeccable` to critique and polish.
-- **A critique of an existing screen**: Playwright to see it at each width → `impeccable:impeccable`
-  to critique → the GSAP skills when motion is part of the answer.
 - **A feature in code**: context7 for the libraries → `mattpocock-skills:tdd` → the built-in
   `code-review` at low effort.
 - **Work on a Claude Code plugin, hook or skill**: `claude-code-guide` or the docs index first → the
@@ -61,10 +59,6 @@ task takes the steps it needs, in the order it needs them.
 
 ## The designer's preferences
 
-- Conversation in Portuguese; artifacts in English.
-- The screen is the deliverable. A feature that runs but looks wrong is not done.
-- Taste is grounded: before a visual direction is proposed, what real products do is looked at and
-  cited.
 - References are seen, not described. A reference is an image and stays one: it is saved to disk and
   the thread that composes opens it with Read and looks at it. A written summary of it, a notes file
   or a subagent's report, loses the composition and the character the image carries, and a
@@ -73,7 +67,3 @@ task takes the steps it needs, in the order it needs them.
   them (its own rule: the roll never outranks the user or the brief). What gets built is
   screenshotted and read next to the references, image against image, and what differs is fixed
   before the screen is shown.
-- Reversible choices are the agent's. A product decision is the designer's: the alternatives come
-  side by side, with the trade each one accepts, and the agent waits.
-- Every constraint stated carries its source and the date it was read; without them, it is marked
-  as a guess.

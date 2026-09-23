@@ -9,9 +9,9 @@ A Claude Code plugin that adds to a session, and takes nothing away:
   server does which kind of task, such as Impeccable for interfaces, the GSAP skills for motion,
   context7 for library docs and the official docs for Claude Code, and how they chain. The table is
   not a closed list; any installed specialist that fits is used.
-- **The designer's preferences**: Portuguese in conversation and English in artifacts, the screen as
-  the deliverable, taste grounded in real products, product decisions left to the designer, and a
-  source and a date on every constraint.
+- **The designer's preferences** that their own `CLAUDE.md` does not already carry: references are
+  opened as images, never replaced by a description of them. The rest of the designer's
+  preferences stay in that `CLAUDE.md` ([ADR 0001](docs/adr/0001-one-designer-preferences-live-in-claude-md.md)).
 
 Engineering follows [mattpocock-skills](https://github.com/mattpocock/skills), and this repository
 uses the same engineering structure.
@@ -25,8 +25,8 @@ claude plugin marketplace add marcosbricches/devio-plugin
 claude plugin install devio@devio
 ```
 
-Installing devio installs its dependencies: Impeccable, the GSAP skills, mattpocock-skills, context7
-and Playwright. Their marketplaces have to be added first; `claude-plugins-official` comes with
+Installing devio installs its dependencies: Impeccable, the GSAP skills, mattpocock-skills, context7,
+Playwright and Vercel. Their marketplaces have to be added first; `claude-plugins-official` comes with
 Claude Code. Impeccable is built on Anthropic's `frontend-design`: keep one of the two enabled.
 
 ## Measure
