@@ -10,7 +10,15 @@ read 2026-09-23).
 
 **Status:** ready-for-agent
 
-- [ ] The case follows the shape of the existing cases: a prompt with frontmatter and a graders folder, each grader with a line on why it matches what it matches
-- [ ] A `tool_used` grader requires a Read of each of the two image files
-- [ ] The images are original or openly licensed, and their source is noted in the case
-- [ ] The case passes 3 of 3 runs
+- [x] The case follows the shape of the existing cases: a prompt with frontmatter and a graders folder, each grader with a line on why it matches what it matches
+- [x] A `tool_used` grader requires a Read of each of the two image files
+- [x] The images are original or openly licensed, and their source is noted in the case
+- [x] The case passes 3 of 3 runs
+
+## Comments
+
+2026-09-23, implementation: case `evals/references-opened`. Its `scaffold.sh` copies `forno.png`
+and `relay.png` into the run's workspace, so the suite now runs with `--scaffold` (README updated).
+The images are original, rendered by the maintainer from HTML with headless Chrome; the source is
+noted in `graders/forno-opened.md`. Result with the README's command: 3 of 3 runs passed, both
+graders in each.
