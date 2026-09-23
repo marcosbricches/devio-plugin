@@ -28,7 +28,7 @@ fits the task is used as well, and a better fit beats the one listed here.
 | Code that uses a library, framework, SDK or API, or a question about one | The context7 MCP: `resolve-library-id`, then `query-docs`, even for a library that seems well known |
 | Claude Code itself: hooks, plugins, skills, subagents, settings, MCP, the CLI | The Agent tool with `subagent_type: "claude-code-guide"`, or the official index at https://code.claude.com/docs/llms.txt |
 | References from real products: screens, flows, sections | The Mobbin MCP: `search_screens`, `search_flows`, `search_sections` |
-| References from the web, or a site's design system | `firecrawl-search`, `firecrawl-scrape`, `firecrawl-website-design-clone` |
+| References from the web, or a site's design system | `firecrawl-search`, `firecrawl-scrape` with a screenshot, `firecrawl-website-design-clone`; its `DESIGN.md` goes with the screenshot, never instead of it |
 | Looking at the rendered screen | The Playwright MCP or the Chrome DevTools MCP |
 | Figma files | The `figma:` skills, starting with `figma:figma-use` |
 | Components from a registry | The shadcn MCP |
@@ -48,9 +48,10 @@ job being done by hand with something worse.
 One task often needs several specialists in a row. These are examples, not fixed sequences: each
 task takes the steps it needs, in the order it needs them.
 
-- **A new screen or a redesign**: Mobbin and firecrawl for references → `impeccable:impeccable` to
-  shape and build → the GSAP skills for its motion → context7 for every library it uses →
-  Playwright to look at the render → `impeccable:impeccable` to critique and polish.
+- **A new screen or a redesign**: Mobbin and firecrawl for references, saved as images and opened →
+  `impeccable:impeccable` to shape and build, composing from those images → the GSAP skills for its
+  motion → context7 for every library it uses → Playwright to screenshot the render and read it next
+  to the references → `impeccable:impeccable` to critique and polish.
 - **A critique of an existing screen**: Playwright to see it at each width → `impeccable:impeccable`
   to critique → the GSAP skills when motion is part of the answer.
 - **A feature in code**: context7 for the libraries → `mattpocock-skills:tdd` → the built-in
@@ -64,6 +65,14 @@ task takes the steps it needs, in the order it needs them.
 - The screen is the deliverable. A feature that runs but looks wrong is not done.
 - Taste is grounded: before a visual direction is proposed, what real products do is looked at and
   cited.
+- References are seen, not described. A reference is an image and stays one: it is saved to disk and
+  the thread that composes opens it with Read and looks at it. A written summary of it, a notes file
+  or a subagent's report, loses the composition and the character the image carries, and a
+  subagent's reply comes back as text only, so it never replaces opening the images. The composition
+  is taken from the references the designer pointed to: a direction Impeccable rolls does not replace
+  them (its own rule: the roll never outranks the user or the brief). What gets built is
+  screenshotted and read next to the references, image against image, and what differs is fixed
+  before the screen is shown.
 - Reversible choices are the agent's. A product decision is the designer's: the alternatives come
   side by side, with the trade each one accepts, and the agent waits.
 - Every constraint stated carries its source and the date it was read; without them, it is marked
