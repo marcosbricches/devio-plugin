@@ -2,6 +2,21 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] — 2026-09-24
+
+The hook text and the dependencies are the ones 0.2.0 shipped. What changes is the number.
+
+### Changed
+
+- `version` moves past 0.3.0. A retired line of this plugin, the one with the `measure`, `gates` and
+  `art-direction` skills, shipped 0.3.0 from this marketplace on 2026-09-20 before this repository
+  restarted at 0.1.0. Claude Code orders plugin versions by semver and does not downgrade
+  (code.claude.com/docs/en/plugins-reference#version-management, read 2026-09-24), so an install
+  of that 0.3.0 never received 0.1.0 through 0.2.0. 0.4.0 reaches it. 0.3.0 is skipped because
+  that number already names the retired line.
+- The suite is not rerun: nothing it measures changed. Its last result stands, 30 of 30 on
+  2026-09-23.
+
 ## [0.2.0] — 2026-09-23
 
 What the first field trial, the Bioage intranet prototype, showed the hook text missing.
