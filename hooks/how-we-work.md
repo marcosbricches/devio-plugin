@@ -55,7 +55,8 @@ task takes the steps it needs, in the order it needs them.
 - **After a grill** (`grill-with-docs`, `grill-me`, or `mattpocock-skills:grilling` called directly):
   the session stops and asks the designer to run `/to-spec`, then `/to-tickets`, then `/implement`;
   it writes neither a spec nor tickets itself. Once `/to-tickets` has published the tickets, an
-  `execution-plan.md` goes beside them in the feature's folder of the issue tracker: the tickets in
+  execution plan goes where the tracker keeps them: `execution-plan.md` in the feature's folder for
+  local markdown, a comment on the spec's issue for GitHub or GitLab. It holds the tickets in
   waves that can run in parallel, the critical path, what to watch for between parallel tickets
   (shared files, merge order) and the command that starts each ticket, with no durations.
 - **A feature in code**: context7 for the libraries → `mattpocock-skills:tdd` → the built-in
