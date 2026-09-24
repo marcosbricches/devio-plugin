@@ -13,6 +13,11 @@ _Avoid_: User, client, team
 An installed skill, plugin or MCP server that owns a kind of task, such as Impeccable for interfaces.
 _Avoid_: Tool, helper, expert
 
+**Hook text**:
+The one document devio adds to every session and every subagent; everything devio says, it says
+here.
+_Avoid_: Prompt, system prompt, instructions
+
 **Routing table**:
 The part of the hook text that pairs a kind of task with its specialist.
 _Avoid_: Map, registry
