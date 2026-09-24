@@ -7,7 +7,8 @@ narrow what a session can use. A skill, hook, agent or tool enters only when res
 that already exists does the job.
 
 A change to the hook text or the dependencies is measured before it ships: `node evals/prepare.mjs`,
-then the `claude plugin eval` command in `README.md`. Every case passes on 3 runs.
+then the `claude plugin eval` command in `README.md`, which runs the no-plugin baseline. On 3 runs,
+every case scores 1.0 with devio and has a `Δ` above zero; `no-specialist` has a `Δ` of zero or more.
 
 Run `claude plugin validate . --strict` and `claude plugin validate .claude-plugin/plugin.json --strict`
 after touching either manifest; both exit 0. Every release bumps `version` in `plugin.json`, gets a

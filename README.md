@@ -50,14 +50,21 @@ is where both hooks are checked. It needs Node and nothing else.
 
 ```bash
 node evals/prepare.mjs
-claude plugin eval . --runs 3 --ablation none --no-publish --allow-real-servers --scaffold \
+claude plugin eval . --runs 3 --no-publish --allow-real-servers --scaffold \
   --allow-tools Write "mcp__plugin_context7_context7__*" "WebFetch(domain:code.claude.com)"
 ```
 
 Each case checks from the run's transcript and the files it wrote that the right specialist was
 called and the right step taken. `--scaffold` runs the cases' own `scaffold.sh`, which copy their
 fixtures into the run's workspace; `Write` lets a run write a spec or a plan, so the cases that
-check for one, or for its absence, measure something. Every run is a real model call on your plan.
+check for one, or for its absence, measure something.
+
+Each case also runs without any plugin, devio and its specialists alike, which is Claude alone, and
+the table shows `WITH`, `W/OUT` and their difference `Δ` (code.claude.com/docs/en/plugin-evals, read
+2026-09-24). A case passes when it scores 1.0 with devio and its `Δ` is above zero: a case Claude
+passes as well without devio measures Claude, not devio, and is removed. The one exception is
+`no-specialist`, the guard that devio does not over-route, which passes at `Δ` ≥ 0. The baseline
+doubles the runs, and every run is a real model call on your plan.
 
 ## Layout
 

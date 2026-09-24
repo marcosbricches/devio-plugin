@@ -2,6 +2,47 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- The suite runs with the no-plugin baseline: each case also runs with no plugin at all, devio and
+  its specialists alike, and reports `WITH`, `W/OUT` and `Δ`. A case passes at 1.0 with devio and a
+  `Δ` above zero; `no-specialist`, the guard against over-routing, passes at `Δ` ≥ 0. The README's
+  command and the release rule in `.claude/CLAUDE.md` say the same.
+- `execution-plan` and `execution-plan-github` grade with `regex` instead of an `llm` judge. On
+  plans of about 2,000 characters and replies of about 2,600 the judge failed correct answers, Haiku
+  and Sonnet alike, and the docs keep `llm` graders for short outputs
+  (code.claude.com/docs/en/plugin-evals, read 2026-09-24).
+
+### Removed
+
+- `deploy-vps` and `references-opened`: Claude alone passed them 3 of 3, so they measured Claude,
+  not devio.
+
+### Measured
+
+Claude Code 2.1.281, 3 runs per arm, 2026-09-24. The two execution-plan cases are from their rerun
+with the `regex` graders; the rest are from the full suite run.
+
+| Case | WITH | W/OUT | Δ |
+| --- | --- | --- | --- |
+| claude-code-question | 1.00 | 0.00 | +1.00 |
+| critique-landing | 1.00 | 0.00 | +1.00 |
+| deploy-vercel | 1.00 | 0.00 | +1.00 |
+| execution-plan | 0.67 | 0.00 | +0.67 |
+| execution-plan-github | 1.00 | 0.33 | +0.67 |
+| library-docs | 1.00 | 0.00 | +1.00 |
+| no-specialist | 1.00 | 1.00 | 0.00 |
+| scroll-reveal | 1.00 | 0.00 | +1.00 |
+| stop-after-grill | 1.00 | 0.50 | +0.50 |
+| deploy-vps (removed) | 1.00 | 1.00 | 0.00 |
+| references-opened (removed) | 1.00 | 1.00 | 0.00 |
+
+`execution-plan` does not pass yet. In one run of three, in each of three rounds, the session with
+devio names `execution-plan.md` as the next step but holds it back until the tickets it would
+restructure are settled, and asks the designer.
+
 ## [0.4.0] — 2026-09-24
 
 The hook text and the dependencies are the ones 0.2.0 shipped. What changes is the number.
