@@ -9,6 +9,16 @@ Issues and specs for this repo live as markdown files in `.scratch/`.
 - Implementation issues are one file per ticket at `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01`, never a single combined tickets file
 - Triage state is recorded as a `Status:` line near the top of each issue file (see `triage-labels.md` for the role strings)
 - Comments and conversation history append to the bottom of the file under a `## Comments` heading
+- Research notes sit beside the spec as `.scratch/<feature-slug>/research-<slug>.md`
+- The execution plan sits beside the spec as `.scratch/<feature-slug>/execution-plan.md`
+
+## Lifecycle
+
+`.scratch/` holds only open work; what shipped lives in git history and `CHANGELOG.md`.
+
+- A resolved ticket is deleted in the commit that resolves it, and the commit message names it.
+- A feature's folder, with its spec, execution plan and `research-<slug>.md` notes, is deleted in the commit that deletes its last ticket.
+- Wayfinding child tickets are the exception: they stay `resolved` in place, as the operations below describe, until their effort's folder goes.
 
 ## When a skill says "publish to the issue tracker"
 

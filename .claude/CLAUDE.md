@@ -9,9 +9,8 @@ that already exists does the job.
 A change to the hook text or the dependencies is measured before it ships: `node evals/prepare.mjs`,
 then the `claude plugin eval` command in `README.md`. Every case passes on 3 runs.
 
-Run `claude plugin validate .` and `claude plugin validate .claude-plugin/plugin.json` after touching
-either manifest. The one warning expected is this file: a `CLAUDE.md` at the plugin root is read
-when working on the repository, not shipped as context, which is what it is for. Every release bumps `version` in `plugin.json`, gets a
+Run `claude plugin validate . --strict` and `claude plugin validate .claude-plugin/plugin.json --strict`
+after touching either manifest; both exit 0. Every release bumps `version` in `plugin.json`, gets a
 `CHANGELOG.md` entry and a `v<version>` tag.
 
 ## Agent skills
@@ -26,8 +25,4 @@ The five default roles, each label equal to its name. See `docs/agents/triage-la
 
 ### Domain docs
 
-Single-context: `CONTEXT.md` and `docs/adr/` at the root, created when a term or a decision is first resolved. See `docs/agents/domain.md`.
-
-### Review
-
-Claude Code's built-in `code-review` skill at low effort: the Skill tool with `skill: "code-review"` and `args: "low"`, no plugin prefix. `mattpocock-skills:code-review` answers to the same name, so name the built-in one explicitly wherever a workflow says `/code-review`.
+Single-context: `CONTEXT.md` and `docs/adr/` at the root. See `docs/agents/domain.md`.

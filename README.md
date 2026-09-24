@@ -14,8 +14,8 @@ A Claude Code plugin that adds to a session, and takes nothing away:
   height, content's left edge) stays the same on every route, measured before a build is shown. The rest of the designer's
   preferences stay in that `CLAUDE.md` ([ADR 0001](docs/adr/0001-one-designer-preferences-live-in-claude-md.md)).
 
-Engineering follows [mattpocock-skills](https://github.com/mattpocock/skills), and this repository
-uses the same engineering structure.
+This repository is a consumer of [mattpocock-skills](https://github.com/mattpocock/skills): its
+configuration lives in `docs/agents/`, and the repository follows its own hook text.
 
 ## Install
 
@@ -55,4 +55,4 @@ check for one, or for its absence, measure something. Every run is a real model 
 | `hooks/` | The `SessionStart` and `SubagentStart` hooks and the text they add |
 | `evals/` | The eval suite and `prepare.mjs` |
 | `docs/agents/` | The mattpocock-skills configuration: issue tracker, triage labels, domain docs |
-| `CLAUDE.md` | How to work on this repository |
+| `.claude/` | `CLAUDE.md`: how to work on this repository |
