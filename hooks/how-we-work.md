@@ -58,7 +58,9 @@ task takes the steps it needs, in the order it needs them.
   execution plan goes where the tracker keeps them: `execution-plan.md` in the feature's folder for
   local markdown, a comment on the spec's issue for GitHub or GitLab. It holds the tickets in
   waves that can run in parallel, the critical path, what to watch for between parallel tickets
-  (shared files, merge order) and the command that starts each ticket, with no durations.
+  (shared files, merge order) and the command that starts each ticket, with no durations. The plan
+  is written against the tickets as published, in the same turn; fixes the session would propose
+  to the tickets are listed beside it, not asked about first.
 - **A feature in code**: context7 for the libraries → `mattpocock-skills:tdd` → the built-in
   `code-review` at low effort.
 - **Work on a Claude Code plugin, hook or skill**: `claude-code-guide` or the docs index first → the

@@ -2,10 +2,35 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.5.0] — 2026-09-24
+
+Installs receive one hook script that works on every platform and every session source, and an
+execution plan that goes wherever the tracker keeps the tickets.
+
+### Added
+
+- `tests/hooks.test.mjs`, the hook contract test: it spawns each hook as `hooks/hooks.json` declares
+  it and checks the output Claude Code accepts, the 10,000-character cap included. Claude Code
+  ignores a malformed hook output without an error, so this is where both hooks are checked.
+  `node --test tests/hooks.test.mjs`, Node and nothing else.
+- `execution-plan-github`, an eval case: with GitHub as the tracker, the plan is addressed to the
+  spec's issue and nothing is written under `.scratch/`.
 
 ### Changed
 
+- `SessionStart` and `SubagentStart` run one script, `hooks/how-we-work.mjs`, with `node` in exec
+  form: no shell, so the hook text arrives intact on Windows without Git Bash, and no matcher, so it
+  arrives on every session source, `fork` included. The size cap moves from `evals/prepare.mjs` to
+  the contract test.
+- The execution plan goes where the tracker keeps the tickets: `execution-plan.md` in the feature's
+  folder for local markdown, a comment on the spec's issue for GitHub or GitLab. It is written
+  against the tickets as published, in the same turn, with any fixes to the tickets listed beside
+  it rather than asked about first.
+- The repository's engineering is rebuilt on mattpocock-skills: its configuration lives in
+  `docs/agents/`, the issue tracker says where research notes and the execution plan live and that
+  a resolved ticket and a finished feature's folder are deleted, and `CLAUDE.md` moves to
+  `.claude/CLAUDE.md`, so `claude plugin validate --strict` passes on both manifests. Both
+  manifest descriptions state the README's three points.
 - The suite runs with the no-plugin baseline: each case also runs with no plugin at all, devio and
   its specialists alike, and reports `WITH`, `W/OUT` and `Δ`. A case passes at 1.0 with devio and a
   `Δ` above zero; `no-specialist`, the guard against over-routing, passes at `Δ` ≥ 0. The README's
@@ -17,20 +42,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ### Removed
 
+- `hooks/subagent-start.mjs`: both hooks run `hooks/how-we-work.mjs`.
 - `deploy-vps` and `references-opened`: Claude alone passed them 3 of 3, so they measured Claude,
   not devio.
 
 ### Measured
 
-Claude Code 2.1.281, 3 runs per arm, 2026-09-24. The two execution-plan cases are from their rerun
-with the `regex` graders; the rest are from the full suite run.
+Claude Code 2.1.281, 3 runs per arm, 2026-09-24, on the hook text and hook script this release
+ships. Every case passes. The two removed cases are from the run before them, on the same hook
+script.
 
 | Case | WITH | W/OUT | Δ |
 | --- | --- | --- | --- |
 | claude-code-question | 1.00 | 0.00 | +1.00 |
 | critique-landing | 1.00 | 0.00 | +1.00 |
 | deploy-vercel | 1.00 | 0.00 | +1.00 |
-| execution-plan | 0.67 | 0.00 | +0.67 |
+| execution-plan | 1.00 | 0.00 | +1.00 |
 | execution-plan-github | 1.00 | 0.33 | +0.67 |
 | library-docs | 1.00 | 0.00 | +1.00 |
 | no-specialist | 1.00 | 1.00 | 0.00 |
@@ -39,9 +66,8 @@ with the `regex` graders; the rest are from the full suite run.
 | deploy-vps (removed) | 1.00 | 1.00 | 0.00 |
 | references-opened (removed) | 1.00 | 1.00 | 0.00 |
 
-`execution-plan` does not pass yet. In one run of three, in each of three rounds, the session with
-devio names `execution-plan.md` as the next step but holds it back until the tickets it would
-restructure are settled, and asks the designer.
+Before the last sentence of the plan's chain, `execution-plan` scored 0.67 with devio: in one run
+of three the session held the plan back and asked whether to fix the tickets first.
 
 ## [0.4.0] — 2026-09-24
 

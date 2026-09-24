@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "devio",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "How a Devio designer works with Claude Code: research before any task, follow the community's standard, and call the installed specialist for each job, in every session and every subagent.",
   "author": {
     "name": "Marcos Bricches",
