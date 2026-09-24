@@ -1,9 +1,8 @@
 /*
  * node --test — the hook contract, for both events.
  *
- * Claude Code ignores malformed hook output without an error, and no eval trace shows
- * SubagentStart (research-test-seams.md in .scratch/devio-repo-architecture/), so each hook is
- * spawned here exactly as hooks/hooks.json declares it and its stdout is checked against the
+ * Claude Code ignores malformed hook output without an error, and a `claude plugin eval` trace
+ * never shows SubagentStart, so each hook is spawned here exactly as hooks/hooks.json declares it and its stdout is checked against the
  * documented output shape (code.claude.com/docs/en/hooks, "SessionStart", "SubagentStart", read
  * 2026-09-24). The input JSON follows the same page: common fields plus each event's own.
  */
@@ -19,7 +18,7 @@ const { hooks } = JSON.parse(readFileSync(new URL('../hooks/hooks.json', import.
 // Past this many characters the model sees only a 2,000-character preview of a saved file, and
 // the cap has no setting (code.claude.com/docs/en/hooks, "Add context for Claude", read 2026-09-24).
 const CONTEXT_CAP = 10_000;
-// The hook text's opening heading, a line ticket 03's edit to that text leaves alone.
+// The hook text's opening heading: edits to the routing and the chains leave it alone.
 const KNOWN_LINE = '# How work is done here (devio plugin)';
 
 const common = { session_id: 'contract-test', transcript_path: '/tmp/contract-test.jsonl', cwd: ROOT };
