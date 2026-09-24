@@ -20,6 +20,7 @@ uses the same engineering structure.
 ## Install
 
 ```bash
+claude plugin marketplace add anthropics/claude-plugins-official
 claude plugin marketplace add pbakaus/impeccable
 claude plugin marketplace add greensock/gsap-skills
 claude plugin marketplace add marcosbricches/devio-plugin
@@ -27,8 +28,11 @@ claude plugin install devio@devio
 ```
 
 Installing devio installs its dependencies: Impeccable, the GSAP skills, mattpocock-skills, context7,
-Playwright and Vercel. Their marketplaces have to be added first; `claude-plugins-official` comes with
-Claude Code. Impeccable is built on Anthropic's `frontend-design`: keep one of the two enabled.
+Playwright and Vercel. Their marketplaces have to be added first. Claude Code adds
+`claude-plugins-official` itself only the first time it starts interactively
+(code.claude.com/docs/en/discover-plugins, read 2026-09-24), so an install run before that leaves
+devio unloaded for want of mattpocock-skills; adding it again when it is there already does nothing.
+Impeccable is built on Anthropic's `frontend-design`: keep one of the two enabled.
 
 ## Measure
 
