@@ -34,6 +34,18 @@ Playwright and Vercel. Their marketplaces have to be added first. Claude Code ad
 devio unloaded for want of mattpocock-skills; adding it again when it is there already does nothing.
 Impeccable is built on Anthropic's `frontend-design`: keep one of the two enabled.
 
+## Test
+
+```bash
+node --test tests/hooks.test.mjs
+```
+
+It runs each hook exactly as `hooks/hooks.json` declares it, with that event's input on stdin, and
+checks what Claude Code accepts: exit 0, JSON on stdout, the event's `hookEventName`, the hook text
+in `additionalContext`, and no more than the 10,000 characters Claude Code shows in full. Claude Code
+ignores a malformed hook output without an error, and no eval trace shows `SubagentStart`, so this
+is where both hooks are checked. It needs Node and nothing else.
+
 ## Measure
 
 ```bash
@@ -52,7 +64,8 @@ check for one, or for its absence, measure something. Every run is a real model 
 | Path | Holds |
 | --- | --- |
 | `.claude-plugin/` | The plugin manifest with its dependencies, and the repository as its own marketplace |
-| `hooks/` | The `SessionStart` and `SubagentStart` hooks and the text they add |
+| `hooks/` | The `SessionStart` and `SubagentStart` hooks, one script, and the text they add |
+| `tests/` | The hook contract test |
 | `evals/` | The eval suite and `prepare.mjs` |
 | `docs/agents/` | The mattpocock-skills configuration: issue tracker, triage labels, domain docs |
 | `CLAUDE.md` | How to work on this repository |
