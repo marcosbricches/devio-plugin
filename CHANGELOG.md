@@ -22,6 +22,10 @@ another layer already says. The eval suite is rebuilt to measure devio itself.
   grader on the result beside the one on the route; `no-specialist` guards a language question
   instead of a sum.
 - References may also be rebuilt as an HTML mockup, opened next to their image.
+- Releases are tagged `devio--v<version>` by `claude plugin tag`, the documented convention
+  (code.claude.com/docs/en/plugins/publish); earlier releases keep their `v<version>` tags.
+- The README documents the Node requirement, updating, the optional specialists, the skills and the
+  release steps.
 
 ### Added
 

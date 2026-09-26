@@ -14,10 +14,16 @@ A change to the hook text, a skill or the dependencies is measured before it shi
 `node evals/run.mjs`, which exits 0 only when every case scores 1.0 with devio and above the control
 arm (the specialists without devio). A case where devio does not beat control measures the
 specialists, not devio: fix the case, or delete the row of the hook text it was written for.
+Releases follow the README's Release section.
 
-Run `claude plugin validate . --strict` and `claude plugin validate .claude-plugin/plugin.json --strict`
-after touching either manifest; both exit 0. Every release bumps `version` in `plugin.json`, gets a
-`CHANGELOG.md` entry and a `v<version>` tag.
+## Gotchas
+
+- A grader is trusted only after it passes a real trace that did the thing and fails one that did
+  not. `--keep-temp` keeps the traces; on Windows, delete the kept `claude-eval-*` folders after.
+- Write grader and case files with the Write or Edit tool. A shell heredoc here dropped a regex's
+  backslashes, and the grader could never match.
+- A shorter hook sentence is not free: cutting "a job done from memory ... counts as not done"
+  dropped `library-docs`. Measure every cut.
 
 ## Agent skills
 
