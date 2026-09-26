@@ -5,8 +5,8 @@ description: Deploy, publish or put live any project, to the company VPS or to V
 
 # One Docker image for every target
 
-The designer's standard ([ADR 0002](../../docs/adr/0002-every-deploy-ships-one-docker-image.md)):
-the image tested is the image that runs.
+The designer's standard, decided 2026-09-23: the image tested is the image that runs, on the VPS
+and on Vercel alike.
 
 1. Write `Dockerfile`, `compose.yaml` and `.dockerignore` in the shape `docker init` writes, from
    Docker's docs through context7. `docker init` itself is interactive only.

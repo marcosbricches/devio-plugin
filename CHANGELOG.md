@@ -2,6 +2,14 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1] — 2026-09-26
+
+- `devio:deploy` states its reason itself instead of linking a file outside the plugin.
+- The repository holds only the plugin, its tests and its evals; the maintainer's process files stay
+  local.
+- Measured: `deploy-vercel` 1.00 against a control of 0.25. A first run scored 0.92: one run of three
+  wrote the Docker files and stopped before any `vercel:` skill.
+
 ## [0.6.0] — 2026-09-26
 
 Rebuilt on Anthropic's context-engineering guidance (claude.dev/blog: "The new rules of context
@@ -62,7 +70,6 @@ dropped `library-docs` to 0.83; the sentence is back.
 - One hook script for both events, run by `node` in exec form, so the text arrives intact on
   Windows without Git Bash; `tests/hooks.test.mjs` checks its output.
 - The execution plan goes where the tracker keeps the tickets.
-- Engineering on mattpocock-skills: `docs/agents/`, `.claude/CLAUDE.md`.
 
 ## [0.4.0] — 2026-09-24
 
@@ -77,8 +84,8 @@ From the first field trial:
 - After a grill the session asks for `/to-spec`, `/to-tickets`, `/implement`.
 - An execution plan beside published tickets.
 - `git add -N` before `code-review`, whose diff leaves untracked files out.
-- Every deploy ships one Docker image (ADR 0002); Vercel joins the `dependencies`.
-- Preferences the designer's `CLAUDE.md` already carries leave the hook (ADR 0001).
+- Every deploy ships one Docker image; Vercel joins the `dependencies`.
+- Preferences the designer's `CLAUDE.md` already carries leave the hook.
 
 ## [0.1.1] — 2026-09-23
 

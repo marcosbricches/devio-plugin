@@ -8,8 +8,8 @@ A Claude Code plugin that adds to every session and subagent, and takes nothing 
   every session and every subagent that does work.
 - **Skills that load only when their task comes up** (below).
 
-The designer's other preferences live in their own `CLAUDE.md`
-([ADR 0001](docs/adr/0001-one-designer-preferences-live-in-claude-md.md)).
+devio is written for one designer: preferences their global `CLAUDE.md` already carries stay out
+of it.
 
 ## Install
 
@@ -39,7 +39,7 @@ To update: `claude plugin update devio@devio`, or turn on auto-update for the `d
 | --- | --- |
 | `devio:screen` | A screen, page or app is built or redesigned: references first, Impeccable, a render compared against the references, the app-shell frame measured across routes |
 | `devio:execution-plan` | `/to-tickets` has just published a feature's tickets: waves, the critical path, what to watch between parallel tickets |
-| `devio:deploy` | Anything is deployed: one Docker image for the company VPS and for Vercel ([ADR 0002](docs/adr/0002-every-deploy-ships-one-docker-image.md)) |
+| `devio:deploy` | Anything is deployed: one Docker image for the company VPS and for Vercel |
 
 ## Test
 
@@ -86,5 +86,3 @@ Users receive a release when `version` changes (code.claude.com/docs/en/plugins/
 | `skills/` | `screen`, `execution-plan`, `deploy` |
 | `tests/` | The hook contract test |
 | `evals/` | The eval cases and `run.mjs` |
-| `docs/`, `CONTEXT.md` | ADRs, the glossary, and the mattpocock-skills configuration |
-| `.scratch/` | Open work: the local issue tracker |
