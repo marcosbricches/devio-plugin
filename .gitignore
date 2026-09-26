@@ -1,2 +1,4 @@
-evals/results/
 .eval-deps/
+eval-devio/
+eval-control/
+eval-control.json

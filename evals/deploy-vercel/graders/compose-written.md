@@ -1,4 +1,4 @@
 ---
 type: file_exists
-path: 'Dockerfile*'
+path: '*compose.y*ml'
 ---

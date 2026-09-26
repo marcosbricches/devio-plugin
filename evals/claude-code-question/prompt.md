@@ -1,5 +1,4 @@
 ---
-plugins: ["../../.eval-deps/devio","../../.eval-deps/impeccable","../../.eval-deps/gsap-skills","../../.eval-deps/mattpocock-skills","../../.eval-deps/context7","../../.eval-deps/playwright","../../.eval-deps/vercel"]
 description: A question about Claude Code goes to the claude-code-guide agent.
 max_turns: 15
 allowed_tools: [Read, Glob, Grep, Skill, Agent, WebFetch]

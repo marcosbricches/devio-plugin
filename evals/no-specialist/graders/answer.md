@@ -1,4 +1,4 @@
 ---
 type: regex
-pattern: '\b391\b'
+pattern: '^\W*3\W*$'
 ---
