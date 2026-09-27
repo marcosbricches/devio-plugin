@@ -6,6 +6,8 @@ A Claude Code plugin that adds to every session and subagent, and takes nothing 
 - **The community's standard** over a process of our own.
 - **The installed specialist for each job**: a short routing table, `hooks/how-we-work.md`, added to
   every session and every subagent that does work.
+- **How Devio works**: a recommendation with its evidence, both outcomes and one next step; a mistake
+  recorded in the repository in the same turn; formal text for clients.
 - **Skills that load only when their task comes up** (below).
 
 devio is written for one designer: preferences their global `CLAUDE.md` already carries stay out
@@ -61,7 +63,8 @@ node evals/run.mjs
 "context7 was called" can never pass. So each case runs twice: devio with its dependencies, and the
 dependencies alone, the control. A case passes at 1.0 with devio and above control; a case tagged
 `guard` checks that devio does not over-route and only has to match control. Control is cached per
-case until the case, a specialist or Claude Code changes.
+case until the case, a specialist, Claude Code or the judge changes. `llm` graders are judged by
+sonnet: the default small judge passed replies that failed their rubric.
 
 Case names narrow the run, and other arguments go to `claude plugin eval`:
 `node evals/run.mjs library-docs --runs 1`. The dependencies must be installed. Every run is a real

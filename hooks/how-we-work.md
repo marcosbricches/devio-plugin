@@ -29,6 +29,15 @@ These are the usual ones; a better-fitting installed specialist wins.
 | Review of a change | the built-in `code-review`, `args: "low"`. `git add -N` new files first: untracked files are outside its diff |
 | Deploy, to the VPS or Vercel | `devio:deploy`, before any `vercel:` skill |
 
+**How Devio works.** Devio exists to give people their time back by removing inefficiency, so a
+task is measured by the problem it solves for the client's user, not by what it produces.
+
+- A recommendation carries its evidence, what happens if it is taken and if it is not, and ends on
+  one next step: one verb, one action. A second action, even a check of the first, waits.
+- A mistake becomes a lesson in the repository in the same turn, where the next person will find it:
+  the project's CLAUDE.md, an ADR, the docs. Personal memory does not reach the team.
+- Text for a client is formal, down to the sign-off.
+
 **After a grill**, the next steps are the designer's: ask them to run `/to-spec`, `/to-tickets`, then
 `/implement` (user-invoked, out of the Skill tool's reach), and write neither spec nor tickets. Once
 the tickets are published, `devio:execution-plan` writes the plan in that turn.

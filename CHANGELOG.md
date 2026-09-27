@@ -2,6 +2,52 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] — 2026-09-27
+
+### Added
+
+- The hook text gains "How Devio works": a recommendation carries its evidence, what happens if it
+  is taken and if it is not, and ends on one next step that is a single action; a mistake becomes a
+  lesson in the repository in the same turn, not in personal memory; text for a client is formal,
+  down to the sign-off.
+- Cases `recommendation`, `lesson-recorded` and `client-formal`, one for each rule.
+
+### Changed
+
+- `evals/run.mjs` judges `llm` graders with sonnet. The default small judge scored all three new
+  cases 1.00; sonnet, on the same replies, failed replies that broke the rubric
+  (code.claude.com/docs/en/plugin-evals: "Re-run with `--judge-model sonnet`", read 2026-09-27).
+- The control cache key includes `--judge-model`, so a new judge no longer reuses control scores
+  from the old one.
+- Each `llm` grader checks one criterion. A three-criterion rubric failed a correct reply in 9 of 9
+  votes; split, the graders judged six fixed replies, good and bad, unanimously right three times
+  each. Casual markers in `client-formal` are a regex, with Unicode lookarounds because `\b` treats
+  accented letters as non-word.
+
+### Measured
+
+Claude Code 2.1.282, 3 runs per arm, sonnet judge, 2026-09-27, on this release's hook text and
+skills. Control was re-measured with the sonnet judge.
+
+| Case | devio | control |
+| --- | --- | --- |
+| claude-code-question | 1.00 | 0.50 |
+| client-formal | 1.00 | 0.33 |
+| critique-landing | 1.00 | 0.50 |
+| deploy-vercel | 1.00 | 0.25 |
+| execution-plan | 1.00 | 0.00 |
+| execution-plan-github | 1.00 | 0.33 |
+| lesson-recorded | 1.00 | 0.00 |
+| library-docs | 1.00 | 0.50 |
+| new-screen | 1.00 | 0.00 |
+| no-specialist (guard) | 1.00 | 1.00 |
+| recommendation | 1.00 | 0.33 |
+| scroll-reveal | 1.00 | 0.67 |
+| stop-after-grill | 1.00 | 0.50 |
+
+A full run before this one scored `claude-code-question` 0.83: one run of three answered without
+`additionalContext`, after consulting the docs. The case alone then scored 3 of 3.
+
 ## [0.6.1] — 2026-09-26
 
 - `devio:deploy` states its reason itself instead of linking a file outside the plugin.

@@ -10,8 +10,8 @@
  *
  * Control does not depend on devio, so its score is cached per case, keyed on everything it does
  * depend on: the case's files, the specialists' installed versions, the Claude Code version, and
- * --runs and --model. The arms run one after the other: every run shares one rate limit, and a
- * rate-limited run scores 0 without failing the suite (same page, "Usage limit reached").
+ * --runs, --model and --judge-model. The arms run one after the other: every run shares one rate
+ * limit, and a rate-limited run scores 0 without failing the suite (same page, "Usage limit reached").
  *
  * Passes when every case scores 1.0 with devio and above control; a case tagged `guard` (devio must
  * not over-route) only has to match control.
@@ -36,6 +36,8 @@ const picked = args.filter((arg) => allCases.includes(arg));
 const cases = picked.length ? picked : allCases;
 const options = args.filter((arg) => !allCases.includes(arg));
 if (!options.some((arg) => arg === '-j' || arg.startsWith('--concurrency'))) options.push('-j', '4');
+// The default judge passed replies that sonnet, reading the same rubric, failed (both arms, 2026-09-27).
+if (!options.some((arg) => arg.startsWith('--judge-model'))) options.push('--judge-model', 'sonnet');
 
 // A plugin's symlinked agent docs and installed packages are not part of what a session loads.
 const copyPlugin = (from, to) => cpSync(from, to, { recursive: true, filter: (path) => !/[\\/](node_modules|\.git)$|[\\/](AGENTS|CLAUDE|GEMINI)\.md$/.test(path) });
@@ -53,8 +55,8 @@ const { dependencies, ...plugin } = manifest;
 writeFileSync(join(DEPS, 'devio', '.claude-plugin', 'plugin.json'), `${JSON.stringify(plugin, null, 2)}\n`);
 
 const claudeVersion = spawnSync('claude', ['--version'], { encoding: 'utf8' }).stdout.trim();
-// Of the options passed through, only these change what a run does.
-const scoring = options.filter((arg, i) => /^--(runs|model)/.test(arg) || /^--(runs|model)$/.test(options[i - 1] ?? ''));
+// Of the options passed through, only these change what a run does or how it is scored.
+const scoring = options.filter((arg, i) => /^--(runs|model|judge-model)/.test(arg) || /^--(runs|model|judge-model)$/.test(options[i - 1] ?? ''));
 const keyOf = (name) => {
   const hash = createHash('sha256').update(JSON.stringify([versions, claudeVersion, scoring]));
   const files = readdirSync(join(EVALS, name), { recursive: true, withFileTypes: true }).filter((entry) => entry.isFile())
