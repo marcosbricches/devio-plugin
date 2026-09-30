@@ -38,6 +38,10 @@
     {
       "name": "vercel",
       "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "ponytail",
+      "marketplace": "ponytail"
     }
   ]
 }

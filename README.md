@@ -21,12 +21,14 @@ Requires Claude Code and Node on `PATH`: the hook runs `node`.
 claude plugin marketplace add anthropics/claude-plugins-official
 claude plugin marketplace add pbakaus/impeccable
 claude plugin marketplace add greensock/gsap-skills
+claude plugin marketplace add DietrichGebert/ponytail
 claude plugin marketplace add marcosbricches/devio-plugin
 claude plugin install devio@devio
 ```
 
 Installing devio installs its dependencies, so their marketplaces are added first: Impeccable, the
-GSAP skills, mattpocock-skills, context7, Playwright and Vercel. Keep either Impeccable or
+GSAP skills, mattpocock-skills, context7, Playwright, Vercel and Ponytail. Ponytail runs at its
+default level in every session and subagent. Keep either Impeccable or
 Anthropic's `frontend-design` enabled, not both: Impeccable is built on it.
 
 The routing table also names specialists devio does not install. Each is used when present: the
