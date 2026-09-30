@@ -50,6 +50,16 @@ for (const { name, marketplace } of manifest.dependencies) {
   versions.push(`${name}@${entry.version}:${entry.gitCommitSha ?? ''}`);
   copyPlugin(entry.installPath, join(DEPS, name));
 }
+// context7 ab024cdcfa7c points at /mcp?client=claude-code-plugin, which answers 401 and asks for
+// OAuth. A run's fresh home cannot sign in, so context7 came up `needs-auth` and every case that
+// needs it failed in both arms. The plain /mcp endpoint serves the same tools without auth (both
+// probed 2026-09-30).
+const context7 = join(DEPS, 'context7', '.mcp.json');
+if (existsSync(context7)) {
+  const patched = readFileSync(context7, 'utf8').replace('/mcp?client=claude-code-plugin', '/mcp');
+  writeFileSync(context7, patched);
+  versions.push(patched);
+}
 for (const dir of ['.claude-plugin', 'hooks', 'skills']) copyPlugin(join(ROOT, dir), join(DEPS, 'devio', dir));
 const { dependencies, ...plugin } = manifest;
 writeFileSync(join(DEPS, 'devio', '.claude-plugin', 'plugin.json'), `${JSON.stringify(plugin, null, 2)}\n`);
@@ -68,7 +78,9 @@ const isGuard = (name) => /^tags:.*\bguard\b/m.test(readFileSync(join(EVALS, nam
 
 // Each case's mean score across its runs, and whether a run hit a usage or rate limit instead of
 // failing on its own. The docs point to the error for the limit message but do not give its
-// wording, so the pattern is a guess at the usual ones. A limited control score is not cached.
+// wording, so the pattern is a guess at the usual ones, plus the one seen in a run: "You've hit your
+// session limit" (2026-09-27), which the guess missed and cached as a real score of 0. A limited
+// control score is not cached.
 const runArm = (arm, plugins, names) => {
   const suite = join(ROOT, `eval-${arm}`);
   rmSync(suite, { recursive: true, force: true });
@@ -87,7 +99,7 @@ const runArm = (arm, plugins, names) => {
   if (!existsSync(result)) throw new Error(`the ${arm} arm wrote no result`);
   return Object.fromEntries(JSON.parse(readFileSync(result, 'utf8')).cases.map(({ name, arms: { with: runs } }) => [name, {
     score: runs.reduce((sum, run) => sum + run.score, 0) / runs.length,
-    limited: runs.some((run) => /usage limit|rate limit|overloaded/i.test(run.error ?? '')),
+    limited: runs.some((run) => /usage limit|session limit|rate limit|overloaded/i.test(run.error ?? '')),
   }]));
 };
 

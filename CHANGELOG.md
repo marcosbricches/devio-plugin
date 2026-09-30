@@ -2,6 +2,58 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] — 2026-09-30
+
+### Changed
+
+- `devio:screen` composes the first screen itself, in code, from one lead reference: the one the
+  designer named, or the real product closest to the job, followed the way "make it like Apple"
+  follows apple.com. Each other reference supplies one named part. The screen is shown to the
+  designer as the direction, naming the lead and what each reference gave. Impeccable only polishes,
+  with scoped commands (`polish`, `critique`, `audit`) on the built code. Why: in the Maré field
+  trial of 2026-09-27, Impeccable's new-work flow set six open references aside for a direction
+  rolled from its own catalog, and the designer stopped the session as AI slop (ADR 0003).
+- `devio:screen` gains a gotcha for Impeccable's `Stop` hook, which reviews the written file when the
+  turn ends and turned the last reply into a lint report. The first measurement scored
+  `screen-direction` 0.92: the direction reply named the lead, and the reply after the hook dropped it.
+- `evals/run.mjs` treats "session limit" as a limit, so it is no longer cached as a real control
+  score of 0 (seen 2026-09-27).
+- `evals/run.mjs` points its copy of context7 at the anonymous `/mcp` endpoint. context7
+  `ab024cdcfa7c` moved to `/mcp?client=claude-code-plugin`, which answers 401 and asks for OAuth. A
+  run's fresh home cannot sign in, so `library-docs` and `deploy-vercel` failed in both arms (probed
+  2026-09-30).
+
+### Added
+
+- Case `screen-direction`: the first screen of a new product follows a named lead, and Impeccable is
+  not called. Each grader passed a real trace that did the thing and failed one that did not.
+
+### Measured
+
+Claude Code 2.1.286, 3 runs per arm, sonnet judge, 2026-09-30.
+
+| Case | devio | control |
+| --- | --- | --- |
+| claude-code-question | 1.00 | 0.50 |
+| client-formal | 1.00 | 0.42 |
+| critique-landing | 1.00 | 0.50 |
+| deploy-vercel | 1.00 | 0.25 |
+| execution-plan | 1.00 | 0.00 |
+| execution-plan-github | 1.00 | 0.44 |
+| lesson-recorded | 1.00 | 0.00 |
+| library-docs | 1.00 | 0.50 |
+| new-screen | 1.00 | 0.00 |
+| no-specialist (guard) | 1.00 | 1.00 |
+| recommendation | 1.00 | 0.33 |
+| screen-direction | 1.00 | 0.25 |
+| scroll-reveal | 1.00 | 0.67 |
+| stop-after-grill | 1.00 | 0.50 |
+
+`execution-plan-github` scored 0.89 in the full run: one run of three wrote a `.scratch/` folder
+instead of commenting on the spec's issue. Alone it scored 0.89, then 3 of 3. Neither the hook text
+nor `execution-plan` changed in this release, so this is noise it already carried. It needs its own
+look.
+
 ## [0.7.0] — 2026-09-27
 
 ### Added
