@@ -17,10 +17,15 @@ These are the usual ones; a better-fitting installed specialist wins.
 | Research against primary sources | `mattpocock-skills:research` |
 | Grilling a plan, domain docs | `mattpocock-skills:grilling`, `:domain-modeling` |
 | Building or redesigning a screen, page or app | `devio:screen` |
+| States and edge cases: error, empty, loading, long text | `impeccable:impeccable`, its `harden` scope |
 | Registry components | the shadcn MCP |
+| Design system: tokens, shared components | `impeccable:impeccable`, its `extract` scope |
 | Motion: animation, scroll effects, pinning | `gsap-skills:gsap-core`, then the case's `gsap-skills:` skill; a project's own animation library stays |
-| A throwaway prototype | `mattpocock-skills:prototype` |
-| The rendered screen | the Playwright or Chrome DevTools MCP |
+| A prototype: a flow to click through before it is built | `mattpocock-skills:prototype` |
+| The rendered screen, compared with its references | the Chrome DevTools MCP: `emulate`, then `take_screenshot` per width |
+| Responsive: the screen on a phone | the Chrome DevTools MCP, `emulate` with `390x844x3,mobile,touch`; a page wider than the phone shows shrunk to fit |
+| Performance: a slow page, Core Web Vitals | `chrome-devtools-mcp:debug-optimize-lcp`: a trace before the fix and after it |
+| Assets: images, illustration, no placeholder art | `impeccable:impeccable`: plates from the approved comp, by its `impeccable-asset-producer` agent |
 | Critique or polish of an interface, a component, type, colour, UX copy | `impeccable:impeccable` |
 | A library, framework, SDK or API | context7: `resolve-library-id`, then `query-docs`, even for a well-known one |
 | TDD, a bug | `mattpocock-skills:tdd`, `:diagnosing-bugs` |
@@ -44,8 +49,8 @@ task is measured by the problem it solves for the client's user, not by what it 
 - While editing, nothing heavy: no build, no e2e, no whole-project typecheck.
 - Closing a change: the typecheck once and the affected test once, by file or title; while fixing,
   only the failures (`--last-failed`).
-- The screen: one `npx playwright screenshot --wait-for-selector` per width at the end, compared
-  with the references. No screenshot script written on the spot.
+- The screen: one Chrome DevTools MCP `take_screenshot` per width at the end, compared with the
+  references. No screenshot script written on the spot.
 - The **gate** (the project's full check) once, before delivery, or in CI where the project has it.
 - A check is never repeated with nothing changed since it last ran.
 - A dev server starts once, in the background (`run_in_background`), and is waited on by a
