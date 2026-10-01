@@ -26,7 +26,7 @@ These are the usual ones; a better-fitting installed specialist wins.
 | A poster or static visual | `anthropic-skills:canvas-design` |
 | Research against primary sources | `mattpocock-skills:research` |
 | TDD, a bug, domain docs, a throwaway prototype, grilling a plan | `mattpocock-skills:tdd`, `:diagnosing-bugs`, `:domain-modeling`, `:prototype`, `:grilling` |
-| Review of a change | the built-in `code-review`, `args: "low"`. `git add -N` new files first: untracked files are outside its diff |
+| Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; `ponytail:ponytail-review` for what to delete. `git add -N` new files first: untracked files are outside their diff |
 | Deploy, to the VPS or Vercel | `devio:deploy`, before any `vercel:` skill |
 
 **How Devio works.** Devio exists to give people their time back by removing inefficiency, so a
