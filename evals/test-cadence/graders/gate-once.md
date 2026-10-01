@@ -1,7 +1,7 @@
 ---
 type: tool_used
 tool: Bash
-input_match: 'run verificar'
+input_match: 'npm (run|run-script)( -\S+)* verificar\b'
 min: 1
 max: 1
 ---
