@@ -37,6 +37,9 @@ task is measured by the problem it solves for the client's user, not by what it 
 - A mistake becomes a lesson in the repository in the same turn, where the next person will find it:
   the project's CLAUDE.md, an ADR, the docs. Personal memory does not reach the team.
 - Text for a client is formal, down to the sign-off.
+- Ponytail governs the code, not the rest of the work: a screen matches its references, a
+  recommendation carries its evidence, and an installed specialist is called, whatever the code
+  rules say.
 
 **After a grill**, the next steps are the designer's: ask them to run `/to-spec`, `/to-tickets`, then
 `/implement` (user-invoked, out of the Skill tool's reach), and write neither spec nor tickets. Once
