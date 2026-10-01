@@ -2,6 +2,76 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] — 2026-10-01
+
+### Added
+
+- Ponytail (github.com/DietrichGebert/ponytail, v4.10.0) is a dependency, and the README's install
+  section adds its marketplace. It runs at its default level in every session and subagent. Why: a
+  developer at Devio recommended it after asking whether the designer documents the project
+  structure. It made his sessions stop writing repeated code. jscpd on the designer's last two
+  projects (2026-09-30, exact clones of 50 tokens or more) found 1.64% and 2.13% duplicated lines.
+  Some of it was a shared piece re-implemented anyway, such as a localStorage store copied 8 times,
+  even where DESIGN.md documented the piece. The rest was a shared piece never extracted, such as
+  three contact forms copied from each other. Documentation alone did not stop the cloning. A
+  session that searches before it writes is what Ponytail brings.
+- The "Review of a change" row calls `ponytail:ponytail-review` for what to delete, next to the
+  built-in `code-review` for bugs.
+- The hook text says that Ponytail governs the code, not the rest of the work. A screen matches its
+  references, a recommendation carries its evidence, and an installed specialist is called,
+  whatever the code rules say. Why: with Ponytail in both arms, `new-screen` built a page with no
+  reference (0.00, against 1.00 in 0.7.1). Ponytail's "never stall on an answer you can default"
+  beat the screen skill. `deploy-vercel` also stopped short of the `vercel:` skills in 1 of 3 runs.
+- The hook text states the rule of three. Before writing markup or logic, look for copies already
+  in the code. With two there, extract a shared piece and move the first two onto it. At the third
+  copy this overrides Ponytail's "no unrequested abstractions". The first wording ("the third copy
+  is not written") fired in 0 of 3 runs, because the session never saw itself as writing a third
+  copy. Leading with the check scored 3 of 3.
+- Cases `review-change`, `rule-of-three`, and the guard `designed-control`. In `designed-control`,
+  the reference shows a designed calendar, and the screen must not fall back to `<input type="date">`.
+
+### Changed
+
+- `devio:screen` ends the turn on asking for references when it has none, with nothing built.
+- `devio:deploy` calls the `vercel:` skills even when the Vercel MCP is signed out or no shell is at
+  hand. `vercel:vercel-cli` hands the sign-in to the designer.
+- `evals/run.mjs` grants `Edit`, which `screen-direction` lists and was denied. The allowed tools are
+  part of the control cache key. The key's `--runs` regex had a literal backspace where `\b`
+  belonged, so every control score was re-measured.
+
+### Not measured
+
+Whether Ponytail makes the designer's code shorter and less duplicated is left to the next field
+trial. Ponytail runs in both arms, so the suite cannot see its effect on code. The trial report
+records jscpd duplication and LOC at its end.
+
+### Measured
+
+Claude Code 2.1.286, 3 runs per arm, sonnet judge, Ponytail in both arms, 2026-10-01.
+
+| Case | devio | control |
+| --- | --- | --- |
+| claude-code-question | 1.00 | 0.50 |
+| client-formal | 1.00 | 0.42 |
+| critique-landing | 1.00 | 0.50 |
+| deploy-vercel | 1.00 | 0.25 |
+| designed-control (guard) | 1.00 | 1.00 |
+| execution-plan | 1.00 | 0.00 |
+| execution-plan-github | 1.00 | 0.33 |
+| lesson-recorded | 1.00 | 0.00 |
+| library-docs | 1.00 | 0.50 |
+| new-screen | 1.00 | 0.00 |
+| no-specialist (guard) | 1.00 | 1.00 |
+| recommendation | 1.00 | 0.33 |
+| review-change | 1.00 | 0.00 |
+| rule-of-three | 1.00 | 0.00 |
+| screen-direction | 1.00 | 0.33 |
+| scroll-reveal | 1.00 | 0.00 |
+| stop-after-grill | 1.00 | 0.33 |
+
+`designed-control` scores 1.00 in control too, so Ponytail did not swap the reference's calendar for
+a native input in either arm. The guard stays to catch a hook text change that would.
+
 ## [0.7.1] — 2026-09-30
 
 ### Changed
