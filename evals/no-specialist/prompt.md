@@ -1,6 +1,5 @@
 ---
 description: A plain language question calls no specialist.
-tags: [guard]
 max_turns: 5
 allowed_tools: [Read, Glob, Grep, Skill, Agent]
 ---

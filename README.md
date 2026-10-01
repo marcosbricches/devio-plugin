@@ -59,44 +59,16 @@ the 10,000-character cap. Claude Code drops a malformed hook output silently, an
 node evals/run.mjs
 ```
 
-`claude plugin eval` compares a plugin only with a run that loads no plugin at all, where a case like
-"context7 was called" can never pass. So each case runs twice: devio with its dependencies, and the
-dependencies alone, the control. A case passes at 1.0 with devio and above control; a case tagged
-`guard` checks that devio does not over-route and only has to match control. Control is cached per
-case until the case, a specialist, Claude Code or the judge changes. `llm` graders are judged by
-sonnet: the default small judge passed replies that failed their rubric.
-
-Case names narrow the run, and other arguments go to `claude plugin eval`:
-`node evals/run.mjs library-docs --runs 1`. The dependencies must be installed. Every run is a real
-model call on your plan.
-
-### On Windows
-
-A case that lists `Bash` (`test-cadence`) needs a sandbox, and native Windows has none: the run is
-refused and scores 0 (code.claude.com/docs/en/sandboxing, read 2026-10-01). Such cases, and any
-whole-suite run, go through WSL2. Set it up once:
-
-1. In an administrator PowerShell, `wsl --install -d Ubuntu`, then restart Windows if asked.
-2. The account prompt takes the password without echoing it. If keystrokes do not reach it, close
-   the window, enter as root with `wsl -d Ubuntu -u root`, create the user with
-   `adduser --disabled-password --gecos "" <name>`, add it to `sudo`, write `[user]` /
-   `default=<name>` to `/etc/wsl.conf`, then `wsl --terminate Ubuntu`.
-3. Inside Ubuntu: `sudo apt-get install -y bubblewrap socat nodejs npm git`, then
-   `curl -fsSL https://claude.ai/install.sh | bash`, `exec bash -l`, and `claude` once to sign in.
-4. Add the marketplaces and install the plugins listed in `dependencies` in
-   `.claude-plugin/plugin.json` with `claude plugin marketplace add` and `claude plugin install`.
-   The Windows install does not carry over: `run.mjs` reads the plugins of the home it runs in.
-5. Run every eval from WSL, not only the Bash cases: one control cache (`eval-control.json` lives
-   in the checkout that runs) and one set of installed specialists, so the numbers stay comparable.
-   Keep Claude Code and the plugins at the same versions on both sides, since the hooks the
-   designer's sessions load are the Windows ones.
-6. Run from a clone in the Linux home, not from `/mnt/c`. Git refuses the Windows checkout as
-   another user's until `git config --global --add safe.directory /mnt/c/<path>/.git`; then
-   `git clone /mnt/c/<path> ~/devio` and `node evals/run.mjs <case>` there.
+Runs each case once with devio and its dependencies loaded, and exits 0 when every case scores 1.0.
+Name the cases a change reaches: `node evals/run.mjs library-docs`. Other arguments go to
+`claude plugin eval`. `llm` graders are judged by sonnet: the default small judge passed replies that
+failed their rubric. The dependencies must be installed, and every run is a real model call on your
+plan. No case grants Bash, so everything runs on native Windows.
 
 ## Release
 
-1. Change the hook text, a skill or the dependencies only with `node evals/run.mjs` exiting 0.
+1. Change the hook text, a skill or the dependencies only with `node evals/run.mjs <cases it reaches>`
+   exiting 0.
 2. Bump `version` in `.claude-plugin/plugin.json` and add a `CHANGELOG.md` entry with the measured
    table.
 3. `claude plugin validate . --strict` and `claude plugin validate .claude-plugin/plugin.json --strict`.
