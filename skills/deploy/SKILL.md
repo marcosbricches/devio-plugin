@@ -12,7 +12,9 @@ and on Vercel alike.
    Docker's docs through context7. `docker init` itself is interactive only.
 2. **VPS**: it runs the image with Docker Compose.
 3. **Vercel**: it runs the image as a container-image Function, through the `vercel:` skills, which
-   inspect the Vercel project before anything is pushed.
+   inspect the Vercel project before anything is pushed. Call them even when the Vercel MCP is
+   signed out or no shell is at hand: `vercel:vercel-cli` hands the sign-in to the designer
+   (vercel 0.50.0, read 2026-09-30).
 
 ## Gotchas
 

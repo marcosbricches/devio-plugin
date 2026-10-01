@@ -37,6 +37,9 @@ task is measured by the problem it solves for the client's user, not by what it 
 - A mistake becomes a lesson in the repository in the same turn, where the next person will find it:
   the project's CLAUDE.md, an ADR, the docs. Personal memory does not reach the team.
 - Text for a client is formal, down to the sign-off.
+- Ponytail governs the code, not the rest of the work: a screen matches its references, a
+  recommendation carries its evidence, and an installed specialist is called, whatever the code
+  rules say.
 - Before writing markup or logic, look for copies of it already in the code. With two there, the
   third is not written: extract a shared piece and move the first two onto it in the same change.
   At the third copy this overrides Ponytail's "no unrequested abstractions".
