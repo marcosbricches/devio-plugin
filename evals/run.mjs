@@ -67,10 +67,15 @@ writeFileSync(join(DEPS, 'devio', '.claude-plugin', 'plugin.json'), `${JSON.stri
 
 const claudeVersion = spawnSync('claude', ['--version'], { encoding: 'utf8' }).stdout.trim();
 // Of the options passed through, only these change what a run does or how it is scored.
-const scoring = options.filter((arg, i) => /^--(runs|model|judge-model)\b/.test(arg) || /^--(runs|model|judge-model)$/.test(options[i - 1] ?? ''));
+const scoring = options.filter((arg, i) => /^--(model|judge-model)\b/.test(arg) || /^--(model|judge-model)$/.test(options[i - 1] ?? ''));
+// The key holds the runs a case gets, not how they were asked for: an omitted --runs means
+// `case.runs ?? 3` (`claude plugin eval --help`, read 2026-10-01), so `--runs 3` and no flag share a control.
+const runsAt = options.findIndex((arg) => /^--runs(=|$)/.test(arg));
+const runsFlag = runsAt < 0 ? undefined : options[runsAt].split('=')[1] ?? options[runsAt + 1];
 const allowed = ['Write', 'Edit', 'mcp__plugin_context7_context7__*', 'WebFetch(domain:code.claude.com)'];
 const keyOf = (name) => {
-  const hash = createHash('sha256').update(JSON.stringify([versions, claudeVersion, scoring, allowed]));
+  const runs = Number(runsFlag ?? readFileSync(join(EVALS, name, 'prompt.md'), 'utf8').match(/^runs:\s*(\d+)/m)?.[1] ?? 3);
+  const hash = createHash('sha256').update(JSON.stringify([versions, claudeVersion, scoring, runs, allowed]));
   const files = readdirSync(join(EVALS, name), { recursive: true, withFileTypes: true }).filter((entry) => entry.isFile())
     .map((entry) => join(entry.parentPath, entry.name)).sort();
   for (const file of files) hash.update(relative(EVALS, file)).update(readFileSync(file));
