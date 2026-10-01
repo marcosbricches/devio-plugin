@@ -28,6 +28,7 @@ These are the usual ones; a better-fitting installed specialist wins.
 | TDD, a bug, domain docs, a throwaway prototype, grilling a plan | `mattpocock-skills:tdd`, `:diagnosing-bugs`, `:domain-modeling`, `:prototype`, `:grilling` |
 | Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; the built-in `simplify`, `args: "report only"` when only a review was asked, for reuse and what to delete. `git add -N` new files first: untracked files are outside their diff |
 | Deploy to Devio's CD, or CI for a project with a gate and no CI | `devio:deploy` |
+| A task that needs WSL, Docker, a Linux VM, the sandbox, Node, or plugins inside WSL | `devio:environment`, before instructing any install |
 
 **How Devio works.** Devio exists to give people their time back by removing inefficiency, so a
 task is measured by the problem it solves for the client's user, not by what it produces.
