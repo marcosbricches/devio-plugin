@@ -9,9 +9,10 @@
  * .eval-deps/. devio's copy drops `dependencies`: with them, it did not load in a run.
  *
  * Control does not depend on devio, so its score is cached per case, keyed on everything it does
- * depend on: the case's files, the specialists' installed versions, the Claude Code version, and
- * --runs, --model and --judge-model. The arms run one after the other: every run shares one rate
- * limit, and a rate-limited run scores 0 without failing the suite (same page, "Usage limit reached").
+ * depend on: the case's files, the specialists' installed versions, the Claude Code version, the
+ * tools a run is allowed, and --runs, --model and --judge-model. The arms run one after the other:
+ * every run shares one rate limit, and a rate-limited run scores 0 without failing the suite (same
+ * page, "Usage limit reached").
  *
  * Passes when every case scores 1.0 with devio and above control; a case tagged `guard` (devio must
  * not over-route) only has to match control.
@@ -66,9 +67,10 @@ writeFileSync(join(DEPS, 'devio', '.claude-plugin', 'plugin.json'), `${JSON.stri
 
 const claudeVersion = spawnSync('claude', ['--version'], { encoding: 'utf8' }).stdout.trim();
 // Of the options passed through, only these change what a run does or how it is scored.
-const scoring = options.filter((arg, i) => /^--(runs|model|judge-model)/.test(arg) || /^--(runs|model|judge-model)$/.test(options[i - 1] ?? ''));
+const scoring = options.filter((arg, i) => /^--(runs|model|judge-model)\b/.test(arg) || /^--(runs|model|judge-model)$/.test(options[i - 1] ?? ''));
+const allowed = ['Write', 'Edit', 'mcp__plugin_context7_context7__*', 'WebFetch(domain:code.claude.com)'];
 const keyOf = (name) => {
-  const hash = createHash('sha256').update(JSON.stringify([versions, claudeVersion, scoring]));
+  const hash = createHash('sha256').update(JSON.stringify([versions, claudeVersion, scoring, allowed]));
   const files = readdirSync(join(EVALS, name), { recursive: true, withFileTypes: true }).filter((entry) => entry.isFile())
     .map((entry) => join(entry.parentPath, entry.name)).sort();
   for (const file of files) hash.update(relative(EVALS, file)).update(readFileSync(file));
@@ -95,7 +97,7 @@ const runArm = (arm, plugins, names) => {
   const result = join(suite, 'result.json');
   spawnSync('claude', ['plugin', 'eval', '.', '--eval-dir', `eval-${arm}`, '--ablation', 'none', '--json', result,
     '--scaffold', '--trust-plugin', '--no-publish', '--allow-real-servers', ...options,
-    '--allow-tools', 'Write', 'mcp__plugin_context7_context7__*', 'WebFetch(domain:code.claude.com)'], { cwd: ROOT, stdio: 'inherit' });
+    '--allow-tools', ...allowed], { cwd: ROOT, stdio: 'inherit' });
   if (!existsSync(result)) throw new Error(`the ${arm} arm wrote no result`);
   return Object.fromEntries(JSON.parse(readFileSync(result, 'utf8')).cases.map(({ name, arms: { with: runs } }) => [name, {
     score: runs.reduce((sum, run) => sum + run.score, 0) / runs.length,
