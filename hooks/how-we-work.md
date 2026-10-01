@@ -44,6 +44,20 @@ task is measured by the problem it solves for the client's user, not by what it 
   third is not written: extract a shared piece and move the first two onto it in the same change.
   At the third copy this overrides Ponytail's "no unrequested abstractions".
 
+**Checks run once, sized to the change.** In any project:
+
+- While editing, nothing heavy: no build, no e2e, no whole-project typecheck.
+- Closing a change: the typecheck once and the affected test once, by file or title; while fixing,
+  only the failures (`--last-failed`).
+- The screen: one `npx playwright screenshot --wait-for-selector` per width at the end, compared
+  with the references. No screenshot script written on the spot.
+- The **gate** (the project's full check) once, before delivery, or in CI where the project has it.
+- A check is never repeated with nothing changed since it last ran.
+- A dev server starts once, in the background (`run_in_background`), and is waited on by a
+  condition such as Monitor until it answers, never a fixed `sleep`.
+- E2e covers flows with logic: forms, navigation, data. Whether a screen looks right is the
+  screenshot's job.
+
 **After a grill**, the next steps are the designer's: ask them to run `/to-spec`, `/to-tickets`, then
 `/implement` (user-invoked, out of the Skill tool's reach), and write neither spec nor tickets. Once
 the tickets are published, `devio:execution-plan` writes the plan in that turn.

@@ -35,6 +35,7 @@ const allCases = readdirSync(EVALS, { withFileTypes: true }).filter((entry) => e
 const args = process.argv.slice(2);
 const picked = args.filter((arg) => allCases.includes(arg));
 const cases = picked.length ? picked : allCases;
+const promptOf = (name) => readFileSync(join(EVALS, name, 'prompt.md'), 'utf8');
 const options = args.filter((arg) => !allCases.includes(arg));
 if (!options.some((arg) => arg === '-j' || arg.startsWith('--concurrency'))) options.push('-j', '4');
 // The default judge passed replies that sonnet, reading the same rubric, failed (both arms, 2026-09-27).
@@ -72,16 +73,20 @@ const scoring = options.filter((arg, i) => /^--(model|judge-model)\b/.test(arg) 
 // `case.runs ?? 3` (`claude plugin eval --help`, read 2026-10-01), so `--runs 3` and no flag share a control.
 const runsAt = options.findIndex((arg) => /^--runs(=|$)/.test(arg));
 const runsFlag = runsAt < 0 ? undefined : options[runsAt].split('=')[1] ?? options[runsAt + 1];
-const allowed = ['Write', 'Edit', 'mcp__plugin_context7_context7__*', 'WebFetch(domain:code.claude.com)'];
+// A grant reaches every case in the run, and granted Bash runs only under a sandbox, which native
+// Windows lacks: there each run is refused and scores 0 (plugin-evals, "Grant tools", read
+// 2026-10-01). So Bash is granted only when a picked case lists it, and such a run needs WSL2.
+const allowed = ['Write', 'Edit', 'mcp__plugin_context7_context7__*', 'WebFetch(domain:code.claude.com)',
+  ...(cases.some((name) => /^allowed_tools:.*\bBash\b/m.test(promptOf(name))) ? ['Bash'] : [])];
 const keyOf = (name) => {
-  const runs = Number(runsFlag ?? readFileSync(join(EVALS, name, 'prompt.md'), 'utf8').match(/^runs:\s*(\d+)/m)?.[1] ?? 3);
+  const runs = Number(runsFlag ?? promptOf(name).match(/^runs:\s*(\d+)/m)?.[1] ?? 3);
   const hash = createHash('sha256').update(JSON.stringify([versions, claudeVersion, scoring, runs, allowed]));
   const files = readdirSync(join(EVALS, name), { recursive: true, withFileTypes: true }).filter((entry) => entry.isFile())
     .map((entry) => join(entry.parentPath, entry.name)).sort();
   for (const file of files) hash.update(relative(EVALS, file)).update(readFileSync(file));
   return hash.digest('hex');
 };
-const isGuard = (name) => /^tags:.*\bguard\b/m.test(readFileSync(join(EVALS, name, 'prompt.md'), 'utf8'));
+const isGuard = (name) => /^tags:.*\bguard\b/m.test(promptOf(name));
 
 // Each case's mean score across its runs, and whether a run hit a usage or rate limit instead of
 // failing on its own. The docs point to the error for the limit message but do not give its
