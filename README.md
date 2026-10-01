@@ -70,6 +70,26 @@ Case names narrow the run, and other arguments go to `claude plugin eval`:
 `node evals/run.mjs library-docs --runs 1`. The dependencies must be installed. Every run is a real
 model call on your plan.
 
+### On Windows
+
+A case that lists `Bash` (`test-cadence`) needs a sandbox, and native Windows has none: the run is
+refused and scores 0 (code.claude.com/docs/en/sandboxing, read 2026-10-01). Such cases, and any
+whole-suite run, go through WSL2. Set it up once:
+
+1. In an administrator PowerShell, `wsl --install -d Ubuntu`, then restart Windows if asked.
+2. The account prompt takes the password without echoing it. If keystrokes do not reach it, close
+   the window, enter as root with `wsl -d Ubuntu -u root`, create the user with
+   `adduser --disabled-password --gecos "" <name>`, add it to `sudo`, write `[user]` /
+   `default=<name>` to `/etc/wsl.conf`, then `wsl --terminate Ubuntu`.
+3. Inside Ubuntu: `sudo apt-get install -y bubblewrap socat nodejs npm git`, then
+   `curl -fsSL https://claude.ai/install.sh | bash`, `exec bash -l`, and `claude` once to sign in.
+4. Add the marketplaces and install the plugins listed in `dependencies` in
+   `.claude-plugin/plugin.json` with `claude plugin marketplace add` and `claude plugin install`.
+   The Windows install does not carry over: `run.mjs` reads the plugins of the home it runs in.
+5. Run from a clone in the Linux home, not from `/mnt/c`. Git refuses the Windows checkout as
+   another user's until `git config --global --add safe.directory /mnt/c/<path>/.git`; then
+   `git clone /mnt/c/<path> ~/devio` and `node evals/run.mjs <case>` there.
+
 ## Release
 
 1. Change the hook text, a skill or the dependencies only with `node evals/run.mjs` exiting 0.
