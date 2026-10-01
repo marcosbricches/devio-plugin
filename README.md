@@ -26,12 +26,17 @@ claude plugin install devio@devio
 ```
 
 Installing devio installs its dependencies, so their marketplaces are added first: Impeccable, the
-GSAP skills, mattpocock-skills, context7 and Playwright. Keep either Impeccable or
-Anthropic's `frontend-design` enabled, not both: Impeccable is built on it.
+GSAP skills, mattpocock-skills, context7, Playwright, the Chrome DevTools MCP and Firecrawl. Keep
+either Impeccable or Anthropic's `frontend-design` enabled, not both: Impeccable is built on it.
 
-The routing table also names specialists devio does not install. Each is used when present: the
-Mobbin MCP, firecrawl, the Chrome DevTools MCP, the `figma:` skills, the shadcn MCP, `dataviz` and
-`anthropic-skills:canvas-design`.
+`.mcp.json` adds the Mobbin and shadcn MCP servers. A server you already registered at the same URL
+or command wins and devio's copy is skipped (code.claude.com/docs/en/mcp, scope hierarchy, read
+2026-10-01). Every specialist the routing table names lives on the machine, none on the claude.ai
+account, so switching accounts removes none of them.
+
+Two specialists need a sign-in of your own, which no session handles: Mobbin asks for OAuth on first
+use, and Firecrawl needs its CLI and key, `npm install -g firecrawl-cli`, then
+`firecrawl login --browser` (or `FIRECRAWL_API_KEY` in your environment).
 
 To update: `claude plugin update devio@devio`, or turn on auto-update for the `devio` marketplace.
 
@@ -81,6 +86,7 @@ Users receive a release when `version` changes (code.claude.com/docs/en/plugins/
 | Path | Holds |
 | --- | --- |
 | `.claude-plugin/` | The manifest with its dependencies, and the repository as its own marketplace |
+| `.mcp.json` | The Mobbin and shadcn MCP servers |
 | `hooks/` | `SessionStart` and `SubagentStart`: one script and the text it adds |
 | `skills/` | `screen`, `execution-plan`, `deploy` |
 | `tests/` | The hook contract test |

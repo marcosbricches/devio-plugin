@@ -34,6 +34,14 @@
     {
       "name": "playwright",
       "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "firecrawl",
+      "marketplace": "claude-plugins-official"
     }
   ]
 }

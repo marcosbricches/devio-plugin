@@ -13,21 +13,20 @@ These are the usual ones; a better-fitting installed specialist wins.
 
 | Task | Specialist |
 | --- | --- |
-| Building or redesigning a screen, page or app | `devio:screen` |
-| Critique or polish of an interface, a component, type, colour, UX copy | `impeccable:impeccable` |
-| Motion: animation, scroll effects, pinning | `gsap-skills:gsap-core`, then the case's `gsap-skills:` skill; a project's own animation library stays |
-| A library, framework, SDK or API | context7: `resolve-library-id`, then `query-docs`, even for a well-known one |
-| Claude Code: hooks, plugins, skills, subagents, settings, MCP, CLI | the `claude-code-guide` agent, or https://code.claude.com/docs/llms.txt |
-| References from real products, or the web | the Mobbin MCP; `firecrawl-search`, `firecrawl-scrape` |
-| The rendered screen | the Playwright or Chrome DevTools MCP |
-| Figma | the `figma:` skills, from `figma:figma-use` |
-| Registry components | the shadcn MCP |
-| Charts and data display | `dataviz` |
-| A poster or static visual | `anthropic-skills:canvas-design` |
+| References from real products, or the web | the Mobbin MCP; `firecrawl:firecrawl-search`, `firecrawl:firecrawl-scrape` |
 | Research against primary sources | `mattpocock-skills:research` |
-| TDD, a bug, domain docs, a throwaway prototype, grilling a plan | `mattpocock-skills:tdd`, `:diagnosing-bugs`, `:domain-modeling`, `:prototype`, `:grilling` |
+| Grilling a plan, domain docs | `mattpocock-skills:grilling`, `:domain-modeling` |
+| Building or redesigning a screen, page or app | `devio:screen` |
+| Registry components | the shadcn MCP |
+| Motion: animation, scroll effects, pinning | `gsap-skills:gsap-core`, then the case's `gsap-skills:` skill; a project's own animation library stays |
+| A throwaway prototype | `mattpocock-skills:prototype` |
+| The rendered screen | the Playwright or Chrome DevTools MCP |
+| Critique or polish of an interface, a component, type, colour, UX copy | `impeccable:impeccable` |
+| A library, framework, SDK or API | context7: `resolve-library-id`, then `query-docs`, even for a well-known one |
+| TDD, a bug | `mattpocock-skills:tdd`, `:diagnosing-bugs` |
 | Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; the built-in `simplify`, `args: "report only"` when only a review was asked, for reuse and what to delete. `git add -N` new files first: untracked files are outside their diff |
 | Deploy to Devio's CD, or CI for a project with a gate and no CI | `devio:deploy` |
+| Claude Code: hooks, plugins, skills, subagents, settings, MCP, CLI | the `claude-code-guide` agent, or https://code.claude.com/docs/llms.txt |
 
 **How Devio works.** Devio exists to give people their time back by removing inefficiency, so a
 task is measured by the problem it solves for the client's user, not by what it produces.
