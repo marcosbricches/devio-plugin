@@ -86,7 +86,11 @@ whole-suite run, go through WSL2. Set it up once:
 4. Add the marketplaces and install the plugins listed in `dependencies` in
    `.claude-plugin/plugin.json` with `claude plugin marketplace add` and `claude plugin install`.
    The Windows install does not carry over: `run.mjs` reads the plugins of the home it runs in.
-5. Run from a clone in the Linux home, not from `/mnt/c`. Git refuses the Windows checkout as
+5. Run every eval from WSL, not only the Bash cases: one control cache (`eval-control.json` lives
+   in the checkout that runs) and one set of installed specialists, so the numbers stay comparable.
+   Keep Claude Code and the plugins at the same versions on both sides, since the hooks the
+   designer's sessions load are the Windows ones.
+6. Run from a clone in the Linux home, not from `/mnt/c`. Git refuses the Windows checkout as
    another user's until `git config --global --add safe.directory /mnt/c/<path>/.git`; then
    `git clone /mnt/c/<path> ~/devio` and `node evals/run.mjs <case>` there.
 
