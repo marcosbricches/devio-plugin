@@ -11,8 +11,8 @@
  * Control does not depend on devio, so its score is cached per case, keyed on everything it does
  * depend on: the case's files, the specialists' installed versions, the Claude Code version, the
  * tools a run is allowed, and --runs, --model and --judge-model. The arms run one after the other:
- * every run shares one rate limit, and a rate-limited run scores 0 without failing the suite (same
- * page, "Usage limit reached").
+ * every run shares one rate limit. A run that ends in an error (a limit, a refused sandbox) scores 0,
+ * is marked for rerun and is not cached (same page, "Usage limit reached").
  *
  * Passes when every case scores 1.0 with devio and above control; a case tagged `guard` (devio must
  * not over-route) only has to match control.
@@ -88,11 +88,11 @@ const keyOf = (name) => {
 };
 const isGuard = (name) => /^tags:.*\bguard\b/m.test(promptOf(name));
 
-// Each case's mean score across its runs, and whether a run hit a usage or rate limit instead of
-// failing on its own. The docs point to the error for the limit message but do not give its
-// wording, so the pattern is a guess at the usual ones, plus the one seen in a run: "You've hit your
-// session limit" (2026-09-27), which the guess missed and cached as a real score of 0. A limited
-// control score is not cached.
+// Each case's mean score across its runs, and whether a run ended in an error instead of being
+// scored: a usage limit ("You've hit your session limit", 2026-09-27) or a refusal to start ("Sandbox
+// required but unavailable ... feature gate off", for a case granted Bash on Windows, 2026-10-01).
+// Matching only limit wordings cached that refusal as a real control score of 0. A scored run has
+// `error: null`, so any error means rerun, and such a control score is not cached.
 const runArm = (arm, plugins, names) => {
   const suite = join(ROOT, `eval-${arm}`);
   rmSync(suite, { recursive: true, force: true });
@@ -111,7 +111,7 @@ const runArm = (arm, plugins, names) => {
   if (!existsSync(result)) throw new Error(`the ${arm} arm wrote no result`);
   return Object.fromEntries(JSON.parse(readFileSync(result, 'utf8')).cases.map(({ name, arms: { with: runs } }) => [name, {
     score: runs.reduce((sum, run) => sum + run.score, 0) / runs.length,
-    limited: runs.some((run) => /usage limit|session limit|rate limit|overloaded/i.test(run.error ?? '')),
+    errored: runs.some((run) => run.error != null),
   }]));
 };
 
@@ -121,8 +121,8 @@ const cache = existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {};
 const keys = Object.fromEntries(cases.map((name) => [name, keyOf(name)]));
 const stale = cases.filter((name) => cache[name]?.key !== keys[name]);
 if (stale.length) {
-  for (const [name, { score, limited }] of Object.entries(runArm('control', specialists, stale))) {
-    cache[name] = { key: limited ? null : keys[name], score, limited };
+  for (const [name, { score, errored }] of Object.entries(runArm('control', specialists, stale))) {
+    cache[name] = { key: errored ? null : keys[name], score, errored };
   }
   writeFileSync(CACHE, `${JSON.stringify(cache, null, 2)}\n`);
 }
@@ -130,12 +130,12 @@ if (stale.length) {
 let failed = false;
 console.log('\ncase                     devio  control');
 for (const name of cases) {
-  const { score, limited } = devio[name];
+  const { score, errored } = devio[name];
   const control = cache[name];
   const guard = isGuard(name);
-  const pass = !limited && !control.limited && score === 1 && (guard ? score >= control.score : score > control.score);
+  const pass = !errored && !control.errored && score === 1 && (guard ? score >= control.score : score > control.score);
   failed ||= !pass;
-  const note = [guard && 'guard', !stale.includes(name) && 'control cached', (limited || control.limited) && 'hit a limit: rerun']
+  const note = [guard && 'guard', !stale.includes(name) && 'control cached', (errored || control.errored) && 'run error: rerun']
     .filter(Boolean).join(', ');
   console.log(`${pass ? '✓' : '✗'} ${name.padEnd(22)} ${score.toFixed(2).padStart(5)}  ${control.score.toFixed(2).padStart(7)}${note ? `  (${note})` : ''}`);
 }

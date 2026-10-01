@@ -21,14 +21,12 @@ Requires Claude Code and Node on `PATH`: the hook runs `node`.
 claude plugin marketplace add anthropics/claude-plugins-official
 claude plugin marketplace add pbakaus/impeccable
 claude plugin marketplace add greensock/gsap-skills
-claude plugin marketplace add DietrichGebert/ponytail
 claude plugin marketplace add marcosbricches/devio-plugin
 claude plugin install devio@devio
 ```
 
 Installing devio installs its dependencies, so their marketplaces are added first: Impeccable, the
-GSAP skills, mattpocock-skills, context7, Playwright, Vercel and Ponytail. Ponytail runs at its
-default level in every session and subagent. Keep either Impeccable or
+GSAP skills, mattpocock-skills, context7 and Playwright. Keep either Impeccable or
 Anthropic's `frontend-design` enabled, not both: Impeccable is built on it.
 
 The routing table also names specialists devio does not install. Each is used when present: the
@@ -43,7 +41,7 @@ To update: `claude plugin update devio@devio`, or turn on auto-update for the `d
 | --- | --- |
 | `devio:screen` | A screen, page or app is built or redesigned: references first, Impeccable, a render compared against the references, the app-shell frame measured across routes |
 | `devio:execution-plan` | `/to-tickets` has just published a feature's tickets: waves, the critical path, what to watch between parallel tickets |
-| `devio:deploy` | Anything is deployed: one Docker image for the company VPS and for Vercel |
+| `devio:deploy` | Anything is deployed, or a project with a gate has no CI: one Docker image for Devio's CD, and a GitHub Actions workflow that runs the gate |
 
 ## Test
 

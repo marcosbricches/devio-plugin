@@ -15,7 +15,6 @@
   "allowCrossMarketplaceDependenciesOn": [
     "impeccable",
     "gsap-skills",
-    "claude-plugins-official",
-    "ponytail"
+    "claude-plugins-official"
   ]
 }

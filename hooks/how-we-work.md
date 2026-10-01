@@ -26,8 +26,8 @@ These are the usual ones; a better-fitting installed specialist wins.
 | A poster or static visual | `anthropic-skills:canvas-design` |
 | Research against primary sources | `mattpocock-skills:research` |
 | TDD, a bug, domain docs, a throwaway prototype, grilling a plan | `mattpocock-skills:tdd`, `:diagnosing-bugs`, `:domain-modeling`, `:prototype`, `:grilling` |
-| Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; `ponytail:ponytail-review` for what to delete. `git add -N` new files first: untracked files are outside their diff |
-| Deploy, to the VPS or Vercel | `devio:deploy`, before any `vercel:` skill |
+| Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; the built-in `simplify`, `args: "report only"` when only a review was asked, for reuse and what to delete. `git add -N` new files first: untracked files are outside their diff |
+| Deploy to Devio's CD, or CI for a project with a gate and no CI | `devio:deploy` |
 
 **How Devio works.** Devio exists to give people their time back by removing inefficiency, so a
 task is measured by the problem it solves for the client's user, not by what it produces.
@@ -37,12 +37,8 @@ task is measured by the problem it solves for the client's user, not by what it 
 - A mistake becomes a lesson in the repository in the same turn, where the next person will find it:
   the project's CLAUDE.md, an ADR, the docs. Personal memory does not reach the team.
 - Text for a client is formal, down to the sign-off.
-- Ponytail governs the code, not the rest of the work: a screen matches its references, a
-  recommendation carries its evidence, and an installed specialist is called, whatever the code
-  rules say.
 - Before writing markup or logic, look for copies of it already in the code. With two there, the
   third is not written: extract a shared piece and move the first two onto it in the same change.
-  At the third copy this overrides Ponytail's "no unrequested abstractions".
 
 **Checks run once, sized to the change.** In any project:
 

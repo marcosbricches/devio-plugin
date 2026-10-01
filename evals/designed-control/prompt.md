@@ -1,5 +1,5 @@
 ---
-description: With Ponytail active, a screen keeps the designed control its reference shows instead of a bare native one.
+description: A screen keeps the designed control its reference shows instead of a bare native one.
 tags: [guard]
 max_turns: 25
 timeout_seconds: 900
