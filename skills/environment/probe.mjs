@@ -38,7 +38,7 @@ const wslLines = () => {
   const lines = [`wsl: ${distros.map((d) => `${d.name} ${d.state} v${d.version}`).join(', ')}`];
   const distro = distros.find((d) => !d.name.startsWith('docker-desktop'));
   if (!distro) return [...lines, 'wsl distro: MISSING (only docker-desktop; wsl --install -d Ubuntu)'];
-  const script = [...new Set([...TOOLS, ...process.argv.slice(2)])]
+  const script = [...new Set([...TOOLS, ...process.argv.slice(2).filter((tool) => /^[\w.+-]+$/.test(tool))])]
     .map((tool) => `printf '%s: ' ${tool}; command -v ${tool} || echo MISSING`)
     .join('; ');
   const inside = run('wsl.exe', ['-d', distro.name, '-e', 'bash', '-lc', script]);
