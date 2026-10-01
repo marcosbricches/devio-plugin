@@ -2,6 +2,65 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] — 2026-10-01
+
+Less session time on checks, same design.
+
+### Added
+
+- The hook text sets the check cadence: nothing heavy while editing, the typecheck and the affected
+  test once when closing a change, one `playwright screenshot` per width, the gate once, no check
+  repeated with nothing changed, a dev server waited on by a condition, e2e only for flows with logic.
+- A `Stop` hook (`hooks/background-tasks.mjs`) stops a turn from ending while a shell task of the
+  session still runs. A command that passed its timeout had run orphaned for 2 hours.
+- `devio:environment` reads the machine (WSL, Docker, sandbox, Node, plugins) before a task that needs
+  them, so no install is instructed blind.
+- Cases `test-cadence`, `environment-check`, `queue-conflict` and `deploy-cd`.
+
+### Changed
+
+- `devio:deploy` targets Devio's CD and writes a GitHub Actions workflow that runs the project's gate
+  on each push and pull request. Vercel leaves.
+- `devio:screen` iterates until the render matches the references and asks when a difference survives
+  two fixes or needs a decision.
+- The review row calls the built-in `code-review` for bugs and the built-in `simplify`
+  (`args: "report only"`) for what to delete.
+- Every eval runs from the WSL clone; `run.mjs` grants Bash only when a picked case lists it and
+  never caches a control run that ended in an error.
+
+### Removed
+
+- Ponytail, as a dependency and from the hook text. The rule of three stays, worded without it.
+
+### Measured
+
+Claude Code 2.1.286, 3 runs per arm, sonnet judge, under WSL2, 2026-10-01. Each case was measured by
+the change that touched it; the whole suite was not rerun for this release, on the designer's call,
+to save the weekly usage limit after a full run died on it.
+
+| Case | devio | control |
+| --- | --- | --- |
+| deploy-cd | 1.00 | 0.00 |
+| designed-control (guard) | 1.00 | 1.00 |
+| environment-check | 1.00 | 0.33 |
+| new-screen | 1.00 | 0.00 |
+| queue-conflict | 1.00 | 0.50 |
+| review-change | 1.00 | 0.50 |
+| rule-of-three | 1.00 | 0.00 |
+| screen-direction | 1.00 | 0.25 |
+| test-cadence | 1.00 | 0.42 |
+
+The cases no change in this release touched keep their 0.8.0 scores, and were not re-measured
+against the new hook text.
+
+### Not measured
+
+What 0.9.0 is for shows only in real work, so the next field trial records it at its end:
+
+- The share of session span spent on checks. Before: 18% to 26%, 182 sessions read 2026-10-01.
+- jscpd duplication, exact clones of 50 tokens or more. Before: 1.64% and 2.13% (2026-09-30). With
+  Ponytail gone, the rule of three alone guards it.
+
 ## [0.8.0] — 2026-10-01
 
 ### Added
