@@ -24,6 +24,7 @@ These are the usual ones; a better-fitting installed specialist wins.
 | A prototype: a flow to click through before it is built | `mattpocock-skills:prototype` |
 | The rendered screen, compared with its references | the Chrome DevTools MCP: `emulate`, then `take_screenshot` per width |
 | Responsive: the screen on a phone | the Chrome DevTools MCP, `emulate` with `390x844x3,mobile,touch`; a page wider than the phone shows shrunk to fit |
+| Accessibility: a screen against WCAG | `chrome-devtools-mcp:a11y-debugging`: Lighthouse, then the keyboard and the page by hand |
 | Performance: a slow page, Core Web Vitals | `chrome-devtools-mcp:debug-optimize-lcp`: a trace before the fix and after it |
 | Assets: images, illustration, no placeholder art | `impeccable:impeccable`: plates from the approved comp, by its `impeccable-asset-producer` agent |
 | Critique or polish of an interface, a component, type, colour, UX copy | `impeccable:impeccable` |
