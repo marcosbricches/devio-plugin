@@ -2,6 +2,79 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] — 2026-10-02
+
+The routing table becomes a catalog: each step of the work names the machine specialist that does it,
+chosen by bake-off where two could.
+
+### Added
+
+- Catalog rows, each with its case: the rendered screen and responsive (Chrome DevTools MCP,
+  `emulate` then `take_screenshot`), accessibility (`chrome-devtools-mcp:a11y-debugging`), UX copy
+  (Impeccable `clarify`), states and edge cases (`harden`), design system (`extract`), prototype
+  (`mattpocock-skills:prototype`), performance (`chrome-devtools-mcp:debug-optimize-lcp`), assets
+  (Impeccable's asset producer), SEO (DevTools `lighthouse_audit` and each route's head), charts (the
+  bundled `dataviz`, then shadcn's `chart`), handoff (Impeccable `document`), preview (`devio:deploy`'s
+  review host) and client text (`humanizer`).
+- Dependencies `chrome-devtools-mcp`, `firecrawl` and `humanizer`. `.mcp.json` declares Mobbin and
+  shadcn, pinned to 4.21.1: with `@latest`, the first start after each shadcn release took 29.8 s
+  against Claude Code's 30 s connect limit.
+
+### Changed
+
+- `devio:screen` measures and compares the frame with the Chrome DevTools MCP and polishes with the
+  screen rendered.
+- `evals/run.mjs` runs the picked cases once with devio; no control arm, no case grants Bash, so no
+  eval needs WSL. The whole suite with control was 108 sessions a run.
+
+### Removed
+
+- `playwright` from the dependencies, replaced by the Chrome DevTools MCP.
+- The Figma and poster rows: no machine specialist, and Devio delivers in code.
+- `devio:environment`, which existed for the WSL eval setup.
+
+### Bake-off winners
+
+| Job | Winner | Against |
+| --- | --- | --- |
+| Rendered screen | Chrome DevTools MCP (real mobile emulation) | built-in browser, Playwright MCP |
+| Compose and polish | `devio:screen`, then Impeccable | frontend-design, ui-ux-pro-max |
+| Accessibility | DevTools `a11y-debugging` (13 of 13, no false alarm) | AccessLint |
+| UX copy | Impeccable `clarify` (designer's call) | `design:ux-copy` |
+| SEO | DevTools Lighthouse and heads (found 8 wrong canonicals) | claude-seo |
+
+### Measured
+
+Claude Code 2.1.286, one run per case with devio, sonnet judge, 2026-10-01 to 2026-10-02. Each case
+the change reached, run once after it.
+
+| Case | devio |
+| --- | --- |
+| accessibility-audit | 1.00 |
+| client-formal | 1.00 |
+| critique-landing | 1.00 |
+| design-handoff | 1.00 |
+| design-tokens | 1.00 |
+| designed-control | 1.00 |
+| landing-seo | 1.00 |
+| library-docs | 1.00 |
+| new-screen | 1.00 |
+| no-specialist | 1.00 |
+| page-assets | 1.00 |
+| page-performance | 1.00 |
+| preview-feedback | 1.00 |
+| prototype-flow | 1.00 |
+| rendered-screen | 1.00 |
+| revenue-chart | 1.00 |
+| screen-direction | 1.00 |
+| states-edge-cases | 1.00 |
+| ux-copy | 1.00 |
+
+### Not measured
+
+Whether the catalog is followed in real work, and whether its specialists deliver there, is the field
+trial's to show: a new project from zero, run with 0.10.0.
+
 ## [0.9.0] — 2026-10-01
 
 Less session time on checks, same design.
