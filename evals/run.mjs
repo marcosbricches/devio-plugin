@@ -62,7 +62,8 @@ for (const name of cases) {
 const result = join(SUITE, 'result.json');
 spawnSync('claude', ['plugin', 'eval', '.', '--eval-dir', 'eval-devio', '--ablation', 'none', '--json', result,
   '--scaffold', '--trust-plugin', '--no-publish', '--allow-real-servers', ...options,
-  '--allow-tools', 'Write', 'Edit', 'mcp__plugin_context7_context7__*', 'WebFetch(domain:code.claude.com)'], { cwd: ROOT, stdio: 'inherit' });
+  '--allow-tools', 'Write', 'Edit', 'mcp__plugin_context7_context7__*', 'mcp__plugin_chrome-devtools-mcp_chrome-devtools__*',
+  'WebFetch(domain:code.claude.com)'], { cwd: ROOT, stdio: 'inherit' });
 if (!existsSync(result)) throw new Error('the run wrote no result');
 
 // A run that ended in an error (a usage limit, a refused start) is not a score: rerun it.

@@ -1,6 +1,7 @@
 ---
 description: A screen starts from references, not from a blank page.
-max_turns: 10
+max_turns: 40
+timeout_seconds: 900
 allowed_tools: [Read, Glob, Grep, Skill, Agent]
 ---
 

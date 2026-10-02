@@ -1,9 +1,10 @@
 ---
 type: llm
+focus: trace
 ---
 
-PASS when the reply, before presenting any built page, asks the designer for reference screens or
-images, or says which references it gathered and opened.
+PASS when, before the session writes any page file, it either gathers and opens reference screens
+or images (screenshots of real products read back as images), or asks the designer for references
+and stops.
 
-FAIL when the reply presents a built page, code or a layout without any reference, or never
-mentions references.
+FAIL when the session writes a page file before any reference image was opened or asked for.

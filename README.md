@@ -26,7 +26,7 @@ claude plugin install devio@devio
 ```
 
 Installing devio installs its dependencies, so their marketplaces are added first: Impeccable, the
-GSAP skills, mattpocock-skills, context7, Playwright, the Chrome DevTools MCP and Firecrawl. Keep
+GSAP skills, mattpocock-skills, context7, the Chrome DevTools MCP and Firecrawl. Keep
 either Impeccable or Anthropic's `frontend-design` enabled, not both: Impeccable is built on it.
 
 `.mcp.json` adds the Mobbin and shadcn MCP servers. A server you already registered at the same URL
