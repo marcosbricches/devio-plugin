@@ -20,6 +20,7 @@ These are the usual ones; a better-fitting installed specialist wins.
 | States and edge cases: error, empty, loading, long text | `impeccable:impeccable`, its `harden` scope |
 | Registry components | the shadcn MCP |
 | Design system: tokens, shared components | `impeccable:impeccable`, its `extract` scope |
+| UX copy: labels, errors, empty states, calls to action | `impeccable:impeccable`, its `clarify` scope |
 | Motion: animation, scroll effects, pinning | `gsap-skills:gsap-core`, then the case's `gsap-skills:` skill; a project's own animation library stays |
 | A prototype: a flow to click through before it is built | `mattpocock-skills:prototype` |
 | The rendered screen, compared with its references | the Chrome DevTools MCP: `emulate`, then `take_screenshot` per width |
@@ -27,7 +28,7 @@ These are the usual ones; a better-fitting installed specialist wins.
 | Accessibility: a screen against WCAG | `chrome-devtools-mcp:a11y-debugging`: Lighthouse, then the keyboard and the page by hand |
 | Performance: a slow page, Core Web Vitals | `chrome-devtools-mcp:debug-optimize-lcp`: a trace before the fix and after it |
 | Assets: images, illustration, no placeholder art | `impeccable:impeccable`: plates from the approved comp, by its `impeccable-asset-producer` agent |
-| Critique or polish of an interface, a component, type, colour, UX copy | `impeccable:impeccable` |
+| Critique or polish of an interface, a component, type, colour | `impeccable:impeccable` |
 | A library, framework, SDK or API | context7: `resolve-library-id`, then `query-docs`, even for a well-known one |
 | TDD, a bug | `mattpocock-skills:tdd`, `:diagnosing-bugs` |
 | Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; the built-in `simplify`, `args: "report only"` when only a review was asked, for reuse and what to delete. `git add -N` new files first: untracked files are outside their diff |
