@@ -34,7 +34,7 @@ These are the usual ones; a better-fitting installed specialist wins.
 | Charts and data display | the bundled `dataviz` for the form and the colours, then, in a shadcn/ui app, the shadcn MCP's `chart` block |
 | TDD, a bug | `mattpocock-skills:tdd`, `:diagnosing-bugs` |
 | Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; the built-in `simplify`, `args: "report only"` when only a review was asked, for reuse and what to delete. `git add -N` new files first: untracked files are outside their diff |
-| Deploy to Devio's CD, or CI for a project with a gate and no CI | `devio:deploy` |
+| Deploy to Devio's CD, or CI for a project with no CI | `devio:deploy` |
 | Handoff: DESIGN.md from the shipped code | `impeccable:impeccable`, its `document` scope |
 | A preview for the client or a teammate to see and comment on | `devio:deploy`: the review host on devio.codes is the preview |
 | Text a client reads: a message, an email, a report | `humanizer:humanizer` on the draft, which then stays formal |

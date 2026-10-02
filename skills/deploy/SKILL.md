@@ -1,6 +1,6 @@
 ---
 name: deploy
-description: Deploy, publish or put live any project through Devio's CD, even a single static page, and set up its CI. Use for any deploy, when a project has a gate script and no CI workflow, and to keep a devio.codes review host out of search engines.
+description: Deploy, publish or put live any project through Devio's CD, even a single static page, and set up its CI. Use for any deploy, when a project has no CI workflow, and to keep a devio.codes review host out of search engines.
 ---
 
 # One Docker image, published by Devio's CD; CI that reports
@@ -14,7 +14,10 @@ the devio.codes panel publishes it on each push to `main`. One call sets up the 
    gate script (the `package.json` script that runs its full check, such as `verificar`) on each
    push and pull request, on `ubuntu-latest`. Write it from GitHub's "Building and testing Node.js"
    guide and the framework's docs through context7, not from memory, action versions included. A
-   project with no gate script gets no workflow: say so in the reply instead of inventing a gate.
+   project with no gate script still gets the workflow, with the steps of GitHub's Node.js starter
+   workflow (actions/starter-workflows, `ci/node.js.yml`, read 2026-10-02): `npm ci`,
+   `npm run build --if-present`, `npm test --if-present`. Say in the reply that this CI checks less
+   than a gate would.
 3. CI only reports. The workflow neither builds nor publishes the image: publishing stays with the
    panel, unchanged.
 4. Every deploy keeps the review host out of search engines. The panel serves a project's review
@@ -33,6 +36,8 @@ the designer.
 - GitHub Actions on private repositories: 2,000 minutes a month on GitHub Free, 3,000 on Pro and
   Team (docs.github.com, GitHub Actions billing, read 2026-10-01). Run the gate once per push, not
   a matrix of versions.
+- The `test` script `npm init` writes (`echo "Error: no test specified" && exit 1`) is present, so
+  `--if-present` runs it and CI fails. Drop the test step while that placeholder is the script.
 - A review host is never `Disallow`ed in `robots.txt`: a crawler blocked there never reads the
   `noindex`, and the page can stay in results through links (Google Search Central, "Block
   indexing with noindex", read 2026-10-01). A page already indexed leaves faster through Search

@@ -61,7 +61,7 @@ To update: `claude plugin update devio@devio`, or turn on auto-update for the `d
 | --- | --- |
 | `devio:screen` | A screen, page or app is built or redesigned: references first, Impeccable, a render compared against the references, the app-shell frame measured across routes |
 | `devio:execution-plan` | `/to-tickets` has just published a feature's tickets: waves, the critical path, what to watch between parallel tickets |
-| `devio:deploy` | Anything is deployed, or a project with a gate has no CI: one Docker image for Devio's CD, and a GitHub Actions workflow that runs the gate |
+| `devio:deploy` | Anything is deployed, or a project has no CI: one Docker image for Devio's CD, and a GitHub Actions workflow that runs the gate, or GitHub's Node.js starter steps when there is none |
 
 ## Test
 

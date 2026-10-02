@@ -2,6 +2,32 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] — 2026-10-02
+
+### Changed
+
+- `devio:deploy` writes CI for every project it deploys. A project with no gate script gets the steps
+  of GitHub's Node.js starter workflow (actions/starter-workflows, `ci/node.js.yml`, read
+  2026-10-02): `npm ci`, `npm run build --if-present`, `npm test --if-present`, and the reply says
+  this checks less than a gate would. Before, such a project got no CI. The placeholder `test`
+  script `npm init` writes always exits 1, so its step is left out.
+- The routing row sends any project with no CI to `devio:deploy`, not only one with a gate.
+
+### Added
+
+- Case `deploy-no-gate`: a project with a build and `npm init`'s placeholder test. Its graders pass
+  the real trace and fail it with the build step removed or a test step added.
+
+### Measured
+
+Claude Code 2.1.286, one run per case with devio, sonnet judge, 2026-10-02.
+
+| Case | devio |
+| --- | --- |
+| deploy-cd | 1.00 |
+| deploy-no-gate | 1.00 |
+| no-specialist | 1.00 |
+
 ## [0.10.1] — 2026-10-02
 
 ### Added
