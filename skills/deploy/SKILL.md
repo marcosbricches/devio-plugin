@@ -1,6 +1,6 @@
 ---
 name: deploy
-description: Deploy, publish or put live any project through Devio's CD, even a single static page, and set up its CI. Use for any deploy, and when a project has a gate script and no CI workflow.
+description: Deploy, publish or put live any project through Devio's CD, even a single static page, and set up its CI. Use for any deploy, when a project has a gate script and no CI workflow, and to keep a devio.codes review host out of search engines.
 ---
 
 # One Docker image, published by Devio's CD; CI that reports
@@ -17,6 +17,12 @@ the devio.codes panel publishes it on each push to `main`. One call sets up the 
    project with no gate script gets no workflow: say so in the reply instead of inventing a gate.
 3. CI only reports. The workflow neither builds nor publishes the image: publishing stays with the
    panel, unchanged.
+4. Every deploy keeps the review host out of search engines. The panel serves a project's review
+   under `devio.codes` (as `viva-maracana-design.devio.codes`), and on such a host every
+   page answers `noindex`, through the framework's robots metadata or an `X-Robots-Tag: noindex`
+   header. The site's hostname decides it (`.endsWith('.devio.codes')`), not `NODE_ENV`, which is
+   `production` on both; the client's own domain stays indexable. Asked by Devio's developers on
+   2026-10-01 (ADR 0002).
 
 Pushing to `main` puts the project live. GitHub then shows a pass or fail mark beside the commit; a
 failed run is read with `gh run view <run-id> --log-failed` and fixed by the session, not handed to
@@ -27,3 +33,7 @@ the designer.
 - GitHub Actions on private repositories: 2,000 minutes a month on GitHub Free, 3,000 on Pro and
   Team (docs.github.com, GitHub Actions billing, read 2026-10-01). Run the gate once per push, not
   a matrix of versions.
+- A review host is never `Disallow`ed in `robots.txt`: a crawler blocked there never reads the
+  `noindex`, and the page can stay in results through links (Google Search Central, "Block
+  indexing with noindex", read 2026-10-01). A page already indexed leaves faster through Search
+  Console's removals.

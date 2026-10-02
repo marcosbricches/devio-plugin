@@ -2,6 +2,23 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1] — 2026-10-02
+
+### Added
+
+- `devio:deploy` keeps every `devio.codes` review host out of search engines: each page answers
+  `noindex`, through the framework's robots metadata or an `X-Robots-Tag` header, decided by the
+  hostname and not by `NODE_ENV`, which is `production` on both. The client's own domain stays
+  indexable, and a review host is never `Disallow`ed in `robots.txt`, since a blocked crawler never
+  reads the `noindex` (Google Search Central, read 2026-10-01). Asked by Devio's developers on
+  2026-10-01.
+- `deploy-cd` grader `review-host-noindex`: passes a real trace that wrote an nginx `map $host` to
+  `noindex`, fails the same trace with the `noindex` removed.
+
+### Measured
+
+Claude Code 2.1.286, one run with devio, sonnet judge, 2026-10-02: `deploy-cd` 1.00.
+
 ## [0.10.0] — 2026-10-02
 
 The routing table becomes a catalog: each step of the work names the machine specialist that does it,
