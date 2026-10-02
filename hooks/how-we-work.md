@@ -27,12 +27,17 @@ These are the usual ones; a better-fitting installed specialist wins.
 | Responsive: the screen on a phone | the Chrome DevTools MCP, `emulate` with `390x844x3,mobile,touch`; a page wider than the phone shows shrunk to fit |
 | Accessibility: a screen against WCAG | `chrome-devtools-mcp:a11y-debugging`: Lighthouse, then the keyboard and the page by hand |
 | Performance: a slow page, Core Web Vitals | `chrome-devtools-mcp:debug-optimize-lcp`: a trace before the fix and after it |
+| SEO: a landing page before it ships | the Chrome DevTools MCP: `lighthouse_audit`, then every route's head read with `evaluate_script`: title, description, canonical, Open Graph, JSON-LD |
 | Assets: images, illustration, no placeholder art | `impeccable:impeccable`: plates from the approved comp, by its `impeccable-asset-producer` agent |
 | Critique or polish of an interface, a component, type, colour | `impeccable:impeccable` |
 | A library, framework, SDK or API | context7: `resolve-library-id`, then `query-docs`, even for a well-known one |
+| Charts and data display | the bundled `dataviz` for the form and the colours, then, in a shadcn/ui app, the shadcn MCP's `chart` block |
 | TDD, a bug | `mattpocock-skills:tdd`, `:diagnosing-bugs` |
 | Review of a change | both: the built-in `code-review`, `args: "low"`, for bugs; the built-in `simplify`, `args: "report only"` when only a review was asked, for reuse and what to delete. `git add -N` new files first: untracked files are outside their diff |
 | Deploy to Devio's CD, or CI for a project with a gate and no CI | `devio:deploy` |
+| Handoff: DESIGN.md from the shipped code | `impeccable:impeccable`, its `document` scope |
+| A preview for the client or a teammate to see and comment on | `devio:deploy`: the review host on devio.codes is the preview |
+| Text a client reads: a message, an email, a report | `humanizer:humanizer` on the draft, which then stays formal |
 | Claude Code: hooks, plugins, skills, subagents, settings, MCP, CLI | the `claude-code-guide` agent, or https://code.claude.com/docs/llms.txt |
 
 **How Devio works.** Devio exists to give people their time back by removing inefficiency, so a

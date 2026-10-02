@@ -44,7 +44,7 @@ for (const { name, marketplace } of manifest.dependencies) {
 // serves the same tools without auth (both probed 2026-09-30).
 const context7 = join(DEPS, 'context7', '.mcp.json');
 if (existsSync(context7)) writeFileSync(context7, readFileSync(context7, 'utf8').replace('/mcp?client=claude-code-plugin', '/mcp'));
-for (const dir of ['.claude-plugin', 'hooks', 'skills']) copyPlugin(join(ROOT, dir), join(DEPS, 'devio', dir));
+for (const dir of ['.claude-plugin', 'hooks', 'skills', '.mcp.json']) copyPlugin(join(ROOT, dir), join(DEPS, 'devio', dir));
 const { dependencies, ...plugin } = manifest;
 writeFileSync(join(DEPS, 'devio', '.claude-plugin', 'plugin.json'), `${JSON.stringify(plugin, null, 2)}\n`);
 
@@ -63,7 +63,7 @@ const result = join(SUITE, 'result.json');
 spawnSync('claude', ['plugin', 'eval', '.', '--eval-dir', 'eval-devio', '--ablation', 'none', '--json', result,
   '--scaffold', '--trust-plugin', '--no-publish', '--allow-real-servers', ...options,
   '--allow-tools', 'Write', 'Edit', 'mcp__plugin_context7_context7__*', 'mcp__plugin_chrome-devtools-mcp_chrome-devtools__*',
-  'WebFetch(domain:code.claude.com)'], { cwd: ROOT, stdio: 'inherit' });
+  'mcp__plugin_devio_shadcn__*', 'WebFetch(domain:code.claude.com)'], { cwd: ROOT, stdio: 'inherit' });
 if (!existsSync(result)) throw new Error('the run wrote no result');
 
 // A run that ended in an error (a usage limit, a refused start) is not a score: rerun it.

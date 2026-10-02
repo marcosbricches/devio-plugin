@@ -1,5 +1,5 @@
 ---
-description: A message for a client is written in a formal register.
+description: A message for a client goes through humanizer and stays formal.
 max_turns: 5
 allowed_tools: [Read, Glob, Grep, Skill, Agent]
 ---

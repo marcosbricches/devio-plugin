@@ -38,6 +38,10 @@
     {
       "name": "firecrawl",
       "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "humanizer",
+      "marketplace": "humanizer"
     }
   ]
 }
