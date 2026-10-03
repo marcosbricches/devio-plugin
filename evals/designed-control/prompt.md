@@ -1,7 +1,7 @@
 ---
 description: A screen keeps the designed control its reference shows instead of a bare native one.
-max_turns: 25
-timeout_seconds: 900
+max_turns: 40
+timeout_seconds: 1200
 allowed_tools: [Read, Write, Edit, Glob, Grep, Skill, Agent]
 ---
 

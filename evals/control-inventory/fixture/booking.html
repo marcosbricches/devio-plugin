@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Borda · Escolha a data</title>
+<style>
+  :root { --bg: #f1ece4; --card: #fffcf5; --ink: #1d2320; --muted: #a8a399; --avail: #e7eeea; --pick: #2f6b4f; --cta: #e3743a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--ink); font-family: "Segoe UI", system-ui, sans-serif; }
+  .card { width: 760px; background: var(--card); border-radius: 28px; padding: 44px 52px; box-shadow: 0 24px 60px rgba(60, 50, 30, .12); }
+  .eyebrow { margin: 0; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #8b8070; font-weight: 600; }
+  h1 { margin: 8px 0 32px; font-family: Georgia, serif; font-weight: 400; font-size: 36px; }
+  .month { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .month h2 { margin: 0; font-family: Georgia, serif; font-weight: 400; font-size: 24px; }
+  .nav { position: relative; display: flex; gap: 10px; }
+  .nav button { width: 40px; height: 40px; border-radius: 50%; border: 0; background: transparent; font-size: 16px; color: var(--ink); cursor: pointer; }
+  /* A hover glow left over the next-month button: invisible, and it takes the click. */
+  .nav::after { content: ""; position: absolute; top: 0; right: 0; width: 40px; height: 40px; border-radius: 50%; }
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+  .dow { text-align: center; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .06em; padding-bottom: 16px; }
+  .day { height: 62px; display: grid; place-content: center; text-align: center; border: 0; border-radius: 12px; background: transparent; font: inherit; font-size: 17px; color: var(--muted); }
+  .day small { display: block; font-size: 10px; margin-top: 2px; }
+  .day.open { background: var(--avail); color: var(--ink); cursor: pointer; }
+  .day.open small { color: #4b5a52; }
+  .day[aria-pressed="true"] { background: var(--pick); color: #fff; }
+  .day[aria-pressed="true"] small { color: #d6e6dc; }
+  footer { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; padding-top: 24px; border-top: 1px solid #ece6da; }
+  footer strong { display: block; font-size: 17px; }
+  footer span { font-size: 14px; color: #77706a; }
+  .cta { border: 0; border-radius: 8px; padding: 14px 26px; background: var(--cta); color: #fff; font: inherit; font-weight: 600; font-size: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="eyebrow">Escolha a data</p>
+    <h1>Quando você quer velejar?</h1>
+    <div class="month">
+      <h2 id="month">Novembro 2026</h2>
+      <div class="nav"><button id="prev" aria-label="Mês anterior">‹</button><button id="next" aria-label="Próximo mês">›</button></div>
+    </div>
+    <div class="grid" role="grid" aria-label="Novembro 2026">
+      <div class="dow">SEG</div><div class="dow">TER</div><div class="dow">QUA</div><div class="dow">QUI</div><div class="dow">SEX</div><div class="dow">SÁB</div><div class="dow">DOM</div>
+      <span></span><span></span><span></span><span></span><span></span><span></span><button class="day" disabled>1</button>
+      <button class="day" disabled>2</button><button class="day" disabled>3</button><button class="day" disabled>4</button><button class="day" disabled>5</button><button class="day" disabled>6</button>
+      <button class="day open">7<small>4 vagas</small></button><button class="day open">8<small>2 vagas</small></button>
+      <button class="day" disabled>9</button><button class="day" disabled>10</button><button class="day" disabled>11</button><button class="day" disabled>12</button><button class="day" disabled>13</button>
+      <button class="day open" aria-pressed="true">14<small>6 vagas</small></button><button class="day open">15<small>1 vaga</small></button>
+      <button class="day" disabled>16</button><button class="day" disabled>17</button><button class="day" disabled>18</button><button class="day" disabled>19</button><button class="day" disabled>20</button>
+      <button class="day open">21<small>6 vagas</small></button><button class="day open">22<small>5 vagas</small></button>
+      <button class="day" disabled>23</button><button class="day" disabled>24</button><button class="day" disabled>25</button><button class="day" disabled>26</button><button class="day" disabled>27</button>
+      <button class="day open">28<small>6 vagas</small></button><button class="day" disabled>29</button>
+    </div>
+    <footer>
+      <div><strong id="picked">Sáb, 14 de novembro</strong><span>Turma das 9h · 3 horas no mar</span></div>
+      <button class="cta">Continuar</button>
+    </footer>
+  </main>
+  <script>
+    const days = document.querySelectorAll('.day.open');
+    const picked = document.getElementById('picked');
+    days.forEach((day) => day.addEventListener('click', () => {
+      days.forEach((other) => other.removeAttribute('aria-pressed'));
+      day.setAttribute('aria-pressed', 'true');
+      picked.textContent = `Dia ${day.firstChild.textContent} de novembro`;
+    }));
+    const month = document.getElementById('month');
+    document.getElementById('prev').addEventListener('click', () => { month.textContent = 'Outubro 2026'; });
+    document.getElementById('next').addEventListener('click', () => { month.textContent = 'Dezembro 2026'; });
+  </script>
+</body>
+</html>

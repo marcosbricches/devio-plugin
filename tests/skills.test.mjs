@@ -25,6 +25,12 @@ test('the standing rule names a correction, the phone width, the app shell and t
   for (const word of ['correction', 'phone', 'app shell', '`click`', 'first line']) assert.ok(rule.includes(word), word);
 });
 
+test('the standing rule lists controls from the snapshot, exercises them, and keeps scripts to reading', () => {
+  const rule = SCREEN.slice(SCREEN.indexOf('This holds for the whole task'), SCREEN.search(/^1\. \*\*/m));
+  for (const word of ['`take_snapshot`', '`uid`', '`hover`', 'tooltip', 'focused field', '`evaluate_script`', 'isTrusted', 'Playwright actionability', 'read 2026-10-03']) assert.ok(rule.includes(word), word);
+  assert.match(rule, /first line names every control that does nothing/);
+});
+
 test('the screen skill description covers a correction, so the skill loads on one', () => {
   assert.match(SCREEN, /^description: .*\bcorrect\b/m);
 });
