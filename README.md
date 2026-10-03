@@ -59,19 +59,21 @@ To update: `claude plugin update devio@devio`, or turn on auto-update for the `d
 
 | Skill | Loads when |
 | --- | --- |
-| `devio:screen` | A screen, page or app is built or redesigned: references first, Impeccable, a render compared against the references, the app-shell frame measured across routes |
+| `devio:screen` | A screen, page or app is built, redesigned or corrected: the client's visual language first, then references, a render at desktop and phone width and every control clicked in every round, Impeccable, the app-shell frame measured across routes |
 | `devio:execution-plan` | `/to-tickets` has just published a feature's tickets: waves, the critical path, what to watch between parallel tickets |
 | `devio:deploy` | Anything is deployed, or a project has no CI: one Docker image for Devio's CD, and a GitHub Actions workflow that runs the gate, or GitHub's Node.js starter steps when there is none |
 
 ## Test
 
 ```bash
-node --test tests/hooks.test.mjs
+node --test tests/hooks.test.mjs tests/skills.test.mjs
 ```
 
-Runs each hook as `hooks/hooks.json` declares it and checks the output Claude Code accepts, within
-the 10,000-character cap. Claude Code drops a malformed hook output silently, and no eval trace shows
-`SubagentStart`, so this is where both hooks are checked.
+`hooks.test.mjs` runs each hook as `hooks/hooks.json` declares it and checks the output Claude Code
+accepts, within the 10,000-character cap. Claude Code drops a malformed hook output silently, and no
+eval trace shows `SubagentStart`, so this is where both hooks are checked. `skills.test.mjs` checks
+that `devio:screen`'s standing rule sits in the first 5,000 tokens, the part Claude Code keeps after
+compaction.
 
 ## Measure
 
@@ -104,5 +106,5 @@ Users receive a release when `version` changes (code.claude.com/docs/en/plugins/
 | `.mcp.json` | The Mobbin and shadcn MCP servers |
 | `hooks/` | `SessionStart` and `SubagentStart`: one script and the text it adds |
 | `skills/` | `screen`, `execution-plan`, `deploy` |
-| `tests/` | The hook contract test |
+| `tests/` | The hook contract test and the screen skill's compaction test |
 | `evals/` | The eval cases and `run.mjs` |

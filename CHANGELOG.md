@@ -2,6 +2,76 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] — 2026-10-03
+
+`devio:screen` now speaks the client's language and checks every round, and a subagent is handed its
+specialist by name. From the Monster Films field trial of 2026-10-02: a screen led by generic SaaS
+consoles read as anonymous, a control that did nothing stayed live for 15 minutes, and the phone
+width was rendered once and never again.
+
+### Changed
+
+- **The visual language comes first.** Before it picks references, `devio:screen` sets what makes the
+  screens the project's own, from the first source that exists: your reference, else the client's
+  site read with the Chrome DevTools MCP (custom properties, font faces, computed size, tracking,
+  case and colour), else a question to you with nothing built. The client's identity gives colours,
+  type family and logo only. Each token is tagged `[site]` or `[derived]` in the reply that shows the
+  first screen. The lead reference now gives layout, density and hierarchy, no longer colour and
+  type.
+- **A site's habits are translated for a tool**: sentence case in the interface, page titles at
+  24–28px, the brand's display type out of body text and data, each with its source. The reply asks
+  what the one reserved brand colour should mean (primary action, or "now / needs attention"),
+  because Apple, Atlassian and Shopify disagree.
+- **Every round that changes the screen ends in the check, a correction included.** It is a standing
+  rule at the top of the skill, inside the part Claude Code keeps after compaction: the render at
+  desktop and phone width, and the app shell compared with the lead's. The skill's description now
+  covers a correction, so it loads on "this button does nothing".
+- **Every control is exercised before you see the screen.** `take_snapshot` lists each button, link
+  and menu item, and each gets a real `click` or `hover` by `uid`. Modals, menus, tooltips, hover
+  states and focused fields are opened and captured once per round, each beside the reference's.
+  Scripts read state and never click: `element.click()` has no hit test, so a covered or dead
+  control passes it. The reply's first line names any control that does nothing and any width not
+  rendered.
+- **A subagent is handed its specialist by name.** The hook text gains one sentence: work handed to a
+  subagent names its specialist skill by full name, such as `devio:screen`. Sonnet triggers a skill
+  that overlaps its training about half the time (anthropics/claude-code#30387); an explicit name
+  works.
+
+### Added
+
+- Gotchas in `devio:screen`: Firecrawl's `branding` output is not a source for the language (wrong
+  on two sites); a dense dark screen reads by surface steps, with borders kept for controls and
+  focus; an Impeccable critique takes about 15 minutes because its two assessments queue on one
+  Chrome, so say so before it starts; Impeccable reads `.impeccable/config.json` from the current
+  directory, not the git root.
+- Cases `brand-language`, `control-inventory`, `correction-round` and `delegation`, and
+  `tests/skills.test.mjs`, which checks that the standing rule stays inside the first 5,000 tokens.
+
+### Measured
+
+Claude Code 2.1.287, one run per case with devio, sonnet judge, 2026-10-03. The eight cases the
+change reaches, run once together after the merge.
+
+| Case | devio |
+| --- | --- |
+| brand-language | 1.00 |
+| control-inventory | 1.00 |
+| correction-round | 0.67, then 1.00 on a second run |
+| delegation | 1.00 |
+| designed-control | 1.00 |
+| new-screen | 1.00 |
+| rendered-screen | 1.00 |
+| screen-direction | 1.00 |
+
+The first `correction-round` run scored 0.67: it ended at 42 turns against a 40-turn limit without a
+phone render after its last edit. Its trace was not kept, so the cause is not read. The second run,
+with the trace kept, ended in the phone render and passed. The case sits close to its turn limit.
+
+### Not measured
+
+Whether the language holds over a two-hour session with compaction. A single-prompt case cannot
+reproduce one; a new project from zero, run with 0.12.0, is the measure.
+
 ## [0.11.0] — 2026-10-02
 
 ### Changed
