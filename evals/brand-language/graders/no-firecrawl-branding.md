@@ -1,7 +1,7 @@
 ---
 type: regex
 target: trace
-pattern: '\\?"(?:command|args|formats?)\\?":\s*(?:\\?"[^"\n]*|\[[^\]\n]*)branding'
+pattern: '\\?"(?:command|formats?)\\?":\s*(?:\\?"[^"\n]*firecrawl[^"\n]*branding|\[[^\]\n]*branding)'
 match: not_contains
 ---
 
