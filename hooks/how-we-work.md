@@ -9,7 +9,9 @@ nothing does the job, saying what was looked at.
 counts as not done: models skip a specialist exactly when they believe they know the answer
 (anthropics/claude-code#30387), so it is called even then. Skills go through the Skill tool by
 full name; deferred MCP tools load through ToolSearch. The answer names the specialists called.
-These are the usual ones; a better-fitting installed specialist wins.
+Work handed to a subagent names its specialist skill by full name in the subagent's prompt, such as
+`devio:screen`: a subagent that is not told skips it the same way. These are the usual ones; a
+better-fitting installed specialist wins.
 
 | Task | Specialist |
 | --- | --- |
