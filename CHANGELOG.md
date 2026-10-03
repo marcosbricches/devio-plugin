@@ -63,9 +63,12 @@ change reaches, run once together after the merge.
 | rendered-screen | 1.00 |
 | screen-direction | 1.00 |
 
-The first `correction-round` run scored 0.67: it ended at 42 turns against a 40-turn limit without a
-phone render after its last edit. Its trace was not kept, so the cause is not read. The second run,
-with the trace kept, ended in the phone render and passed. The case sits close to its turn limit.
+The first `correction-round` run scored 0.67 at 42 turns: the grader found no phone render after its
+last edit. Its trace was not kept, so the cause is not read. The second run, with the trace kept,
+took 50 turns, ended in the phone render and scored 1.00, so the 40-turn limit is not the explanation.
+The 1.00 is the better of two runs. Only that second run's result is kept on disk
+(`eval-devio/` is local and overwritten by each run); the other seven scores were read from the
+run's console output when it finished.
 
 ### Not measured
 
