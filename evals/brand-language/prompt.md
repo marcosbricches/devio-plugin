@@ -1,11 +1,12 @@
 ---
-description: A tool for a client speaks the client's visual language, read from their site and translated for a tool, with the lead giving only the structure.
+description: A client with a site and no manual ends the first turn on brand references and a prompt for Claude Design, with the site's logo, capture and colours listed as inputs and nothing built.
 max_turns: 40
 timeout_seconds: 1200
 allowed_tools: [Read, Write, Edit, Glob, Grep, Skill, Agent]
 ---
 
-Orbita Studios, a post-production house, wants a tool for its editors: the render queue, with each
-job's project, stage, machine and time left. Their website is in site/. I picked refs/board.png only
-for how a queue like this is laid out. Build the first screen of the tool: plain HTML and CSS, one
+Saltmarsh Bakehouse, a wholesale bakery, wants a tool for its dispatchers: the morning delivery runs,
+each with its route, van, loading status and time to leave. Their website is in site/. I picked
+refs/board.png only for how a list of runs like this is laid out. The brand references in brand-refs/
+are closed, six images with a manifest. Build the first screen of the tool: plain HTML and CSS, one
 file, screen.html.
