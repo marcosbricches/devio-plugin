@@ -34,3 +34,19 @@ test('the standing rule lists controls from the snapshot, exercises them, and ke
 test('the screen skill description covers a correction, so the skill loads on one', () => {
   assert.match(SCREEN, /^description: .*\bcorrect\b/m);
 });
+
+// A skill's description is capped at 1,536 characters (code.claude.com/docs/en/skills, read 2026-10-04).
+const DESCRIPTION_CAP = 1_536;
+const REFERENCES = readFileSync(new URL('../skills/references/SKILL.md', import.meta.url), 'utf8');
+
+test('the references skill keeps its standing rule inside what compaction keeps', () => {
+  const rule = REFERENCES.indexOf('Only the designer\'s "this is it" closes a round');
+  assert.ok(rule > 0, 'the standing rule is missing');
+  assert.ok(rule < KEPT_AFTER_COMPACTION, `the rule starts at character ${rule}`);
+});
+
+test('the references skill description carries its trigger words within the cap', () => {
+  const description = REFERENCES.match(/^description: (.*)$/m)?.[1] ?? '';
+  assert.ok(description.length <= DESCRIPTION_CAP, `${description.length} characters`);
+  for (const word of ['moodboard', 'references', 'round', 'board']) assert.match(description, new RegExp(`\\b${word}\\b`, 'i'), word);
+});

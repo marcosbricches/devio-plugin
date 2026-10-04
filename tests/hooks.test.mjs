@@ -34,6 +34,22 @@ test('the Assets row measures an outside image with comp-spec and names the imag
   }
 });
 
+// Ticket 17: the field trial's miss was a session that never loaded a skill, so the row itself says
+// a pick opens the round and only the designer's "this is it" closes it.
+test('the References row routes to devio:references and says who closes a round', () => {
+  const row = TEXT.split('\n').find((line) => line.startsWith('| References'));
+  assert.ok(row, 'no References row');
+  for (const needle of ['devio:references', 'moodboard', 'a pick opens the round', '"this is it"', 'firecrawl:firecrawl-search']) {
+    assert.ok(row.includes(needle), `the References row lacks "${needle}"`);
+  }
+});
+
+test('the subagent rule names devio:references for a subagent that gathers references', () => {
+  const rule = TEXT.slice(TEXT.indexOf('Work handed to a subagent'), TEXT.indexOf('| Task |'));
+  assert.ok(rule.includes('devio:references'), 'the subagent rule does not name devio:references');
+  assert.equal(TEXT.split('devio:references').length - 1, 2, 'one routing row and the subagent rule name it; the bar is pasted nowhere');
+});
+
 // Ticket 18: a rejected design is deleted and the project keeps a rule, not an account; a lesson about
 // devio's own process ends the reply as a Trial report and is never a file.
 test('the lesson line deletes a rejected design and sends a process lesson to a Trial report', () => {

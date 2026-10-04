@@ -10,12 +10,12 @@ counts as not done: models skip a specialist exactly when they believe they know
 (anthropics/claude-code#30387), so it is called even then. Skills go through the Skill tool by
 full name; deferred MCP tools load through ToolSearch. The answer names the specialists called.
 Work handed to a subagent names its specialist skill by full name in the subagent's prompt, such as
-`devio:screen`: a subagent that is not told skips it the same way. These are the usual ones; a
+`devio:screen`, or `devio:references` for one that gathers references: a subagent that is not told skips it the same way. These are the usual ones; a
 better-fitting installed specialist wins.
 
 | Task | Specialist |
 | --- | --- |
-| References from real products, or the web | the Mobbin MCP; `firecrawl:firecrawl-search`, `firecrawl:firecrawl-scrape` |
+| References: products or brand systems in use, a moodboard, a round on one, a ticket that names one (a pick opens the round; only the designer's "this is it" closes it) | `devio:references`; the Mobbin MCP; `firecrawl:firecrawl-search`, `firecrawl:firecrawl-scrape` |
 | Research against primary sources | `mattpocock-skills:research` |
 | Grilling a plan, domain docs | `mattpocock-skills:grilling`, `:domain-modeling` |
 | Building or redesigning a screen, page or app | `devio:screen` |
