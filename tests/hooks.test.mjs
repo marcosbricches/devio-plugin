@@ -44,6 +44,16 @@ test('the References row routes to devio:references and says who closes a round'
   }
 });
 
+// Ticket 20: an identity, a manual or a prompt for a design tool is routed to devio:brand, not composed
+// as a screen.
+test('the routing table sends an identity, a brand manual or a design-tool prompt to devio:brand', () => {
+  const row = TEXT.split('\n').find((line) => line.includes('`devio:brand`'));
+  assert.ok(row, 'no row routes to devio:brand');
+  for (const needle of ['identity', 'brand manual', 'prompt for a design tool', 'Claude Design']) {
+    assert.ok(row.includes(needle), `the identity row lacks "${needle}"`);
+  }
+});
+
 test('the subagent rule names devio:references for a subagent that gathers references', () => {
   const rule = TEXT.slice(TEXT.indexOf('Work handed to a subagent'), TEXT.indexOf('| Task |'));
   assert.ok(rule.includes('devio:references'), 'the subagent rule does not name devio:references');

@@ -50,3 +50,17 @@ test('the references skill description carries its trigger words within the cap'
   assert.ok(description.length <= DESCRIPTION_CAP, `${description.length} characters`);
   for (const word of ['moodboard', 'references', 'round', 'board']) assert.match(description, new RegExp(`\\b${word}\\b`, 'i'), word);
 });
+
+const BRAND = readFileSync(new URL('../skills/brand/SKILL.md', import.meta.url), 'utf8');
+
+test('the brand skill keeps its standing rule inside what compaction keeps', () => {
+  const rule = BRAND.indexOf('The agent never composes an identity as a screen');
+  assert.ok(rule > 0, 'the standing rule is missing');
+  assert.ok(rule < KEPT_AFTER_COMPACTION, `the rule starts at character ${rule}`);
+});
+
+test('the brand skill description carries its trigger words within the cap', () => {
+  const description = BRAND.match(/^description: (.*)$/m)?.[1] ?? '';
+  assert.ok(description.length <= DESCRIPTION_CAP, `${description.length} characters`);
+  for (const phrase of ['identity', 'brand manual', 'Claude Design', 'prompt for a design tool']) assert.ok(description.includes(phrase), phrase);
+});

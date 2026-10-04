@@ -16,6 +16,7 @@ better-fitting installed specialist wins.
 | Task | Specialist |
 | --- | --- |
 | References: products or brand systems in use, a moodboard, a round on one, a ticket that names one (a pick opens the round; only the designer's "this is it" closes it) | `devio:references`; the Mobbin MCP; `firecrawl:firecrawl-search`, `firecrawl:firecrawl-scrape` |
+| An identity, a brand manual, or a prompt for a design tool (Claude Design, Stitch, v0) | `devio:brand` |
 | Research against primary sources | `mattpocock-skills:research` |
 | Grilling a plan, domain docs | `mattpocock-skills:grilling`, `:domain-modeling` |
 | Building or redesigning a screen, page or app | `devio:screen` |
