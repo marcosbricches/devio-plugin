@@ -24,7 +24,17 @@ const INPUTS = {
 
 test('the hook text fits the context cap', () => assert.ok(TEXT.length <= CONTEXT_CAP, `${TEXT.length} characters`));
 
-test('every session source gets the hook text', () => assert.equal(hooks.SessionStart[0].matcher, undefined));
+// Ticket 19: plates come from any approved image on disk, not only an Impeccable comp, and the
+// designer hears that plates need image generation before waiting for them.
+test('the Assets row measures an outside image with comp-spec and names the image-generation need', () => {
+  const row = TEXT.split('\n').find((line) => line.startsWith('| Assets'));
+  assert.ok(row, 'no Assets row');
+  for (const needle of ['impeccable-asset-producer', 'manual', 'comp-spec', 'new-work flow', 'OPENAI_API_KEY']) {
+    assert.ok(row.includes(needle), `the Assets row lacks "${needle}"`);
+  }
+});
+
+test('every session source gets the hook text',() => assert.equal(hooks.SessionStart[0].matcher, undefined));
 
 test('subagents that do work get the hook text; lookup-only ones skip it', () => {
   const matches = (type) => new RegExp(hooks.SubagentStart[0].matcher).test(type);

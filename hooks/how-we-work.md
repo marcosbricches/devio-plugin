@@ -30,7 +30,7 @@ better-fitting installed specialist wins.
 | Accessibility: a screen against WCAG | `chrome-devtools-mcp:a11y-debugging`: Lighthouse, then the keyboard and the page by hand |
 | Performance: a slow page, Core Web Vitals | `chrome-devtools-mcp:debug-optimize-lcp`: a trace before the fix and after it |
 | SEO: a landing page before it ships | the Chrome DevTools MCP: `lighthouse_audit`, then every route's head read with `evaluate_script`: title, description, canonical, Open Graph, JSON-LD |
-| Assets: images, illustration, no placeholder art | `impeccable:impeccable`: plates from the approved comp, by its `impeccable-asset-producer` agent |
+| Assets: images, illustration, no placeholder art | `impeccable:impeccable`: plates by its `impeccable-asset-producer` agent, from the approved image on disk (the manual's product page counts), measured first with `impeccable comp-spec`; never its new-work flow. Plates need image generation (an `OPENAI_API_KEY` or a native image tool): check for one and tell the designer before they wait |
 | Critique or polish of an interface, a component, type, colour | `impeccable:impeccable` |
 | A library, framework, SDK or API | context7: `resolve-library-id`, then `query-docs`, even for a well-known one |
 | Charts and data display | the bundled `dataviz` for the form and the colours, then, in a shadcn/ui app, the shadcn MCP's `chart` block |
