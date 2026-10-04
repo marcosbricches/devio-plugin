@@ -7,7 +7,8 @@ A Claude Code plugin that adds to every session and subagent, and takes nothing 
 - **The installed specialist for each job**: a short routing table, `hooks/how-we-work.md`, added to
   every session and every subagent that does work.
 - **How Devio works**: a recommendation with its evidence, both outcomes and one next step; a mistake
-  recorded in the repository in the same turn; formal text for clients.
+  recorded in the repository in the same turn (a rejected design deleted, a lesson about devio itself
+  ending the reply as a Trial report); formal text for clients.
 - **Skills that load only when their task comes up** (below).
 
 devio is written for one designer: preferences their global `CLAUDE.md` already carries stay out
@@ -59,7 +60,9 @@ To update: `claude plugin update devio@devio`, or turn on auto-update for the `d
 
 | Skill | Loads when |
 | --- | --- |
-| `devio:screen` | A screen, page or app is built, redesigned or corrected: the client's visual language first, then references, a render at desktop and phone width and every control clicked in every round, Impeccable, the app-shell frame measured across routes |
+| `devio:references` | References are gathered, judged or steered: the bar (currency, the product's own world, tone, depth), images saved to disk with their source and year, and the round, which only the designer's "this is it" closes |
+| `devio:brand` | A product needs an identity or a brand manual, or a prompt for a design tool: the order of the effort, the Lean prompt for Claude Design, the Version review of each round, the Closing pass on the manual, and the cuts to make when a result comes back generic |
+| `devio:screen` | A screen, page or app is built, redesigned or corrected: the visual language first (the approved brand manual's, else one the designer brings or the client's site), the Lead from one ladder, a render at desktop and phone width and every control clicked in every round, Impeccable, the app-shell frame measured across routes |
 | `devio:execution-plan` | `/to-tickets` has just published a feature's tickets: waves, the critical path, what to watch between parallel tickets |
 | `devio:deploy` | Anything is deployed, or a project has no CI: one Docker image for Devio's CD, and a GitHub Actions workflow that runs the gate, or GitHub's Node.js starter steps when there is none |
 
@@ -72,8 +75,9 @@ node --test tests/hooks.test.mjs tests/skills.test.mjs
 `hooks.test.mjs` runs each hook as `hooks/hooks.json` declares it and checks the output Claude Code
 accepts, within the 10,000-character cap. Claude Code drops a malformed hook output silently, and no
 eval trace shows `SubagentStart`, so this is where both hooks are checked. `skills.test.mjs` checks
-that `devio:screen`'s standing rule sits in the first 5,000 tokens, the part Claude Code keeps after
-compaction.
+that the standing rule of `devio:screen`, `devio:references` and `devio:brand` sits in the first
+5,000 tokens, the part Claude Code keeps after compaction, and that the trigger words fit each
+description.
 
 ## Measure
 
@@ -90,7 +94,10 @@ plan. No case grants Bash, so everything runs on native Windows.
 ## Release
 
 1. Change the hook text, a skill or the dependencies only with `node evals/run.mjs <cases it reaches>`
-   exiting 0.
+   exiting 0. A change to `screen`, `references`, `brand` or a design row of the hook text reaches the
+   design set, run once: `moodboard-round`, `reference-bar`, `brand-lean-prompt`, `generic-result`,
+   `screen-direction`, `brand-language`, `manual-wins`, `new-screen`, `queue-conflict`, `designed-control`,
+   `rendered-screen`, `correction-round`, `control-inventory`, `delegation` (14 cases).
 2. Bump `version` in `.claude-plugin/plugin.json` and add a `CHANGELOG.md` entry with the measured
    table. Move the shadcn pin in `.mcp.json` and the warm-up line above to `npm view shadcn version`.
 3. `claude plugin validate . --strict` and `claude plugin validate .claude-plugin/plugin.json --strict`.
@@ -105,6 +112,6 @@ Users receive a release when `version` changes (code.claude.com/docs/en/plugins/
 | `.claude-plugin/` | The manifest with its dependencies, and the repository as its own marketplace |
 | `.mcp.json` | The Mobbin and shadcn MCP servers |
 | `hooks/` | `SessionStart` and `SubagentStart`: one script and the text it adds |
-| `skills/` | `screen`, `execution-plan`, `deploy` |
-| `tests/` | The hook contract test and the screen skill's compaction test |
+| `skills/` | `references`, `brand`, `screen`, `execution-plan`, `deploy` |
+| `tests/` | The hook contract test and the skills' compaction test |
 | `evals/` | The eval cases and `run.mjs` |

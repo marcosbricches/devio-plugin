@@ -2,6 +2,114 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0] — 2026-10-04
+
+A product with no identity gets one, and every design starts from images. From a field trial of
+2026-10-03 to 2026-10-04 (one product, n = 1): devio built a screen well once a visual language existed,
+but treated a brand as a screen, composed identity comps itself and wrote the design tool a long text
+specification, and what came back was generic. Every figure below that the skills carry (the two-year
+window, about 8 references, 8 % and 56 px, about eight language parameters) is a guess from that one trial,
+and the skill that holds it says so.
+
+### Added
+
+- **`devio:references`.** The bar for a reference: the year it shipped and where that year was read, or
+  "year unverified"; a product outside the last two years lends one pattern, tagged "pattern only"; the
+  product's own world lends domain patterns, never look; a tone word is restraint at today's craft, not an
+  era; layers unless flat is asked; brand references are brand systems in use, never UI; images saved to
+  disk, never a table of links; a Firecrawl 402 is named in the reply's first line and the work continues
+  with the Chrome DevTools MCP, Playwright or WebFetch. And the Round: a pick opens it, only the designer's
+  "this is it" closes it, each round ends on the board and one line on what the next would look for.
+- **`devio:brand`.** The order of the effort (brief, brand references, Lean prompt, rounds, visual
+  language, first screen); the Lean prompt for Claude Design, which the designer operates and the agent
+  never drives (what the product does for whom, how it should feel, the deliverable, the images; no
+  prohibition, rule, domain mechanic or look word; the whole system as a manual, three Candidates); the
+  Version review after each round; the Closing pass on the manual (a copy pass against the product's
+  documents, composition rules measured on the rendered slides); and the cut order for a generic result.
+  There is always an exit: the designer brings the identity or the language, or skips the manual.
+- Cases `moodboard-round`, `reference-bar`, `brand-lean-prompt`, `generic-result`, `manual-wins` and
+  `rejected-work`, and a skills test for the standing rule and trigger words of both new skills.
+
+### Changed
+
+- **`devio:screen` starts from the manual.** With no visual language in the project and none brought,
+  the turn ends on brand reference images and the Lean prompt, nothing built. The approved manual is the
+  visual language (colours, type family, logo and its product foundations), each token traced
+  `[manual: slide label, n of total]`, read from the slide's PNG and checked with `evaluate_script`, and it
+  wins over the translation Gotchas where it speaks, each divergence named in one line. Reading a site's CSS
+  is now the exit for a designer who skips the manual or brings the language. Every screen takes its Lead
+  from one ladder: the manual's product page for the surface, else the project's closest approved screen,
+  else the real product closest to the job. The bare question to the designer is gone.
+- **Hook text.** The References row routes to `devio:references` and says a pick opens the round; a new
+  row routes an identity, a brand manual or a prompt for a design tool to `devio:brand`; the lesson line
+  says a rejected design is deleted, the project keeps only a positive rule, and a lesson about devio ends
+  the reply as a Trial report, never as a file; the Assets row takes the manual's product page as the
+  approved image for plates and says plates need image generation.
+- Cases `screen-direction` and `brand-language` are rewritten for the new first turn, and
+  `correction-round` grades the outcome (the phone was rendered, the reservation is shown, Continue is wired)
+  and no longer a position in the trace.
+- The Gotchas that named an earlier trial keep the fact, the source and the date, and no longer name the
+  trial. The Impeccable Gotcha is worded for the narrower truth: its new-work flow is image-first when image
+  generation exists, so the ban holds because its comps are its own images, not the designer's references.
+
+### Measured
+
+Claude Code 2.1.289, one run per case with devio, sonnet judge, 2026-10-04, read from `result.json`. The
+design set (14 cases) with `lesson-recorded`, `rejected-work`, `no-specialist` and `page-assets`, run once
+together after the last change to a skill or the hook text.
+
+| Case | devio |
+| --- | --- |
+| moodboard-round | 1.00 |
+| reference-bar | 1.00 |
+| brand-lean-prompt | 1.00 |
+| generic-result | 1.00 |
+| screen-direction | 1.00 |
+| brand-language | 1.00 |
+| manual-wins | 1.00 |
+| new-screen | 1.00 |
+| queue-conflict | 1.00 |
+| designed-control | 1.00 |
+| rendered-screen | 1.00 |
+| correction-round | 1.00 |
+| control-inventory | 0.67, then 1.00 on a second run |
+| delegation | 1.00 |
+| lesson-recorded | 1.00 |
+| rejected-work | 1.00 |
+| no-specialist | 1.00 |
+| page-assets | 1.00 |
+
+The first `control-inventory` run failed `dead-control-named-first` in three of three judge votes. Its
+reply opened "Two controls still do nothing: the "Próximo mês" arrow and "Continuar"", which names the
+button the grader asks for, and its trace was not kept, so the cause is not read: either the judge took
+two controls in one line as not naming Continuar, or the reply was judged on a stricter reading of "first
+line". The second run, with the trace kept, opened on "Continuar" alone and scored 1.00. The 1.00 is the
+better of two runs, and the grader is unchanged. This table carries no 0.12.0 scores: the baseline traces
+of five cases were read while their graders were validated, and what each scored on 0.12.0 is not
+tabulated here, so that every new case fails on 0.12.0 is a guess.
+
+### Not measured
+
+Rules that ship with a source and no case:
+
+- The Lead ladder's second rung (the project's closest approved screen); only the first rung, the manual's
+  page, has a case (`manual-wins`).
+- The skip exit: a designer who skips the manual or brings the language, and the site read that follows.
+- Whether `devio:brand` fires on a plain UI edit; `no-specialist` shows only that the new rows stay quiet
+  on a plain question.
+- The deletion of a rejected design: the eval grants no Bash, so a case can grade that nothing was
+  written, never that a file was removed.
+- The Closing pass and the Version review, the copy pass against the product's documents, and the
+  composition thresholds (8 % of the frame, 56 px) taken from one designer's review of one deck, with no
+  false-positive rate measured.
+- The web fallback after a Firecrawl 402, and the gathering of references at all: the eval grants no
+  Mobbin, Firecrawl or Bash (`evals/run.mjs`, read 2026-10-04), so reference cases use saved images.
+- Plates: they need image generation (an `OPENAI_API_KEY` or a native image tool), which the setup this
+  was written on does not have; `page-assets` measures the regions step, not a produced plate.
+- Claude Design itself: no case reaches it (no API or MCP). Chat images are documented as an input;
+  chat versus folder quality, and a file limit for Claude Design, are not (support.claude.com, read
+  2026-10-04).
+
 ## [0.12.0] — 2026-10-03
 
 `devio:screen` now speaks the client's language and checks every round, and a subagent is handed its
