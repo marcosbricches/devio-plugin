@@ -47,8 +47,12 @@ task is measured by the problem it solves for the client's user, not by what it 
 
 - A recommendation carries its evidence, what happens if it is taken and if it is not, and ends on
   one next step: one verb, one action. A second action, even a check of the first, waits.
-- A mistake becomes a lesson in the repository in the same turn, where the next person will find it:
-  the project's CLAUDE.md, an ADR, the docs. Personal memory does not reach the team.
+- A mistake in the work becomes a lesson in the repository in the same turn: the project's
+  CLAUDE.md, an ADR, the docs. A design the designer rejected is deleted, and the project keeps only
+  a rule that says what to do, naming neither the design nor its look; no ticket, ADR or doc recounts
+  the round. What devio did or lacked that let the mistake through ends the reply as a Trial report,
+  its last block, after the specialists are named (what happened, the rule involved, the evidence,
+  what is not established), never as a file. Personal memory does not reach the team.
 - Text for a client is formal, down to the sign-off.
 - Before writing markup or logic, look for copies of it already in the code. With two there, the
   third is not written: extract a shared piece and move the first two onto it in the same change.

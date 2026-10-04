@@ -34,6 +34,17 @@ test('the Assets row measures an outside image with comp-spec and names the imag
   }
 });
 
+// Ticket 18: a rejected design is deleted and the project keeps a rule, not an account; a lesson about
+// devio's own process ends the reply as a Trial report and is never a file.
+test('the lesson line deletes a rejected design and sends a process lesson to a Trial report', () => {
+  const start = TEXT.indexOf('- A mistake in the work');
+  assert.ok(start >= 0, 'no lesson line');
+  const line = TEXT.slice(start, TEXT.indexOf('\n- ', start + 1)).replace(/\s+/g, ' ');
+  for (const needle of ['A design the designer rejected is deleted', 'naming neither the design nor its look', 'Trial report', 'never as a file']) {
+    assert.ok(line.includes(needle), `the lesson line lacks "${needle}"`);
+  }
+});
+
 test('every session source gets the hook text',() => assert.equal(hooks.SessionStart[0].matcher, undefined));
 
 test('subagents that do work get the hook text; lookup-only ones skip it', () => {
