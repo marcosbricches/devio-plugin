@@ -1,0 +1,158 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Larkin &amp; Vane Printers: brand manual 1.0</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Inter", "Segoe UI", system-ui, sans-serif; font-size: 18px; line-height: 1.5; }
+  section { position: relative; width: 1920px; height: 1080px; overflow: hidden; padding: 96px; }
+  .folio { position: absolute; left: 96px; top: 48px; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+  .display { font-family: "Newsreader", Georgia, serif; font-weight: 600; }
+  h2 { font-family: "Newsreader", Georgia, serif; font-size: 72px; line-height: 1.05; font-weight: 600; margin-bottom: 40px; }
+  .lbl { font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+  .mono { font-family: "Cascadia Mono", Consolas, monospace; font-size: 15px; }
+  .swatch { width: 260px; height: 150px; border-radius: 6px; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .swatch b { font-size: 18px; }
+  .row { display: flex; gap: 24px; margin-bottom: 24px; }
+  .col { display: flex; flex-direction: column; gap: 6px; }
+  .app { position: absolute; left: 96px; top: 96px; width: 1728px; height: 760px; border-radius: 6px; overflow: hidden; }
+  .bar { height: 56px; display: flex; align-items: center; padding: 0 32px; gap: 40px; }
+  .tab { font-size: 15px; font-weight: 600; height: 56px; display: flex; align-items: center; }
+  .body { padding: 32px; }
+  .th, .tr { display: grid; grid-template-columns: 120px 1fr 120px 200px 100px 280px; align-items: center; padding: 0 24px; gap: 16px; }
+  .th { height: 40px; }
+  .tr { height: 56px; font-size: 15px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin-right: 10px; }
+  .note { width: 540px; font-size: 18px; }
+  .note .lbl { margin-bottom: 8px; display: block; }
+</style>
+
+<!-- 1 -->
+<section data-label="Cover" style="background: oklch(46% 0.13 255); color: oklch(97.6% 0.008 85);">
+  <div class="folio">01 &middot; Cover</div>
+  <div class="display" style="position: absolute; left: 96px; top: 330px; font-size: 168px; line-height: 1;">Larkin &amp;<br>Vane</div>
+  <div style="position: absolute; left: 96px; top: 700px; font-size: 28px;">Printers since 1974. Brand manual, version 1.0</div>
+  <svg style="position: absolute; right: 120px; bottom: 120px;" width="220" height="220" viewBox="0 0 220 220" fill="none" stroke="oklch(97.6% 0.008 85)" stroke-width="3" opacity="0.7">
+    <circle cx="110" cy="110" r="70"/><circle cx="110" cy="110" r="30"/><path d="M110 10v200M10 110h200"/>
+  </svg>
+</section>
+
+<!-- 2 -->
+<section data-label="Colour" style="background: oklch(97.6% 0.008 85); color: oklch(24% 0.02 260);">
+  <div class="folio" style="color: oklch(50% 0.02 260);">02 &middot; Colour</div>
+  <h2 style="margin-top: 24px;">Colour</h2>
+  <div class="lbl" style="color: oklch(50% 0.02 260); margin-bottom: 16px;">Brand and grounds</div>
+  <div class="row">
+    <div class="swatch" style="background: oklch(46% 0.13 255); color: oklch(97.6% 0.008 85);"><b>Vane blue</b><span class="mono">oklch(46% 0.13 255)</span></div>
+    <div class="swatch" style="background: oklch(24% 0.02 260); color: oklch(97.6% 0.008 85);"><b>Ink</b><span class="mono">oklch(24% 0.02 260)</span></div>
+    <div class="swatch" style="background: oklch(100% 0 0); border: 1px solid oklch(89% 0.01 85);"><b>Sheet</b><span class="mono">oklch(100% 0 0)</span></div>
+    <div class="swatch" style="background: oklch(94% 0.03 255);"><b>Vane tint</b><span class="mono">oklch(94% 0.03 255)</span></div>
+    <div class="swatch" style="background: oklch(97.6% 0.008 85); border: 1px solid oklch(89% 0.01 85);"><b>Paper</b><span class="mono">oklch(97.6% 0.008 85)</span></div>
+  </div>
+  <div class="lbl" style="color: oklch(50% 0.02 260); margin: 32px 0 16px;">Status scale</div>
+  <div class="row">
+    <div class="swatch" style="height: 110px; background: oklch(62% 0.02 260); color: oklch(18% 0.02 260);"><b>Queued</b><span class="mono">oklch(62% 0.02 260)</span></div>
+    <div class="swatch" style="height: 110px; background: oklch(46% 0.13 255); color: oklch(100% 0 0);"><b>On press</b><span class="mono">oklch(46% 0.13 255)</span></div>
+    <div class="swatch" style="height: 110px; background: oklch(72% 0.14 75); color: oklch(24% 0.02 260);"><b>Proofing</b><span class="mono">oklch(72% 0.14 75)</span></div>
+    <div class="swatch" style="height: 110px; background: oklch(58% 0.11 150); color: oklch(18% 0.02 260);"><b>Done</b><span class="mono">oklch(58% 0.11 150)</span></div>
+    <div class="swatch" style="height: 110px; background: oklch(56% 0.19 27); color: oklch(100% 0 0); width: 420px;"><b>Proof red, reserved</b><span class="mono">oklch(56% 0.19 27)</span></div>
+  </div>
+  <div style="position: absolute; right: 96px; top: 96px; width: 420px; font-size: 18px; color: oklch(50% 0.02 260);">Proof red is not part of the status scale. It has one meaning: a job that will miss its press slot.</div>
+</section>
+
+<!-- 3 -->
+<section data-label="Type" style="background: oklch(97.6% 0.008 85); color: oklch(24% 0.02 260);">
+  <div class="folio" style="color: oklch(50% 0.02 260);">03 &middot; Type</div>
+  <h2 style="margin-top: 24px;">Type</h2>
+  <div style="display: flex; gap: 120px;">
+    <div style="width: 780px;">
+      <div class="lbl" style="color: oklch(50% 0.02 260); margin-bottom: 16px;">Display: Newsreader, 600</div>
+      <div class="display" style="font-size: 120px; line-height: 1.05;">Aa Gg<br>Quire</div>
+      <div class="display" style="font-size: 36px; margin-top: 24px;">Every job leaves the floor on time.</div>
+    </div>
+    <div style="width: 780px;">
+      <div class="lbl" style="color: oklch(50% 0.02 260); margin-bottom: 16px;">Text: Inter, 400 and 600</div>
+      <div style="font-size: 120px; line-height: 1.05; font-weight: 500;">Aa Gg<br>1234</div>
+      <div style="font-size: 20px; margin-top: 24px; max-width: 640px;">Newsreader sets titles and headlines. Inter sets everything a person reads at length or compares in a column: body, labels, figures.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section data-label="Product foundations" style="background: oklch(97.6% 0.008 85); color: oklch(24% 0.02 260);">
+  <div class="folio" style="color: oklch(50% 0.02 260);">04 &middot; Product foundations</div>
+  <h2 style="margin-top: 24px;">Product foundations</h2>
+  <div style="display: flex; gap: 96px;">
+    <div style="width: 920px;">
+      <div class="lbl" style="color: oklch(50% 0.02 260); margin-bottom: 16px;">Screen type scale</div>
+      <div style="border-top: 1px solid oklch(89% 0.01 85);">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid oklch(89% 0.01 85);"><span class="display" style="font-size: 26px; line-height: 32px;">Page title</span><span class="mono">Newsreader 26 / 32, 600</span></div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid oklch(89% 0.01 85);"><span style="font-size: 18px; font-weight: 600;">Section heading</span><span class="mono">Inter 18 / 24, 600</span></div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid oklch(89% 0.01 85);"><span style="font-size: 15px;">Body and table text</span><span class="mono">Inter 15 / 22, 400</span></div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid oklch(89% 0.01 85);"><span class="lbl">Column label</span><span class="mono">Inter 12 / 16, 600, capitals, tracking 0.14em</span></div>
+      </div>
+    </div>
+    <div style="width: 640px;" class="col">
+      <div class="lbl" style="color: oklch(50% 0.02 260); margin-bottom: 10px;">Space, radius, elevation, icons</div>
+      <div style="display: flex; gap: 12px; align-items: flex-end; margin-bottom: 20px;">
+        <div style="width: 4px; height: 4px; background: oklch(46% 0.13 255);"></div><div style="width: 8px; height: 8px; background: oklch(46% 0.13 255);"></div><div style="width: 12px; height: 12px; background: oklch(46% 0.13 255);"></div><div style="width: 16px; height: 16px; background: oklch(46% 0.13 255);"></div><div style="width: 24px; height: 24px; background: oklch(46% 0.13 255);"></div><div style="width: 32px; height: 32px; background: oklch(46% 0.13 255);"></div>
+      </div>
+      <div class="mono">Space: 4 px base; 4, 8, 12, 16, 24, 32</div>
+      <div class="mono">Radius: 6 px on controls and panels</div>
+      <div class="mono">Elevation: none; a 1 px rule separates</div>
+      <div class="mono">Icons: 1.5 px stroke, 20 px grid</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section data-label="Product page: press queue" style="background: oklch(94% 0.03 255); color: oklch(24% 0.02 260);">
+  <div class="app" style="background: oklch(97.6% 0.008 85); border: 1px solid oklch(89% 0.01 85);">
+    <div class="bar" style="background: oklch(100% 0 0); border-bottom: 1px solid oklch(89% 0.01 85);">
+      <span class="display" style="font-size: 20px;">Larkin &amp; Vane</span>
+      <span class="tab" style="color: oklch(46% 0.13 255); border-bottom: 2px solid oklch(46% 0.13 255);">Press queue</span>
+      <span class="tab" style="color: oklch(50% 0.02 260);">Stock</span>
+      <span class="tab" style="color: oklch(50% 0.02 260);">Proofs</span>
+      <span class="tab" style="color: oklch(50% 0.02 260);">Dispatch</span>
+      <span style="margin-left: auto; font-size: 15px; color: oklch(50% 0.02 260);">Day shift &middot; Sam Okafor</span>
+    </div>
+    <div class="body">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px;">
+        <span class="display" style="font-size: 26px; line-height: 32px;">Press queue</span>
+        <span style="font-size: 15px; color: oklch(50% 0.02 260);">Thursday 9 October &middot; 6 jobs, 3 presses</span>
+      </div>
+      <div class="th lbl" style="color: oklch(50% 0.02 260);"><span>Job</span><span>Title</span><span>Press</span><span>Stock</span><span>Due</span><span>Status</span></div>
+      <div style="background: oklch(100% 0 0); border: 1px solid oklch(89% 0.01 85); border-radius: 6px;">
+        <div class="tr" style="border-bottom: 1px solid oklch(89% 0.01 85);"><span class="mono">J-4460</span><span>Library programme booklets, 300</span><span>Press 2</span><span>130 gsm silk</span><span>09:30</span><span><i class="dot" style="background: oklch(58% 0.11 150);"></i>Done</span></div>
+        <div class="tr" style="border-bottom: 1px solid oklch(89% 0.01 85); box-shadow: inset 4px 0 0 oklch(56% 0.19 27);"><span class="mono">J-4468</span><span style="font-weight: 600;">Ostler menu cards, 1,200</span><span>Press 1</span><span>350 gsm uncoated</span><span>11:00</span><span style="color: oklch(56% 0.19 27); font-weight: 600;"><i class="dot" style="background: oklch(56% 0.19 27);"></i>Misses slot by 40 min</span></div>
+        <div class="tr" style="border-bottom: 1px solid oklch(89% 0.01 85);"><span class="mono">J-4465</span><span>Wren &amp; Co. letterheads, 800</span><span>Press 1</span><span>120 gsm laid</span><span>12:30</span><span><i class="dot" style="background: oklch(72% 0.14 75);"></i>Proofing</span></div>
+        <div class="tr" style="border-bottom: 1px solid oklch(89% 0.01 85);"><span class="mono">J-4471</span><span>Harbour Festival posters, A2, 400</span><span>Press 2</span><span>170 gsm silk</span><span>14:30</span><span><i class="dot" style="background: oklch(46% 0.13 255);"></i>On press, 62%</span></div>
+        <div class="tr" style="border-bottom: 1px solid oklch(89% 0.01 85);"><span class="mono">J-4472</span><span>Quayside tide tables, 5,000</span><span>Press 3</span><span>90 gsm offset</span><span>16:00</span><span><i class="dot" style="background: oklch(62% 0.02 260);"></i>Queued</span></div>
+        <div class="tr"><span class="mono">J-4474</span><span>Market day flyers, A5, 10,000</span><span>Press 3</span><span>115 gsm gloss</span><span>17:30</span><span><i class="dot" style="background: oklch(62% 0.02 260);"></i>Queued</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="position: absolute; left: 96px; top: 896px; display: flex; gap: 72px;">
+    <div class="note"><span class="lbl" style="color: oklch(46% 0.13 255);">Labels</span>Column labels are 12 px, capitals, tracked 0.14em, in slate.</div>
+    <div class="note"><span class="lbl" style="color: oklch(56% 0.19 27);">Proof red, reserved</span>It marks a job that will miss its press slot, and nothing else: no action, no emphasis, no decoration.</div>
+    <div class="note"><span class="lbl" style="color: oklch(46% 0.13 255);">Rows</span>56 px, one hairline between rows, no cards inside the table.</div>
+  </div>
+  <div class="folio" style="color: oklch(50% 0.02 260); top: 40px; left: auto; right: 96px;">05 &middot; Product page: press queue</div>
+</section>
+
+<!-- 6 -->
+<section data-label="Graphic device" style="background: oklch(24% 0.02 260); color: oklch(97.6% 0.008 85);">
+  <div class="folio" style="color: oklch(80% 0.01 260);">06 &middot; Graphic device</div>
+  <h2 style="margin-top: 24px;">The registration mark</h2>
+  <div style="max-width: 620px; font-size: 22px;">A crosshair in a circle, the mark a press uses to line up its colours. It sits in a corner of posters, packaging and the cover, one per surface, at 40% of the ground's contrast.</div>
+  <svg style="position: absolute; right: 160px; top: 200px;" width="620" height="620" viewBox="0 0 220 220" fill="none" stroke="oklch(46% 0.13 255)" stroke-width="2">
+    <circle cx="110" cy="110" r="70"/><circle cx="110" cy="110" r="30"/><path d="M110 10v200M10 110h200"/>
+  </svg>
+</section>
+
+<!-- 7 -->
+<section data-label="Voice" style="background: oklch(97.6% 0.008 85); color: oklch(24% 0.02 260);">
+  <div class="folio" style="color: oklch(50% 0.02 260);">07 &middot; Voice</div>
+  <h2 style="margin-top: 24px;">Voice</h2>
+  <div style="max-width: 900px; font-size: 22px; margin-bottom: 40px;">Plain, brief and in the printer's own words. Say what is happening and what is next.</div>
+  <div class="display" style="font-size: 44px; line-height: 1.3;">Proofs are with the client.<br>Press 2 is free at 14:00.<br>Delivered, signed for by M. Ostler.</div>
+</section>
